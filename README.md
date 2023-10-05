@@ -6,8 +6,10 @@ This is a project design for the 9292 AI Challenge. The idea of this project is 
 ## Our Teams:
 We called ourself `RUG-UT-RS`, we are a diverse group of students from the University of Gronigen, University of Twente and ReadSpeaker. The team members are:
   //TODO: Add team members
+  - Phuoc Ho
 
 ## Project Structure
+
 
 
 ## General Information
