@@ -8,6 +8,8 @@ We called ourself `RUG-UT-RS`, we are a diverse group of students from the Unive
   //TODO: Add team members
   - Phuoc Ho
   - [Aki Kunikoshi](https://github.com/yemaozi88?tab=repositories)
+  - Yanpei Ouyang
+  - Xueying Liu
 
 ## Project Structure
 
