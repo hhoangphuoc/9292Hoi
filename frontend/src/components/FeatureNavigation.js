@@ -9,15 +9,19 @@ import { useNavigation } from '@react-navigation/native';
 
 //Function to render the feature which has the Navigation icon, redirecting to other page
 
-export default function FeatureNavigation({ item}) {
+export default function FeatureNavigation({item}) {
     const navigation = useNavigation();
     return (
         <TouchableOpacity
             collapsable={false}
             className="flex-row items-center h-14 w-full bg-black justify-between mb-2"
-            onPress={() => navigation.navigate('VoiceSettings')}
+            onPress={() => {
+                console.log(item.pageNavigationName);
+                navigation.navigate("Menu",
+                                {screen: "AllVoiceSettings",
+                                params: {screen:
+                                    `${item.pageNavigationName}`}})}}
         >
-                {/* <Text className="flex-1 text-sm text-white ml-8">{item.featureName}</Text> */}
                 <View className="flex-col">
                     <Text className="flex-1 text-sm text-white ml-8">{item.featureName}</Text>
                     <Text 

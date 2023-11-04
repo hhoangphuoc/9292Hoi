@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, Pressable} from 'react-native';
+import { View, Text, Pressable, ScrollView} from 'react-native';
 
 //icons
 import { Ionicons } from '@expo/vector-icons';
@@ -38,7 +38,7 @@ export default function ListFeatures({list}) {
     }));
     const listStyle = useAnimatedStyle(() => ({
         opacity: progress.value === 0 ? 0 : 1,
-        justifyContent: progress.value === 0 ? 'flex-start' : 'space-between',
+        // justifyContent: progress.value === 0 ? 'flex-start' : 'space-between',
         paddingVertical: progress.value === 0 ? 0 : 8,
         paddingHorizontal: progress.value === 0 ? 0 : 8,
 
@@ -78,9 +78,7 @@ export default function ListFeatures({list}) {
                     </View>
                     <Animated.View>
                         <Ionicons
-                            // style={iconStyle}
                             name='chevron-down-outline'
-                            // name='chevron-down-outline'
                             size={24} color={"white"}
                             />
                     </Animated.View>

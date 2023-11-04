@@ -1,3 +1,9 @@
-import sideMenu from "./categoryItems";
+// import sideMenu from "./categoryItems";
+import { voiceAssitantList, voiceSettingsList, gamificationList } from "./featureItems";
 
-export { sideMenu };
+export { 
+    // sideMenu, 
+    voiceAssitantList
+    , gamificationList
+    , voiceSettingsList
+};

@@ -4,14 +4,19 @@ import { Text} from 'react-native'
 import {
     createDrawerNavigator, 
 } from '@react-navigation/drawer'
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
-import { Home, VoiceSettings, Profile } from '../pages';
+import { Home, Profile } from '../pages';
+import VoiceSettingsLayout from './VoiceSettingsLayout';
 //icons 
 import { Ionicons } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 const DrawerItems = [
+  {
+    name: "Home",
+    iconName: "home-outline"
+  },
   {
     name: "Profile",
     iconName: "person-circle-outline"
@@ -25,7 +30,7 @@ const DrawerItems = [
       iconName:"calendar-outline"
   },
   {
-      name: "Settings",
+      name: "Voice Settings",
       iconName: "settings-outline"
   },
 
@@ -57,7 +62,7 @@ export default function SideMenu(){
                   name={sideMenuItem.name}
                   component={
                     sideMenuItem.name === 'Home' ? Home :
-                    sideMenuItem.name === 'Settings' ? VoiceSettings :
+                    sideMenuItem.name === 'Voice Settings' ? VoiceSettingsLayout :
                     sideMenuItem.name === 'Profile' ? Profile : Home
                   }
                   options={{
