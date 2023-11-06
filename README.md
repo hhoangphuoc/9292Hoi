@@ -6,20 +6,14 @@ This is a project design for the 9292 AI Challenge. The idea of this project is 
 ## Our Teams:
 We called ourself `RUG-UT-RS`, we are a diverse group of students from the University of Gronigen, University of Twente and ReadSpeaker. The team members are:
   //TODO: Add team members
-  - Phuoc Ho
+  - [Phuoc Ho](https://github.com/hhoangphuoc?tab=repositories)
   - [Aki Kunikoshi](https://github.com/yemaozi88?tab=repositories)
   - Yanpei Ouyang
   - Xueying Liu
   - Brandi
   - Chenyi
 
-## Project Structure
-- 
-
-
-
 ## General Information
-### Planning
 ### System Design
 ![System Flow Diagram ](./SystemFlowDiagram.png)
 
@@ -48,4 +42,10 @@ Create a custom API so that it can be communicated with the backend
 - Connect with `custom API` and `9292 API` for providing travel information
 - Connect with `ReadSpeakers API` for providing voice feedbacks to phone speakers
 
-### Task List:
+## Task List:
+Here are some main tasks
+1. **Handling database** [~2 person]: including creating corresponding functions to query the data from Redshift (Example in AWS Jupyter Notebook); creating our own database, storing in AWS S3
+2. **Handling APIs** [2 person]: Create custom API (for handling main communication), handling 9292 Travel API for specific user inputs request/API calls
+3. **Handling ReadSpeakers API** [1 person]: To converting text generation from user input -> successfully speak out through speaker
+4. **Frontend** [1 person - I will do it]: Create UI and handling user input + references
+5. **Task for all**: maintaining the communication/data flow between different parts + keep track of work flow
