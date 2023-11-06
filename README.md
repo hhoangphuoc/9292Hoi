@@ -21,7 +21,7 @@ We called ourself `RUG-UT-RS`, we are a diverse group of students from the Unive
 ## General Information
 ### Planning
 ### System Design
-
+![System Flow Diagram ](./SystemFlowDiagram.png)
 
 ### Implementation
 #### Backend:
