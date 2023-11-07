@@ -14,7 +14,8 @@ We called ourself `RUG-UT-RS`, we are a diverse group of students from the Unive
   - Chenyi
   - Yilan Wei
 ---
-## 1st Prototype Development
+
+# 1st Prototype Development
 ### Description
 For the first prototype, we will not making the framework to fully-connected with AWS environment, instead, the goal of this prototype is to establishing the connection between the database and the UI, also making sure the voice assistant can giving the right travel information in different circumstance. Hence, the following features will be implemented:
 #### Data
@@ -73,7 +74,8 @@ Based on the description, here are the main tasks list that need to be done:
 
 
 ---
-## Product Development
+---
+## Product Development (Further Development)
 ### System Design
 ![System Flow Diagram ](./SystemFlowDiagram.png)
 
@@ -101,11 +103,3 @@ Create a custom API so that it can be communicated with the backend
 - Using React Native for UI, and handling user inputs
 - Connect with `custom API` and `9292 API` for providing travel information
 - Connect with `ReadSpeakers API` for providing voice feedbacks to phone speakers
-
-## Task List:
-Here are some main tasks
-1. **Handling database** [~2 person]: including creating corresponding functions to query the data from Redshift (Example in AWS Jupyter Notebook); creating our own database, storing in AWS S3
-2. **Handling APIs** [2 person]: Create custom API (for handling main communication), handling 9292 Travel API for specific user inputs request/API calls
-3. **Handling ReadSpeakers API** [1 person]: To converting text generation from user input -> successfully speak out through speaker
-4. **Frontend** [1 person - I will do it]: Create UI and handling user input + references
-5. **Task for all**: maintaining the communication/data flow between different parts + keep track of work flow
