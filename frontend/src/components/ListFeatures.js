@@ -20,7 +20,7 @@ import FeatureSwitch from "./FeatureSwitch";
 import FeatureSlider from "./FeatureSlider";
 import FeatureNavigation from "./FeatureNavigation";
 
-export default function ListFeatures({ list }) {
+export default function ListFeatures({ list, navigation }) {
 	const listRef = useAnimatedRef();
 	const open = useSharedValue(false);
 
@@ -40,13 +40,6 @@ export default function ListFeatures({ list }) {
 		paddingVertical: progress.value === 0 ? 0 : 8,
 		paddingHorizontal: progress.value === 0 ? 0 : 8,
 	}));
-	// const style = useAnimatedStyle(() => ({
-	//     height: height.value *  progress.value + 1,
-	//     opacity: progress.value === 0 ? 0 : 1,
-	// }));
-	// const iconStyle = useAnimatedStyle(() => ({
-	//     transform: [{ rotate: `${progress.value *180}deg` }],
-	// }));
 
 	return (
 		<View className="bg-black flex overflow-hidden">
@@ -87,7 +80,13 @@ export default function ListFeatures({ list }) {
 							} else if (item.type === "slider") {
 								return <FeatureSlider key={index} item={item} />;
 							} else {
-								return <FeatureNavigation key={index} item={item} />;
+								return (
+									<FeatureNavigation
+										key={index}
+										item={item}
+										navigation={navigation}
+									/>
+								);
 							}
 						})}
 					</Animated.View>

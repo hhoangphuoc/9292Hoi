@@ -60,21 +60,14 @@ export default function LocationScreen({ navigation }) {
 						placeholder="From: Address, Station, Stop,..."
 						address={fromAddress}
 						setAddress={setFromAddress}
-						// toAddress={toAddress}
-						// setToAddress={setToAddress}
 						selectedLocation={selectedFromLocation}
-
-						// selectedToLocation={selectedToLocation}
 					/>
 					<View className="w-full h-[1px] ml-6 bg-neutral-900 mt-2"></View>
 					<SearchBar
-						// fromAddress={fromAddress}
-						// setFromAddress={setFromAddress}
 						addressType="To"
 						placeholder="To: Address, Station, Stop,..."
 						address={toAddress}
 						setAddress={setToAddress}
-						// selectedFromLocation={selectedFromLocation}
 						selectedLocation={selectedToLocation}
 					/>
 				</View>

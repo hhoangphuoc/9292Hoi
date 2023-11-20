@@ -3,6 +3,7 @@ import {
 	voiceAssitantList,
 	voiceSettingsList,
 	gamificationList,
+	rankCategories,
 } from "./featureItems";
 import { ENDPOINTS, BASE_URL, TOKEN } from "./endpoints";
 export {
@@ -10,6 +11,7 @@ export {
 	voiceAssitantList,
 	gamificationList,
 	voiceSettingsList,
+	rankCategories,
 	ENDPOINTS,
 	BASE_URL,
 	TOKEN,

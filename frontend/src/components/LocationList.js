@@ -30,8 +30,6 @@ export default function LocationList({
 							location={item}
 							setSelectedLocation={setSelectedLocation}
 							setLocationList={setLocationList}
-							// setAddress={setAddress}
-							// addressType={addressType}
 						/>
 					)}
 					keyExtractor={(item) => item?.id.toString()}
