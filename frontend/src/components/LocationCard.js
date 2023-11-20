@@ -92,9 +92,6 @@ export default function LocationCard({
 				<View className="right-8">
 					<Ionicons name="add-outline" size={24} color="white" />
 				</View>
-
-				{/* </View> */}
-				{/* <View className="w-full h-[1px] bottom-4 bg-neutral-400"></View> */}
 			</View>
 		</TouchableOpacity>
 	);

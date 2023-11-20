@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
 						// marginTop: 100
 					}}
 					size={180}
-					color="#7cc"
+					color="#99f6e4"
 				/>
 			</TouchableOpacity>
 			<Text className="text-neutral-100 font-bold text-lg text-center mt-3">

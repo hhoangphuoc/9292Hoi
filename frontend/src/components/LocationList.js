@@ -39,7 +39,7 @@ export default function LocationList({
 					<Text className="text-neutral-100 text-sm mb-3 mt-6 px-4">
 						No location found
 					</Text>
-					<Ionicons name="warning-outline" size={150} color="#7cc" />
+					<Ionicons name="warning-outline" size={150} color="#99f6e4" />
 				</View>
 			)}
 		</View>

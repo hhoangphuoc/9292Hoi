@@ -80,6 +80,8 @@ export default function LocationScreen({ navigation }) {
 							navigation.navigate("RouteScreen", {
 								fromId: selectedFromLocation?.id,
 								toId: selectedToLocation?.id,
+								fromName: selectedFromLocation?.displayName,
+								toName: selectedToLocation?.displayName,
 							});
 						}}
 					>
@@ -111,7 +113,7 @@ export default function LocationScreen({ navigation }) {
 				/>
 			) : selectedFromLocation && selectedToLocation ? (
 				<View className="items-center justify-center self-center mb-3 mt-6">
-					<Ionicons name="arrow-forward-outline" size={100} color="#7cc" />
+					<Ionicons name="arrow-forward-outline" size={100} color="#99f6e4" />
 					<Text className="text-neutral-100 text-sm  px-4">
 						{selectedFromLocation.displayName} to{" "}
 						{selectedToLocation.displayName}
@@ -119,7 +121,7 @@ export default function LocationScreen({ navigation }) {
 				</View>
 			) : (
 				<View className="items-center justify-center self-center mb-3 mt-6">
-					<Ionicons name="trail-sign-outline" size={150} color="#7cc" />
+					<Ionicons name="trail-sign-outline" size={150} color="#99f6e4" />
 					<Text className="text-neutral-100 text-sm  px-4">
 						Find your suitable locations, and route
 					</Text>
