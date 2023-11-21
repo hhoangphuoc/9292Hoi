@@ -16,7 +16,7 @@ export default function FeatureNavigation({ item, navigation }) {
 			collapsable={false}
 			className="flex-row items-center h-14 w-full bg-black justify-between mb-2"
 			onPress={() => {
-				navigation.navigate(item.featureName);
+				navigation.navigate(item.pageNavigationName);
 			}}
 		>
 			<View className="flex-col">

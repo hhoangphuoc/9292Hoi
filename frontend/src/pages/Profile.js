@@ -8,7 +8,7 @@ import { rankCategories } from "../constant";
 //icons
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
-export default function Profile({ navigation }) {
+export default function Profile({ route, navigation }) {
 	//TODO: replace with the real user data
 	const userData = {
 		name: "9292 Test User",
@@ -119,16 +119,17 @@ export default function Profile({ navigation }) {
 			</View>
 			{/* A section that contains 2 button to redeem page and home page */}
 			<View className="flex flex-col justify-center bg-transparent my-1 w-full">
-				<View className="flex flex-row items-center justify-between px-4">
+				<View className="flex flex-row items-center justify-between px-2">
 					<TouchableOpacity
-						// onPress={() => {
-						// 	navigation.navigate("ProfileLayout", { screen: "Shop" });
-						// 	// "Shop");
-						// }}
-						onPress={() => navigation.navigate("Shop")}
-						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-2 px-2"
+						onPress={() =>
+							navigation.navigate("Shop", {
+								coins: userData.coins,
+								historyJourneys: userData.historyJourneys,
+							})
+						}
+						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-4"
 					>
-						<FontAwesome5 name="gift" size={20} color="#99f6e4" />
+						<FontAwesome5 name="store" size={20} color="#99f6e4" />
 						<Text className="text-center text-sm text-neutral-300 ml-3">
 							Redeem Rewards
 						</Text>
@@ -137,7 +138,7 @@ export default function Profile({ navigation }) {
 						onPress={() => {
 							navigation.navigate("Home");
 						}}
-						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-2 px-2"
+						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-4 ml-2"
 					>
 						<FontAwesome5 name="search-location" size={20} color="#99f6e4" />
 						<Text className="text-center text-base text-neutral-300 ml-3">

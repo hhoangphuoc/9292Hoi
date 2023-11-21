@@ -41,7 +41,7 @@ const DrawerItems = [
 		iconName: "calendar-outline",
 	},
 	{
-		name: "Voice Settings",
+		name: "Settings",
 		iconName: "settings-outline",
 	},
 ];
@@ -101,7 +101,6 @@ const VoiceLayout = () => {
 				name="CustomVoiceSettings"
 				component={CustomVoiceSettings}
 			/>
-			<VoiceStack.Screen name="Shop" component={Shop} />
 		</VoiceStack.Navigator>
 	);
 };
@@ -134,7 +133,7 @@ export default function SideMenu() {
 								? MainLayout
 								: sideMenuItem.name === "User Profile"
 								? ProfileLayout
-								: sideMenuItem.name === "Voice Settings"
+								: sideMenuItem.name === "Settings"
 								? VoiceLayout
 								: Home
 						}
