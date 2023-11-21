@@ -18,7 +18,7 @@ export default function VoiceSettings({ navigation }) {
 	// const navigation = useNavigation();
 	//create list of multiple accordion
 	return (
-		<SafeAreaView className="flex-1 mt-4 items-center bg-neutral-900">
+		<SafeAreaView className="flex-1 pt-20 items-center bg-neutral-900">
 			<ScrollView className="w-full" showsVerticalScrollIndicator={false}>
 				<ListFeatures list={voiceAssitantList} navigation={navigation} />
 				<ListFeatures list={voiceSettingsList} navigation={navigation} />

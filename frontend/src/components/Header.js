@@ -11,7 +11,7 @@ export default function Header({ navigation, screen }) {
 				<Ionicons name="menu" size={30} color="#f5f5f5" />
 			</TouchableOpacity>
 			<View>
-				<Text className="text-neutral-100 text-xl font-medium">{screen}</Text>
+				<Text className="text-neutral-100 text-lg font-medium">{screen}</Text>
 			</View>
 			<TouchableOpacity>
 				<Ionicons name="notifications" size={24} color="#f5f5f5" />
