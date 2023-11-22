@@ -1,0 +1,295 @@
+{
+  "selected_journey": [
+    {
+      "shortest_journey": {
+        "journeyId": "i9wAAICqqqrq_3QXsFuYRaiqu0W46c3DDTzCA9w9AtwMIs7iZhLuCqCm6qAqChEGAaEqu7VKPcfjMDwQhuHxeAwDPbHHSyYYmT9okak3E4EGJdSikrJSqpeNDvhlef_0JIRa1HdCaiGghNbEkG5svDvg7zFNZwrv3x37WwTtkrUlbDEQaFXC1oTIB2MJquNd8NNuBA04RaYw4vRwTrHigNMVLVOFln7RjRRuloyDEnZxTxcc5k6Y29D2HuPctWZPl5YYjY2gRQkfFt2X4et6GChGczbW8Aweup98YkMz3139z_swpBu6YQbNIVEJvXrzKTiaN378CuraZ-zq7aaru9W6LYqu6Nv1S1H0b_18ykpl2eSlyDkfBKiWMPDaHbPMUjyuclOLlVg2OVUvgDe1FPAqRMY45sBjhhJ6fyiOEBnZeFcFz29iuBrIcUC0UMKnwd0I2iVr_w0",
+        "departureTime": "2023-11-22T19:09:00.0000000Z",
+        "arrivalTime": "2023-11-22T20:06:00.0000000Z",
+        "changes": 2,
+        "duration": 57,
+        "fareInCents": 1957,
+        "legs": [
+          {
+            "modality": "Tram",
+            "departureTimeLeg": "2023-11-22T19:09:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T19:12:00.0000000Z",
+            "durationLeg": 3,
+            "startStopLeg": "amsterdam/bus-tramhalte-alexanderplein",
+            "endStopLeg": "Weesperplein",
+            "occupancy": 2,
+            "calls_info": [
+              {
+                "departureTime": "2023-11-22T19:09:00.0000000Z",
+                "displayName": "Alexanderplein"
+              },
+              {
+                "departureTime": "2023-11-22T19:11:00.0000000Z",
+                "displayName": "K. s-Gravesandestraat"
+              },
+              {
+                "departureTime": "2023-11-22T19:13:00.0000000Z",
+                "displayName": "Weesperplein"
+              }
+            ]
+          },
+          {
+            "modality": "Walking",
+            "departureTimeLeg": "2023-11-22T19:12:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T19:15:00.0000000Z",
+            "durationLeg": 3,
+            "startStopLeg": "Weesperplein",
+            "endStopLeg": "Weesperplein",
+            "occupancy": 0,
+            "calls_info": []
+          },
+          {
+            "modality": "Subway",
+            "departureTimeLeg": "2023-11-22T19:15:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T19:19:00.0000000Z",
+            "durationLeg": 4,
+            "startStopLeg": "Weesperplein",
+            "endStopLeg": "Centraal Station",
+            "occupancy": 2,
+            "calls_info": [
+              {
+                "departureTime": "2023-11-22T19:15:00.0000000Z",
+                "displayName": "Weesperplein"
+              },
+              {
+                "departureTime": "2023-11-22T19:17:00.0000000Z",
+                "displayName": "Waterlooplein"
+              },
+              {
+                "departureTime": "2023-11-22T19:18:00.0000000Z",
+                "displayName": "Nieuwmarkt"
+              },
+              {
+                "departureTime": null,
+                "displayName": "Centraal Station"
+              }
+            ]
+          },
+          {
+            "modality": "Walking",
+            "departureTimeLeg": "2023-11-22T19:19:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T19:25:00.0000000Z",
+            "durationLeg": 6,
+            "startStopLeg": "Centraal Station",
+            "endStopLeg": "Amsterdam Centraal",
+            "occupancy": 0,
+            "calls_info": []
+          },
+          {
+            "modality": "Train",
+            "departureTimeLeg": "2023-11-22T19:25:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T20:06:00.0000000Z",
+            "durationLeg": 41,
+            "startStopLeg": "Amsterdam Centraal",
+            "endStopLeg": "station-rotterdam-centraal",
+            "occupancy": 2,
+            "calls_info": [
+              {
+                "departureTime": "2023-11-22T19:25:00.0000000Z",
+                "displayName": "Amsterdam Centraal"
+              },
+              {
+                "departureTime": "2023-11-22T19:40:00.0000000Z",
+                "displayName": "Schiphol"
+              },
+              {
+                "departureTime": "2023-11-22T20:14:00.0000000Z",
+                "displayName": "Rotterdam Centraal"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "minimum_change": {
+        "journeyId": "C70AAICqqqrq_3QX8FuoRaiZu4ND6M3dDRzAAnwDN4MIgLiJm0q4K4CaqoWqKLgbBITq8Fb_1e8YhmFAGGAYhmHeRMdrYxVV_qBGps4MBAoqWc2LsiyqqivfFWHL4nW1krKaL19kqaQEAbWJIY1svDvg85iGK4XTT8t-jKBcslbADgOBqgTsTIh8MJbAvXPBD40GBThEpqBxeLumWHDA4Y6WqUBLT3SawmjJOBDQxD3dsJ8mIe4C2R7j3r9nT7eaGI2NoKSAs0X3Zfi-7nuK0VyNNTxBhuMXnzjQq7d3_zj1fRrR9RMoDokEdNWHT8HRtPX6K-iuN9h-bzfry2zW_naPhcw5t-dLLvNCrpY5Y9RDDqwzCOh80w9RZGTjXRE89-R00ZPjgGhBwKfBRoNyydp_Aw",
+        "departureTime": "2023-11-22T18:37:00.0000000Z",
+        "arrivalTime": "2023-11-22T20:04:00.0000000Z",
+        "changes": 0,
+        "duration": 87,
+        "fareInCents": 1720,
+        "legs": [
+          {
+            "modality": "Walking",
+            "departureTimeLeg": "2023-11-22T18:37:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T18:54:00.0000000Z",
+            "durationLeg": 17,
+            "startStopLeg": "amsterdam/bus-tramhalte-alexanderplein",
+            "endStopLeg": "Amsterdam Muiderpoort",
+            "occupancy": 0,
+            "calls_info": []
+          },
+          {
+            "modality": "Train",
+            "departureTimeLeg": "2023-11-22T18:54:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T20:04:00.0000000Z",
+            "durationLeg": 70,
+            "startStopLeg": "Amsterdam Muiderpoort",
+            "endStopLeg": "station-rotterdam-centraal",
+            "occupancy": 2,
+            "calls_info": [
+              {
+                "departureTime": "2023-11-22T18:54:00.0000000Z",
+                "displayName": "Amsterdam Muiderpoort"
+              },
+              {
+                "departureTime": "2023-11-22T18:58:00.0000000Z",
+                "displayName": "Amsterdam Amstel"
+              },
+              {
+                "departureTime": "2023-11-22T19:01:00.0000000Z",
+                "displayName": "Duivendrecht"
+              },
+              {
+                "departureTime": "2023-11-22T19:04:00.0000000Z",
+                "displayName": "Amsterdam Bijlmer ArenA"
+              },
+              {
+                "departureTime": "2023-11-22T19:06:00.0000000Z",
+                "displayName": "Amsterdam Holendrecht"
+              },
+              {
+                "departureTime": "2023-11-22T19:10:00.0000000Z",
+                "displayName": "Abcoude"
+              },
+              {
+                "departureTime": "2023-11-22T19:18:00.0000000Z",
+                "displayName": "Breukelen"
+              },
+              {
+                "departureTime": "2023-11-22T19:28:00.0000000Z",
+                "displayName": "Woerden"
+              },
+              {
+                "departureTime": "2023-11-22T19:37:00.0000000Z",
+                "displayName": "Gouda Goverwelle"
+              },
+              {
+                "departureTime": "2023-11-22T19:41:00.0000000Z",
+                "displayName": "Gouda"
+              },
+              {
+                "departureTime": "2023-11-22T19:48:00.0000000Z",
+                "displayName": "Nieuwerkerk aan den IJssel"
+              },
+              {
+                "departureTime": "2023-11-22T19:51:00.0000000Z",
+                "displayName": "Capelle Schollevaar"
+              },
+              {
+                "departureTime": "2023-11-22T19:54:00.0000000Z",
+                "displayName": "Rotterdam Alexander"
+              },
+              {
+                "departureTime": "2023-11-22T19:58:00.0000000Z",
+                "displayName": "Rotterdam Noord"
+              },
+              {
+                "departureTime": null,
+                "displayName": "Rotterdam Centraal"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cheapest_journey": {
+        "journeyId": "C70AAICqqqrq_3QX8FuoRaiZu4ND6M3dDRzAAnwDN4MIgLiJm0q4K4CaqoWqKLgbBITq8Fb_1e8YhmFAGGAYhmHeRMdrYxVV_qBGps4MBAoqWc2LsiyqqivfFWHL4nW1krKaL19kqaQEAbWJIY1svDvg85iGK4XTT8t-jKBcslbADgOBqgTsTIh8MJbAvXPBD40GBThEpqBxeLumWHDA4Y6WqUBLT3SawmjJOBDQxD3dsJ8mIe4C2R7j3r9nT7eaGI2NoKSAs0X3Zfi-7nuK0VyNNTxBhuMXnzjQq7d3_zj1fRrR9RMoDokEdNWHT8HRtPX6K-iuN9h-bzfry2zW_naPhcw5t-dLLvNCrpY5Y9RDDqwzCOh80w9RZGTjXRE89-R00ZPjgGhBwKfBRoNyydp_Aw",
+        "departureTime": "2023-11-22T18:37:00.0000000Z",
+        "arrivalTime": "2023-11-22T20:04:00.0000000Z",
+        "changes": 0,
+        "duration": 87,
+        "fareInCents": 1720,
+        "legs": [
+          {
+            "modality": "Walking",
+            "departureTimeLeg": "2023-11-22T18:37:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T18:54:00.0000000Z",
+            "durationLeg": 17,
+            "startStopLeg": "amsterdam/bus-tramhalte-alexanderplein",
+            "endStopLeg": "Amsterdam Muiderpoort",
+            "occupancy": 0,
+            "calls_info": []
+          },
+          {
+            "modality": "Train",
+            "departureTimeLeg": "2023-11-22T18:54:00.0000000Z",
+            "arrivalTimeLeg": "2023-11-22T20:04:00.0000000Z",
+            "durationLeg": 70,
+            "startStopLeg": "Amsterdam Muiderpoort",
+            "endStopLeg": "station-rotterdam-centraal",
+            "occupancy": 2,
+            "calls_info": [
+              {
+                "departureTime": "2023-11-22T18:54:00.0000000Z",
+                "displayName": "Amsterdam Muiderpoort"
+              },
+              {
+                "departureTime": "2023-11-22T18:58:00.0000000Z",
+                "displayName": "Amsterdam Amstel"
+              },
+              {
+                "departureTime": "2023-11-22T19:01:00.0000000Z",
+                "displayName": "Duivendrecht"
+              },
+              {
+                "departureTime": "2023-11-22T19:04:00.0000000Z",
+                "displayName": "Amsterdam Bijlmer ArenA"
+              },
+              {
+                "departureTime": "2023-11-22T19:06:00.0000000Z",
+                "displayName": "Amsterdam Holendrecht"
+              },
+              {
+                "departureTime": "2023-11-22T19:10:00.0000000Z",
+                "displayName": "Abcoude"
+              },
+              {
+                "departureTime": "2023-11-22T19:18:00.0000000Z",
+                "displayName": "Breukelen"
+              },
+              {
+                "departureTime": "2023-11-22T19:28:00.0000000Z",
+                "displayName": "Woerden"
+              },
+              {
+                "departureTime": "2023-11-22T19:37:00.0000000Z",
+                "displayName": "Gouda Goverwelle"
+              },
+              {
+                "departureTime": "2023-11-22T19:41:00.0000000Z",
+                "displayName": "Gouda"
+              },
+              {
+                "departureTime": "2023-11-22T19:48:00.0000000Z",
+                "displayName": "Nieuwerkerk aan den IJssel"
+              },
+              {
+                "departureTime": "2023-11-22T19:51:00.0000000Z",
+                "displayName": "Capelle Schollevaar"
+              },
+              {
+                "departureTime": "2023-11-22T19:54:00.0000000Z",
+                "displayName": "Rotterdam Alexander"
+              },
+              {
+                "departureTime": "2023-11-22T19:58:00.0000000Z",
+                "displayName": "Rotterdam Noord"
+              },
+              {
+                "departureTime": null,
+                "displayName": "Rotterdam Centraal"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
