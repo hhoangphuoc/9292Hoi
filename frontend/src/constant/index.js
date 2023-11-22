@@ -5,7 +5,7 @@ import {
 	gamificationList,
 	rankCategories,
 } from "./featureItems";
-import { ENDPOINTS, BASE_URL, TOKEN } from "./endpoints";
+import { ENDPOINTS, BASE_URL, TOKEN, OPENAI_KEY } from "./configuration";
 export {
 	// sideMenu,
 	voiceAssitantList,
@@ -15,4 +15,5 @@ export {
 	ENDPOINTS,
 	BASE_URL,
 	TOKEN,
+	OPENAI_KEY,
 };

@@ -9,4 +9,5 @@ const ENDPOINTS = {
 };
 const TOKEN = "BPrtUvtota0IbdMkwYOt";
 
-export { BASE_URL, ENDPOINTS, TOKEN };
+const OPENAI_KEY = "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";
+export { BASE_URL, ENDPOINTS, TOKEN, OPENAI_KEY };
