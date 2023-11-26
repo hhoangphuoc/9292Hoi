@@ -3,9 +3,10 @@ import Home from "./Home";
 import Profile from "./Profile";
 import LocationScreen from "./LocationScreen";
 import RouteScreen from "./RouteScreen";
-import TravelDetails from "./TravelDetails";
+import JourneyDetails from "./JourneyDetails";
 import CustomVoiceSettings from "./CustomVoiceSettings";
 import Shop from "./Shop";
+import ChatScreen from "./ChatScreen";
 
 export {
 	VoiceSettings,
@@ -13,8 +14,8 @@ export {
 	Profile,
 	LocationScreen,
 	RouteScreen,
-	// MapNavigations,
-	TravelDetails,
+	JourneyDetails,
 	CustomVoiceSettings,
 	Shop,
+	ChatScreen,
 };

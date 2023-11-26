@@ -27,7 +27,7 @@ export default function LocationScreen({ navigation }) {
 		);
 
 		const data = await response.json();
-		console.log("Location list:", data.locations);
+		// console.log("Location list:", data.locations);
 		setLocationList(data.locations);
 	}
 
@@ -39,10 +39,10 @@ export default function LocationScreen({ navigation }) {
 
 	useEffect(() => {
 		if (selectedFromLocation === null && fromAddress) {
-			console.log("fetching from locations...");
+			// console.log("fetching from locations...");
 			fetchLocations(fromAddress);
 		} else if (selectedToLocation === null && toAddress) {
-			console.log("fetching to locations...");
+			// console.log("fetching to locations...");
 			fetchLocations(toAddress);
 		}
 	}, [fromAddress, toAddress, selectedFromLocation, selectedToLocation]);

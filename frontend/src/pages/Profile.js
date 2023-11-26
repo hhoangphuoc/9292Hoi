@@ -16,38 +16,6 @@ export default function Profile({ route, navigation }) {
 		historyJourneys: [], //todo: connected with journeys list later
 	};
 	const maxCoins = 1000;
-	const rankCategories = [
-		{
-			name: "Bronze",
-			color: "#cd7f32",
-			min: 0,
-			max: 20,
-		},
-		{
-			name: "Silver",
-			color: "#c0c0c0",
-			min: 0,
-			max: 40,
-		},
-		{
-			name: "Gold",
-			color: "#eab308",
-			min: 0,
-			max: 60,
-		},
-		{
-			name: "Platinum",
-			color: "#e5e4e2",
-			min: 0,
-			max: 80,
-		},
-		{
-			name: "Diamond",
-			color: "#b9f2ff",
-			min: 0,
-			max: 100,
-		},
-	];
 
 	const [locations, setLocations] = useState([]);
 

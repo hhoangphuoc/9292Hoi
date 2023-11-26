@@ -13,8 +13,9 @@ import {
 	CustomVoiceSettings,
 	LocationScreen,
 	RouteScreen,
-	TravelDetails,
 	VoiceSettings,
+	ChatScreen,
+	JourneyDetails,
 } from "../pages";
 // import VoiceSettingsLayout from "./VoiceSettingsLayout";
 // import ProfileLayout from "./ProfileLayout";
@@ -63,9 +64,10 @@ const MainLayout = () => {
 		>
 			{/* <MainStack.Screen name="Menu" component={SideMenu} /> */}
 			<MainStack.Screen name="Home" component={Home} />
+			<MainStack.Screen name="ChatScreen" component={ChatScreen} />
 			<MainStack.Screen name="LocationScreen" component={LocationScreen} />
 			<MainStack.Screen name="RouteScreen" component={RouteScreen} />
-			<MainStack.Screen name="Travel Details" component={TravelDetails} />
+			<MainStack.Screen name="JourneyDetails" component={JourneyDetails} />
 		</MainStack.Navigator>
 	);
 };
@@ -119,7 +121,7 @@ export default function SideMenu() {
 					backgroundColor: "#262626",
 				},
 				sceneContainerStyle: {
-					backgroundColor: "##262626",
+					backgroundColor: "#262626",
 				},
 			}}
 		>
