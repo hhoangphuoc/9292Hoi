@@ -7,8 +7,16 @@ import {
 	MaterialIcons,
 } from "@expo/vector-icons";
 
+import { Audio } from "expo-av";
+
 //function
-import { formatJourney } from "./RouteScreen";
+import {
+	formatJourney,
+	handlePlay,
+	handleStop,
+} from "../constant/helperFunctions";
+
+import { useDispatch, useSelector } from "react-redux";
 
 //components
 import JourneyInfo from "../components/JourneyInfo";
@@ -36,8 +44,11 @@ const modalityIcon = {
 
 export default function JourneyDetails({ route, navigation }) {
 	const { fromName, toName, journey } = route.params;
-	console.log("Selected journey", journey);
 
+	const routeInfoVoice = useSelector((state) => state.selectedVoice.voices[2]); //voices 2 contains the voice of route information
+	const [sound, setSound] = useState();
+
+	console.log("Selected journey", journey);
 	const formattedJourney = formatJourney(journey);
 	const journeyIcons = formattedJourney?.modalities.map((modality, index) => {
 		return (
@@ -73,7 +84,6 @@ export default function JourneyDetails({ route, navigation }) {
 						</Text>
 					</View>
 				</View>
-				{/* <View className="flex flex-col"> */}
 				{/* Column 2: Journey General Info */}
 				<View className="h-2/3 self-center w-[1px] bg-neutral-400 mr-4" />
 
@@ -119,9 +129,16 @@ export default function JourneyDetails({ route, navigation }) {
 			{/* Navigate Button */}
 			<TouchableOpacity
 				className="flex flex-row items-center bg-neutral-800 justify-center w-full rounded-md py-1 px-4"
-				onPress={() => navigation.navigate("Home")}
+				onPress={
+					//play the audio with route guidance
+					() => {
+						handlePlay(routeInfoVoice, setSound);
+					}
+				}
 			>
-				<Text className="text-neutral-100 text-base mr-2">Navigate</Text>
+				<Text className="text-neutral-100 text-base mr-2">
+					Route Instruction
+				</Text>
 				<Ionicons name="navigate-outline" size={16} color="#f5f5f5" />
 			</TouchableOpacity>
 			{/* </View> */}

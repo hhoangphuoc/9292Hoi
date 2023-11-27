@@ -4,13 +4,11 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
 import LocationList from "../components/LocationList";
 
-//icons
 import { Ionicons } from "@expo/vector-icons";
+import { Audio } from "expo-av";
+import { useSelector } from "react-redux";
 
 import { BASE_URL, ENDPOINTS, TOKEN } from "../constant";
-
-//navigation
-// import { useNavigation } from "@react-navigation/native";
 
 export default function LocationScreen({ navigation }) {
 	//fetch the 9292 API Locations
@@ -31,11 +29,33 @@ export default function LocationScreen({ navigation }) {
 		setLocationList(data.locations);
 	}
 
+	const locationVoice = useSelector((state) => state.selectedVoice.voices[1]); //voices 1 contains the voice of location information
+
 	const [fromAddress, setFromAddress] = useState(""); //Structure: {id, name, type, lat, lon, placeId, place}
 	const [toAddress, setToAddress] = useState(""); //Structure: {id, name, type, lat, lon, placeId, place}
 	const [locationList, setLocationList] = useState([]);
 	const [selectedFromLocation, setSelectedFromLocation] = useState(null);
 	const [selectedToLocation, setSelectedToLocation] = useState(null);
+
+	//play the audio when page is loaded
+	useEffect(() => {
+		const sound = new Audio.Sound();
+
+		const loadAndPlayAudio = async () => {
+			try {
+				await sound.loadAsync(locationVoice.voiceUrl);
+				await sound.playAsync();
+			} catch (error) {
+				console.error("AUDIO PLAY: ", error);
+			}
+		};
+
+		loadAndPlayAudio();
+
+		return () => {
+			sound.unloadAsync(); // Unload the sound when the component unmounts
+		};
+	}, []);
 
 	useEffect(() => {
 		if (selectedFromLocation === null && fromAddress) {

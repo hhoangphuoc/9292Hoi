@@ -1,3 +1,27 @@
+/**
+ * Voice packages
+ * @typedef {Object} VoicePackage
+ * @property {number} id - The id of the voice package
+ * @property {string} name - The name of the voice package
+ * @property {string} description - The description of the voice package
+ * @property {any} voiceDemo - The voice demo of the voice package (this is the welcome voice)
+ * @property {number} coins - The coins required to redeem the voice package
+ * @property {Array.<Voice>} voices - The voices of the voice package
+ * @property {number} voices[].context - The context of the voice (welcome, findLocation, findRoute, earnCoins, rightTrain, goodBye)
+ * @property {string} voices[].script - The script of the voice (what the voice will say?)
+ * @property {any} voices[].voiceUrl - The url of the voice which link with the audio files
+ */
+
+/**
+ * Voice Layout:
+ * voice [0]: Welcome message
+ * voice [1]: Find location message - Show when user enter the location page
+ * voice [2]: Find route message - Show when user enter the route page
+ * voice [3]: Earn coins message - Show when user earn coins (after complete the route - NOT IMPLEMENTED YET)
+ * voice [4]: Right train message - Show when user enter the right train (NOT IMPLEMENTED YET)
+ * voice [5]: Goodbye message - Show when user exit the app
+ */
+
 const voicePackages = [
 	{
 		id: 1,
@@ -18,7 +42,7 @@ const voicePackages = [
 			},
 			{
 				context: "findRoute",
-				script: "Welcome to the 9292 Hoi",
+				script: "Let me find the route for you",
 				voiceUrl: require("../data/audio/findRoute_F.mp3"),
 			},
 			{

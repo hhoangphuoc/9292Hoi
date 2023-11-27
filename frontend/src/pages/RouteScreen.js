@@ -7,9 +7,6 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
-// import SearchBar from "../components/SearchBar";
-// import LocationList from "../components/LocationList";
-
 //icons
 import {
 	Ionicons,
@@ -17,36 +14,19 @@ import {
 	MaterialIcons,
 	AntDesign,
 } from "@expo/vector-icons";
+import { Audio } from "expo-av";
+import { useSelector } from "react-redux";
 
 import { BASE_URL, ENDPOINTS, TOKEN } from "../constant";
-// import { ScrollView } from "react-native-gesture-handler";
 
 const journeyData = require("../data/journey_info.json");
 
 //functions
-export function formatJourney(journey) {
-	const journeyId = journey?.journeyId;
-	const legs = journey?.legs;
-	const coins = journey?.coins;
-	const price = journey?.fareInCents / 100;
-	const durationStr = `${Math.floor(journey?.duration / 60)}h ${
-		journey?.duration % 60
-	}m`;
-	const modalities = legs.map((leg) => leg?.modality);
-
-	const formattedJourney = {
-		journeyId: journeyId,
-		dTime: journey.departureTime.slice(11, 16),
-		aTime: journey.arrivalTime.slice(11, 16),
-		duration: durationStr,
-		price: price,
-		legs: legs,
-		coins: coins,
-		modalities: modalities,
-	};
-
-	return formattedJourney;
-}
+import {
+	formatJourney,
+	handlePlay,
+	handleStop,
+} from "../constant/helperFunctions";
 
 //Header - TODO: change to component
 const Header = () => {
@@ -127,69 +107,71 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 		);
 	});
 	return (
-		<TouchableOpacity
-			className="flex flex-col bg-neutral-700 px-2 py-2 rounded-md mb-2"
-			key={formattedJourney?.journeyId}
-			onPress={() =>
-				navigation.navigate("JourneyDetails", {
-					fromName: fromName,
-					toName: toName,
-					journey: journey,
-				})
-			}
-		>
-			<View className="flex flex-row items-center justify-between py-1 px-1">
-				{/* Row 1: departure time and arrival time + duration */}
-				{/* Section 1: Departure time, arrival time */}
-				<View className="flex flex-row items-center justify-between py-1 px-2">
-					{/* Departure time */}
+		<View key={formattedJourney?.journeyId}>
+			<TouchableOpacity
+				className="flex flex-col bg-neutral-700 px-2 py-2 rounded-md mb-2"
+				// key={formattedJourney?.journeyId}
+				onPress={() =>
+					navigation.navigate("JourneyDetails", {
+						fromName: fromName,
+						toName: toName,
+						journey: journey,
+					})
+				}
+			>
+				<View className="flex flex-row items-center justify-between py-1 px-1">
+					{/* Row 1: departure time and arrival time + duration */}
+					{/* Section 1: Departure time, arrival time */}
+					<View className="flex flex-row items-center justify-between py-1 px-2">
+						{/* Departure time */}
+						<View className="flex flex-row items-center justify-center">
+							<Text className="text-neutral-100 text-lg mr-2">
+								{formattedJourney?.dTime}
+							</Text>
+							<AntDesign name="arrowright" size={24} color="#f5f5f5" />
+							<Text className="text-neutral-100 text-lg ml-2">
+								{formattedJourney?.aTime}
+							</Text>
+						</View>
+					</View>
+
+					{/* Section 2: Duration*/}
 					<View className="flex flex-row items-center justify-center">
-						<Text className="text-neutral-100 text-lg mr-2">
-							{formattedJourney?.dTime}
-						</Text>
-						<AntDesign name="arrowright" size={24} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-lg ml-2">
-							{formattedJourney?.aTime}
+						{/* <View className="flex-row items-center justify-center"></View> */}
+						<FontAwesome5 name="clock" size={15} color="#f5f5f5" />
+						<Text className="text-neutral-100 text-base ml-1">
+							{formattedJourney?.duration}
 						</Text>
 					</View>
 				</View>
 
-				{/* Section 2: Duration*/}
-				<View className="flex flex-row items-center justify-center">
-					{/* <View className="flex-row items-center justify-center"></View> */}
-					<FontAwesome5 name="clock" size={15} color="#f5f5f5" />
+				<View className="flex flex-row items-center justify-between px-1">
+					{/* List of modalities */}
+					<View className="flex flex-row items-center justify-center pt-1">
+						{journeyIcons}
+					</View>
+					{/* Coin*/}
+					<View className="flex flex-row items-center justify-center py-1">
+						<FontAwesome5 name="euro-sign" size={15} color="#f5f5f5" />
+						<Text className="text-neutral-100 text-base ml-1">
+							{formattedJourney?.price}
+						</Text>
+					</View>
+				</View>
+				<View className="flex flex-row items-center justify-end pt-2">
+					<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
 					<Text className="text-neutral-100 text-base ml-1">
-						{formattedJourney?.duration}
+						{formattedJourney?.coins}
 					</Text>
 				</View>
-			</View>
-
-			<View className="flex flex-row items-center justify-between px-1">
-				{/* List of modalities */}
-				<View className="flex flex-row items-center justify-center pt-1">
-					{journeyIcons}
-				</View>
-				{/* Coin*/}
-				<View className="flex flex-row items-center justify-center py-1">
-					<FontAwesome5 name="euro-sign" size={15} color="#f5f5f5" />
-					<Text className="text-neutral-100 text-base ml-1">
-						{formattedJourney?.price}
-					</Text>
-				</View>
-			</View>
-			<View className="flex flex-row items-center justify-end pt-2">
-				<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
-				<Text className="text-neutral-100 text-base ml-1">
-					{formattedJourney?.coins}
-				</Text>
-			</View>
-		</TouchableOpacity>
+			</TouchableOpacity>
+		</View>
 	);
 };
 
 export default function RouteScreen({ route, navigation }) {
-	console.log("Journey data:", journeyData);
-	console.log("Journeys:", journeyData.selected_journey);
+	// console.log("Journey data:", journeyData);
+	// console.log("Journeys:", journeyData.selected_journey);
 
 	//fetch Journeys
 	const { fromId, toId, fromName, toName } = route.params;
@@ -203,6 +185,28 @@ export default function RouteScreen({ route, navigation }) {
 		"toName:",
 		toName
 	);
+
+	const findRouteVoice = useSelector((state) => state.selectedVoice.voices[2]); //voices 1 contains the voice of route message
+
+	//play the audio when page is loaded
+	useEffect(() => {
+		const sound = new Audio.Sound();
+
+		const loadAndPlayAudio = async () => {
+			try {
+				await sound.loadAsync(findRouteVoice.voiceUrl);
+				await sound.playAsync();
+			} catch (error) {
+				console.error("AUDIO PLAY: ", error);
+			}
+		};
+
+		loadAndPlayAudio();
+
+		return () => {
+			sound.unloadAsync(); // Unload the sound when the component unmounts
+		};
+	}, []);
 
 	//use state to store the journey list
 	const [journeyList, setJourneyList] = useState([
@@ -262,43 +266,6 @@ export default function RouteScreen({ route, navigation }) {
 							/>
 						</View>
 					);
-					// return (
-					// 	<View
-					// 		key={index}
-					// 		className="flex flex-col items-center justify-center bg-neutral-600 ml-3 mr-8 px-4 py-4"
-					// 	>
-					// 		<View className="flex flex-row items-center justify-start py-2">
-					// 			<View className="flex-row items-center justify-center">
-					// 				<FontAwesome5 name="bus" size={24} color="white" />
-					// 			</View>
-					// 			<View className="flex-row items-center justify-center ml-3">
-					// 				<Text className="text-neutral-100 text-lg">
-					// 					{journey.legs[0].mode}
-					// 				</Text>
-					// 			</View>
-					// 		</View>
-					// 		<View className="flex flex-row items-center justify-start py-2">
-					// 			<View className="flex-row items-center justify-center">
-					// 				<FontAwesome5 name="clock" size={24} color="white" />
-					// 			</View>
-					// 			<View className="flex-row items-center justify-center ml-3">
-					// 				<Text className="text-neutral-100 text-lg">
-					// 					{journey.legs[0].duration}
-					// 				</Text>
-					// 			</View>
-					// 		</View>
-					// 		<View className="flex flex-row items-center justify-start py-2">
-					// 			<View className="flex-row items-center justify-center">
-					// 				<FontAwesome5 name="euro-sign" size={24} color="white" />
-					// 			</View>
-					// 			<View className="flex-row items-center justify-center ml-3">
-					// 				<Text className="text-neutral-100 text-lg">
-					// 					{journey.legs[0].price.amount}
-					// 				</Text>
-					// 			</View>
-					// 		</View>
-					// 	</View>
-					// );
 				})}
 			</ScrollView>
 		</View>
