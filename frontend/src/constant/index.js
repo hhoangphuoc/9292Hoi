@@ -6,6 +6,7 @@ import {
 	rankCategories,
 } from "./featureItems";
 import { ENDPOINTS, BASE_URL, TOKEN, OPENAI_KEY } from "./configuration";
+import { voicePackages } from "./voice";
 export {
 	// sideMenu,
 	voiceAssitantList,
@@ -16,4 +17,5 @@ export {
 	BASE_URL,
 	TOKEN,
 	OPENAI_KEY,
+	voicePackages,
 };
