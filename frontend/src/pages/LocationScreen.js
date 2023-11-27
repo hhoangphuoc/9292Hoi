@@ -112,13 +112,25 @@ export default function LocationScreen({ navigation }) {
 					addressType="To"
 				/>
 			) : selectedFromLocation && selectedToLocation ? (
-				<View className="items-center justify-center self-center mb-3 mt-6">
+				<TouchableOpacity
+					className="items-center justify-center self-center mb-3 mt-6"
+					onPress={() => {
+						console.log("From Address id: ", selectedFromLocation?.id);
+						console.log("To Address id: ", selectedToLocation?.id);
+						navigation.navigate("RouteScreen", {
+							fromId: selectedFromLocation?.id,
+							toId: selectedToLocation?.id,
+							fromName: selectedFromLocation?.displayName,
+							toName: selectedToLocation?.displayName,
+						});
+					}}
+				>
 					<Ionicons name="arrow-forward-outline" size={100} color="#99f6e4" />
 					<Text className="text-neutral-100 text-sm  px-4">
 						{selectedFromLocation.displayName} to{" "}
 						{selectedToLocation.displayName}
 					</Text>
-				</View>
+				</TouchableOpacity>
 			) : (
 				<View className="items-center justify-center self-center mb-3 mt-6">
 					<Ionicons name="trail-sign-outline" size={150} color="#99f6e4" />

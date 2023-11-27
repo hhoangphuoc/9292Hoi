@@ -58,7 +58,7 @@ export default function JourneyDetails({ route, navigation }) {
 			<View className="w-1/2 self-center h-[1px] bg-neutral-400 my-2" />
 
 			{/* General Journey Info Section */}
-			<View className="flex flex-row bg-neutral-800 mx-3 py-2 px-4 mt-2 items-start rounded-md">
+			<View className="flex flex-row bg-neutral-800 mx-2 py-2 px-4 mt-2 items-start rounded-md">
 				{/* Column 1: Coins */}
 				<View className="flex flex-col justify-center items-center">
 					<Text className="text-neutral-100 text-lg px-8 pt-1 ">
@@ -105,6 +105,7 @@ export default function JourneyDetails({ route, navigation }) {
 					</View>
 				</View>
 			</View>
+			{/* Modalities List */}
 			<View className="flex flex-row self-center justify-center py-2">
 				{journeyIcons}
 			</View>

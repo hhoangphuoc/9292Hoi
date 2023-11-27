@@ -4,7 +4,6 @@ import React from "react";
 import Header from "../components/Header";
 
 import { TouchableOpacity } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
 
 //icons
 import { Ionicons } from "@expo/vector-icons";

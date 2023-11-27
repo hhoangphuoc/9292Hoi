@@ -67,7 +67,9 @@ export default function JourneyInfo({ legs }) {
 	return (
 		<ScrollView className="flex-1 w-full mt-4 bg-neutral-900 mx-2 px-2">
 			{legs.map((stop, index) => (
-				<StopSection key={index} stop={stop} />
+				<View key={index} className="mr-3">
+					<StopSection stop={stop} />
+				</View>
 			))}
 		</ScrollView>
 	);

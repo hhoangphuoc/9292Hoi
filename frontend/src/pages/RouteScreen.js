@@ -250,16 +250,17 @@ export default function RouteScreen({ route, navigation }) {
 			<Header />
 			<LocationInfo fromName={fromName} toName={toName} />
 
-			<ScrollView className="flex flex-col bg-neutral-800 mx-3 px-2 pt-2 mt-4">
+			<ScrollView className="flex flex-col mx-2 px-2 pt-2 mt-4">
 				{journeyList.map((journey, index) => {
 					return (
-						<JourneyCard
-							key={index}
-							fromName={fromName}
-							toName={toName}
-							journey={journey}
-							navigation={navigation}
-						/>
+						<View key={index} className="flex flex-col">
+							<JourneyCard
+								fromName={fromName}
+								toName={toName}
+								journey={journey}
+								navigation={navigation}
+							/>
+						</View>
 					);
 					// return (
 					// 	<View
