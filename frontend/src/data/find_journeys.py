@@ -14,7 +14,8 @@ for journey in copied_data['journeys']:
     full_price = journey.get('fareInfo', {}).get('fullPriceEuroCents', 0)
     emission = journey.get('cO2EmissionInfo',{}).get('journeyEmission', 0)
 
-    coins_collected = round(0.1 * duration + full_price * 0.01 + 10 / (emission + 1))
+    # coins_collected = round(0.73 * duration + full_price * 0.27 + 10 / (emission + 1))
+    coins_collected = round(0.32 * duration + full_price * 0.23 * 0.01 + emission * 1000 * 0.45)
     journey['coinsCollected'] = coins_collected
 
 # Sort journeys by durationInMinutes
@@ -99,7 +100,6 @@ if 'selected_journey' in data:
                     'coinsCollected': coinsCollected,
                     'legs': []
                 }
-
                 if key == 'journey1':
                     journey_details[
                         'journeyType'] = "shortest_journey"  # Replace 'type' with 'shortest_journey'
@@ -109,6 +109,8 @@ if 'selected_journey' in data:
                 elif key == 'journey3':
                     journey_details[
                         'journeyType'] = "cheapest_journey"
+                else:
+                    journey_details['journeyType'] = "normal_journey"
 
                 for leg_index, leg in enumerate(item['legs']):
                     leg_info = {
@@ -133,7 +135,8 @@ if 'selected_journey' in data:
 
                     journey_details['legs'].append(leg_info)
 
-                journey_service_info.append({key: journey_details})
+                # journey_service_info.append({key: journey_details})
+                journey_service_info.append(journey_details)
 
 
 # Save to a JSON file with the updated structure

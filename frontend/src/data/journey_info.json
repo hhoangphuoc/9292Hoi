@@ -8,7 +8,7 @@
       "changes": 2,
       "duration": 58,
       "fareInCents": 1958,
-      "coinsCollected": 34,
+      "coinsCollected": 76,
       "legs": [
         {
           "modality": "Tram",
@@ -123,7 +123,7 @@
       "changes": 0,
       "duration": 87,
       "fareInCents": 1720,
-      "coinsCollected": 35,
+      "coinsCollected": 95,
       "legs": [
         {
           "modality": "Walking",
@@ -231,7 +231,7 @@
       "changes": 0,
       "duration": 87,
       "fareInCents": 1720,
-      "coinsCollected": 35,
+      "coinsCollected": 95,
       "legs": [
         {
           "modality": "Walking",
@@ -332,14 +332,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "i9wAAICqqqrq_3QXsFuYRajaAmGuN3c38Ah3M3cPcDfwOIubabgrgJqqgaoohDsEhKrs9tfVczwOcEB4wAGGAeZO7LgtEv3yBw2S7NUkQUDO8iLjPOPvPeeirEVZv9Z1VfIif2FcMAYpNMq7MJOyZo-PQ5iu0h1_zmRnD8IErVPYoJMgWAob5TztlZYguuuds9N2BAE4eZJuxOntGnxGDqc7apIZavlAM0o3a6kMpLD1nbzh8FSCJjhAHXraewydvDWSUGnvG96XRvOt6L4cBum9uiqt6KnfOtlAB9V4vtvf4zCEGc0wVWOf72xwRj7XdkwF95rVpS0267Zo62WTJG3SrZYfSdLtOnaKeR55GUsWY9wTYFUgjc_zIfLIWVHGRcVqVi5qqOJVjmiGNBYVYxH9GB2NEVLo7aMQeMKAocxZiintbJCGHKKGFC4KtyMIE7T-NwA",
       "departureTime": "2023-11-17T10:35:00.0000000Z",
       "arrivalTime": "2023-11-17T11:36:00.0000000Z",
       "changes": 2,
       "duration": 61,
       "fareInCents": 1951,
-      "coinsCollected": 35,
+      "coinsCollected": 77,
       "legs": [
         {
           "modality": "Tram",
@@ -452,14 +452,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "i88AAICqqqrq_3QXsFuYRaiaaYBb6M08LBzCw83DPdwNPM7iZhruCqCmaqAqCuEOAaEqu_W6eo7HAw4Ih-EAwwBzJ3bcFol--YMWSfV6UiChZGVVcF7wRc-5FLUU9WNdPwtelQ-MS8Ygh1YHH2fSzm7x9hmns_K7nyO5OYC00ZgcVugVSJbDSvtAW20UyO585920HkECToGUH3F6OsdQkMfpioZUgUbd0I7Kz0ZpCzmsQ6cuONyVaBsdwA4D7d1Epy6tItQm-A5vb9B-a7o2w6BC0GdtNN31iwcX6aCUx6v73Q1DnNEOUyn78sNFb9X91Y2p4E67PG0Wb02zybJu1b03bZZ1m-2XYCmlZSrLVC2SIOAc94fEk2CiSunlmTHGRR1nxhOGcUqexgQ59O4dEAJhjGDhHYURdjEoSx7RQA4njesRpI3G_Bs",
       "departureTime": "2023-11-17T10:39:00.0000000Z",
       "arrivalTime": "2023-11-17T12:04:00.0000000Z",
       "changes": 1,
       "duration": 85,
       "fareInCents": 1840,
-      "coinsCollected": 35,
+      "coinsCollected": 120,
       "legs": [
         {
           "modality": "Walking",
@@ -596,14 +596,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "i8kAAICqqqrq_3QX8FuYRaiamUOY683dDRzCA8zdI9wNPADiJm4m4a4AaqoGqqIQ7hAQCiW7q5p6jsMBPhA-4ADDAAM90XELZvSXP2iQqdMjgYJCFGUuZS5fOylVVauqfq7reSXL4klIJQRk0Ojg48Ta2R3e93G8kD_8nNhNAZSNxmSwQU-gRAYb7QPvtCFQ3fXOu3E7gAIcA5MfcHy5xJCzx_GGhilHQ3e0A_nJkLaQwTa0dMX-oaRsdEAtBt57mJauDTFqE3xH78Og_dJ8W_Y9haAv2mh-6LeOLvJBYU8393vo-zih7afCdsW7i97SY-0GKtxvVud21TTtqv1cbmaz9nu3PqaiSLJKlUgpvZ32SaZFWaXFXNSiWuQ05qKQCcOQPA8JMujcCwgCIzqUe8cAZjvvybJHNJDBWeN2AGWjMf8",
       "departureTime": "2023-11-17T10:45:00.0000000Z",
       "arrivalTime": "2023-11-17T11:50:00.0000000Z",
       "changes": 1,
       "duration": 65,
       "fareInCents": 1971,
-      "coinsCollected": 35,
+      "coinsCollected": 78,
       "legs": [
         {
           "modality": "Tram",
@@ -700,14 +700,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "i9sAAICqqqrq_3QX8FuYRaipm4Gb6c3DzT3CA9TcA9wNPADiJm6m4a4AaqoOukC4Q0CIym69rp7jcYADwmF4wTDMndhxNyT65Q9ajKrXkwIBnPF5XhR5seiLQpS1KOvnuq7KYs6fWCEYgwxaHXy6Re1sh_ddms7K73-O0d0CCJuMyWCDXoFgGWy0D7HTRoHoznveTdsRBOAUovIjTi_nFPLocbqiiSpHo-5oR-VvRmkLGWyDVBccHkrQJgdIYoh7NyPVpVURtQm-o_dp0H7peF0OgwpBn7XR8aFfOrgUD0p7vLrf_TCkG9phKm3PP1zyVj1WbkwFb7SvJ7nerORadst2NpOfsl--zWbyu1sdiHNaUMmIqCPOqeJUMiJ6P-6ooGZeUlOxmpUNDy7mgJpq0SCOjBGGkXwcCTLo3ZsQhIjxQrl3MaRo54Oy0SMayOCkcTuCsMmYfwM",
       "departureTime": "2023-11-17T10:48:00.0000000Z",
       "arrivalTime": "2023-11-17T11:50:00.0000000Z",
       "changes": 2,
       "duration": 62,
       "fareInCents": 1982,
-      "coinsCollected": 35,
+      "coinsCollected": 77,
       "legs": [
         {
           "modality": "Tram",
@@ -820,14 +820,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "C9wAAICqqqrq_3QX8FuYZaiqm4Wb680jLDzSA9QiAsIdIs7iZhLhCqCmaqALRDgkpKjs9urqOR6H4YBwgBcMw9yJHbdFol_-QY-ZTnYm0KCEWtdS1nJzklI3nW66P13XNnKtboTUQkAFvU2xLNkGP-DvS5nPFF-_jjksCbQvzlWwx0igRQV7G1MerCPQ3XkvhvkwgQacU6Y44Xx7LqnOEecLukw1OvpFP1FcHFkPFRySoW8cr0rQFwfIYMp7N2Pou6eM1iXf6L059J82X3bjSCnZs3U2X_VL76Hkg9IeL-HndRzLgn6cSntSz6FET9eHMKWCV_r7D_O4fzCPZtj1q5UhY3dPq5VZhuM7K8UbbgQzD6wUt4obwcx_jy8sWYr1HW9b0Ylmy3VwswbOtt1w0di2QjCmiWOeGCo4hT8hSBnzheoYckqjXY_kc0R0UMGHxcME2hfn_hs",
       "departureTime": "2023-11-17T10:48:00.0000000Z",
       "arrivalTime": "2023-11-17T12:06:00.0000000Z",
       "changes": 2,
       "duration": 78,
       "fareInCents": 1982,
-      "coinsCollected": 37,
+      "coinsCollected": 83,
       "legs": [
         {
           "modality": "Tram",
@@ -940,14 +940,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "C-UAAICqqqrq_3QX8FuYZaiqmaWZ680yzCPBA9QiHJaIhDgFiJtpuCuAmqqDLpnhmZCisturq-d4HIYDwgFeMAxzJ3bcFol--QcDJn00iwYJgomq5Lzk7ZFzWXey7r51XVPzStwxLhmDAgYTQ74m492IX895Oenw8nlI_hpBumxtAY8YNEhWwKMJMY3GapDdeS_4ZTuDBFxi0mHG5f6UY5kCLhe0SZdo9Re6WYer1cZBAduo9BmnmxJ02QFSGNPezSh9HnRCY6Nv9HYW3S-TLv006RjNyViTbvqlvc_poLSHi__zMk35im6aSnsUTz4Hp28Pfk4Fbw4_3tTmZ682auyH1Urt1Gu_Wa3Uu_oY-_F9T0JQSzUjopGEoEZQzYho-0Ccqqb6Tofdnjg1rG5p3bCO1Wuqg20FnHXTctFs-ZoTxvkvnX9TSDNBAUf_OQQxYeJQGXzKbbTLSbsUEC0U8GZwO4N02dr_",
       "departureTime": "2023-11-17T10:48:00.0000000Z",
       "arrivalTime": "2023-11-17T12:12:00.0000000Z",
       "changes": 3,
       "duration": 84,
       "fareInCents": 1870,
-      "coinsCollected": 36,
+      "coinsCollected": 95,
       "legs": [
         {
           "modality": "Tram",
@@ -1121,14 +1121,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "C9wAAICqqqrq_3QX8FuYRaiqmYWZ6c0jzB3AA9QiAiI8IiCO4mYa4QqgpuqgC4R7BIRAye5aTT3H8AEfCAc4wTDMndhxNyT65Q8GTHpvFg0SBBNVyXnJ2z3nsu5k3V13XVPzSlwxLhmDAgYTQz4l492I58e8HHR4-npN_hRBumxtAVsMGiQrYGtCTKOxGmR33gt-2c0gAZeYdJhxuTnkWKaAyxFt0iVafUY363Cy2jgoYBeV_sbpokQuO2CFMe3dCqW_B53Q2Og7es8W3YdJx_U06RjNwViTLvrlF5_TQVm-Hv3P0zTlE7ppKsu9ePA5OH2593MqvDHcvavN9k5t1LgeViv1rN7Wm9VKfY6HFxKCWqoZEY0kBDWCakZEu3viVDXVLfUN61jd81BbAfdN24NOy3tOGOdfCmkmKGDv_8QQE-aLy-BTStEuJ-1SQLRQwLvB3QzSZWv_DQ",
       "departureTime": "2023-11-17T10:48:00.0000000Z",
       "arrivalTime": "2023-11-17T12:15:00.0000000Z",
       "changes": 2,
       "duration": 87,
       "fareInCents": 1870,
-      "coinsCollected": 36,
+      "coinsCollected": 95,
       "legs": [
         {
           "modality": "Tram",
@@ -1271,14 +1271,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "C-MAAICqqqrq_3QX8FuYRajaEm6uNw83iAALUAsLcHdwhziKm2m4K4CaqoOqaIQ7BISq7PZX6jmGA5xgjgOcYIB5A9FxU9svf9Aiqb2eFQgoWFHmnOd8uedcVI2omsemqSteFg-MC8Ygg1YHH6-kne3x9hHnk_LD947cNYCw0ZgMXtErECyDV-0D9dooENnxzru5m0AAzoGUn3B-OsWQk8f5goZUjkbd0E7KX43SFjLoglRnHO-doI0bIImB5m5GqnOrCLUJeyv7NGiPmi7rcVQh6JM2mu79U1sX6aBldxf3O4xjvKIdq5bdF-8ueqvuGze5gqR9OcjhbS0HuV23i4U8yi9e0SR_-nVvtqko0jJVLKXUa7Dmgb67TeKpqcokyj2XTVrVrGHVijfrEtCq5gwVsXKZMGCKlDxNCTLYu68hCIRuQ7l35FnH-agseUQDGRw0dhMIG435NwA",
       "departureTime": "2023-11-17T10:58:00.0000000Z",
       "arrivalTime": "2023-11-17T12:25:00.0000000Z",
       "changes": 3,
       "duration": 87,
       "fareInCents": 1851,
-      "coinsCollected": 36,
+      "coinsCollected": 104,
       "legs": [
         {
           "modality": "Tram",
@@ -1407,14 +1407,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "C8oAAICqqqrq_3QX8FuYRaiam0WY680jDBzCA8zdA9wcLM7iZhLuCqGmaqAqCuEOAaFQsruqqecYDsMHwgecYBgG7sCeA4n98gcNMp30RKCgEMUylzKXLycpVVmrsn6s66qUy-JBSCUEZNDo4OPM2tkd3vZxOpM_fHfs5gDKRmMy2KAnUCKDjfaBd9oQqO645920HUEBToHJjzg9nWPI2eN0RcOUo6Eb2pH8bEhbyGAbWrrgcHeSNiagFgPvXUxLl4YYtQm5rfZp0H5pvq6HgULQZ2003_1TRxf5oLDd1f0ehiHOaIepsKfiw0Vv6f7mRiq807z2bd80bd_-rDeLRTvvumMqiiTLVIqU0nu3TzJJsXxOq0rUolylVSUqUciEYUyexwQZnNz2c05gZIdy75hAL-cDWfaIBjLoNW5HUDYa828A",
       "departureTime": "2023-11-17T11:05:00.0000000Z",
       "arrivalTime": "2023-11-17T12:06:00.0000000Z",
       "changes": 1,
       "duration": 61,
       "fareInCents": 1971,
-      "coinsCollected": 35,
+      "coinsCollected": 77,
       "legs": [
         {
           "modality": "Tram",
@@ -1511,14 +1511,14 @@
       ]
     },
     {
-      "journeyType": null,
+      "journeyType": "normal_journey",
       "journeyId": "C88AAICqqqrq_3QXsFuYRaiam0NY6M0iLBzAI8zDHdwNPCCO4mYS7gqhpmqgKgrhDgGhKrv9dfUcwwMOCIfhAMMA8wai425J-eUPWmTq9USgoBTlopCykI-9lKqqVVXf1_WykovyTkglBOTQ6uDjzNrZDV4_4nQiv_0-sJsDKBuNyWGFnkCJHFbaB95oQ6C6451303oEBTgFJj_i9HCKoWCP0wUNU4GGrmhH8rMhbSGHdejojMONibZRAeww8N5FdHRuiVGboBvezqD91HxphoFC0CdtNN_4k3sX-aCSh4v73Q5DnNEOUyX78s1Fb-n24kZXcKN9PnZfr03znmWd7n6aNss6t4mVSCntU1mmRcrDOez2SaZKVMuUnpZCCFnFeRYyYRin5HlMkEPvvgEhMLoIFt6xF2kXA1n2iAZyOGpcj6BsNObfAA",
       "departureTime": "2023-11-17T11:08:00.0000000Z",
       "arrivalTime": "2023-11-17T12:34:00.0000000Z",
       "changes": 1,
       "duration": 86,
       "fareInCents": 1840,
-      "coinsCollected": 36,
+      "coinsCollected": 95,
       "legs": [
         {
           "modality": "Walking",
