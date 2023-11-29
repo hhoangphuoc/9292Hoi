@@ -76,7 +76,7 @@ export default function JourneyDetails({ route, navigation }) {
 	const coins = formattedJourney?.coins;
 	const duration = formattedJourney?.duration;
 
-	useEffect(() => {}, [progress, coins, finished]);
+	useEffect(() => {}, [progress, finished]);
 
 	return (
 		<View className="flex-1 items-start justify-center bg-neutral-900 pt-8">
