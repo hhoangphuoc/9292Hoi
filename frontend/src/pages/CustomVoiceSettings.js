@@ -9,6 +9,8 @@ import { switchVoice } from "../redux/selectedVoiceSlice";
 //voice packages
 import { voicePackages } from "../constant/voice";
 
+import { Audio } from "expo-av";
+import { handlePlay, handleStop } from "../constant/helperFunctions";
 //icon
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
@@ -17,6 +19,18 @@ export default function CustomVoiceSettings({ navigation }) {
 	const dispatch = useDispatch();
 	const voiceList = useSelector((state) => state.voiceList.redeemlist); //get the voiceList from redux store if it exist
 	const selectedVoice = useSelector((state) => state.selectedVoice); //get the selectedVoice from redux store if it exist
+
+	const [sound, setSound] = React.useState();
+
+	//function that play the audio when user press play button
+	const handlePlay = async (item) => {
+		console.log("Loading Sound");
+		const { sound } = await Audio.Sound.createAsync(item.voiceDemo);
+		setSound(sound);
+
+		console.log("Playing Sound");
+		await sound.playAsync();
+	};
 
 	return (
 		<View className=" flex-1 bg-neutral-900 pt-20">
@@ -46,7 +60,10 @@ export default function CustomVoiceSettings({ navigation }) {
 								key={index}
 								// key={index}
 								className="flex flex-row items-center justify-between bg-neutral-800 rounded-sm px-2 py-3 w-full"
-								onPress={() => dispatch(switchVoice(voice))} //switch the voice when user select this option
+								onPress={() => {
+									dispatch(switchVoice(voice)); //switch the voice when user select this option
+									handlePlay(voice); //play the voice demo
+								}}
 							>
 								{/* Display the voice name */}
 								<Text
@@ -73,10 +90,10 @@ export default function CustomVoiceSettings({ navigation }) {
 				</View>
 			)}
 			<Text className="text-neutral-100 text-sm font-light text-center mt-6 px-2">
-				Ready to go? Let's go travelling
+				Ready to go? Let's travel with your new companion!
 			</Text>
 			<TouchableOpacity
-				className="flex flex-row items-center justify-center bg-teal-400 rounded-sm mt-2 py-1 px-1"
+				className="flex flex-row items-center justify-center bg-teal-400 rounded-md mt-2 py-1 px-1 mx-5"
 				onPress={() => navigation.navigate("Home")}
 			>
 				{/* <MaterialIcons name="add-shopping-cart" size={20} color="black" /> */}

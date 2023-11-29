@@ -1,9 +1,10 @@
 import { Audio } from "expo-av";
 
 export function formatJourney(journey) {
+	const journeyType = journey?.journeyType;
 	const journeyId = journey?.journeyId;
 	const legs = journey?.legs;
-	const coins = journey?.coins;
+	const coins = journey?.coinsCollected;
 	const price = journey?.fareInCents / 100;
 	const durationStr = `${Math.floor(journey?.duration / 60)}h ${
 		journey?.duration % 60
@@ -11,9 +12,10 @@ export function formatJourney(journey) {
 	const modalities = legs.map((leg) => leg?.modality);
 
 	const formattedJourney = {
+		journeyType: journeyType,
 		journeyId: journeyId,
-		dTime: journey.departureTime.slice(11, 16),
-		aTime: journey.arrivalTime.slice(11, 16),
+		dTime: journey?.departureTime.slice(11, 16),
+		aTime: journey?.arrivalTime.slice(11, 16),
 		duration: durationStr,
 		price: price,
 		legs: legs,

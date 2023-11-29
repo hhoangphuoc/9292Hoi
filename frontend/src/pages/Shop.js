@@ -84,7 +84,7 @@ export default function Shop({ route, navigation }) {
 				</View>
 				{/* List of voice options that user can redeem */}
 				<ScrollView className="flex flex-col px-4">
-					<Text className="text-neutral-100 font-bold text-lg text-left mt-3 mb-1">
+					<Text className="text-neutral-100 font-bold text-lg text-left mt-2 mb-1">
 						Redeem Options
 					</Text>
 					<View className="w-full h-[1px] bg-neutral-400 pl-6 mb-2"></View>
@@ -152,7 +152,7 @@ export default function Shop({ route, navigation }) {
 				</ScrollView>
 				{/* List of Redeemed Voice that userhave */}
 				<ScrollView className="flex flex-col pt-2 pb-2 px-4">
-					<Text className="text-neutral-100 font-bold text-lg text-left mt-3 mb-1">
+					<Text className="text-neutral-100 font-bold text-lg text-left mt-2 pt-3 mb-1">
 						Redeem History
 					</Text>
 					<View className="w-full h-[1px] bg-neutral-400 pl-6"></View>

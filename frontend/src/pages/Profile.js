@@ -12,7 +12,7 @@ export default function Profile({ route, navigation }) {
 	//TODO: replace with the real user data
 	const userData = {
 		name: "9292 Test User",
-		coins: 100,
+		coins: 400,
 		historyJourneys: [], //todo: connected with journeys list later
 	};
 	const maxCoins = 1000;
