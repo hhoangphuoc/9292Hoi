@@ -6,6 +6,7 @@ export function formatJourney(journey) {
 	const legs = journey?.legs;
 	const coins = journey?.coinsCollected;
 	const price = journey?.fareInCents / 100;
+	const duration = journey?.duration;
 	const durationStr = `${Math.floor(journey?.duration / 60)}h ${
 		journey?.duration % 60
 	}m`;
@@ -16,7 +17,8 @@ export function formatJourney(journey) {
 		journeyId: journeyId,
 		dTime: journey?.departureTime.slice(11, 16),
 		aTime: journey?.arrivalTime.slice(11, 16),
-		duration: durationStr,
+		duration: duration,
+		durationStr: durationStr,
 		price: price,
 		legs: legs,
 		coins: coins,

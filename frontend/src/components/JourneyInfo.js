@@ -7,17 +7,21 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-import React from "react";
+import React, { useState } from "react";
 
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 
-const StopSection = ({ stop, coin }) => {
+const StopSection = ({ stop, coin, setProgress, totalCoins }) => {
 	const modalityIcon = {
 		Bus: "bus-outline",
 		Train: "train-outline",
 		Walking: "walk-outline",
 		Tram: "tram",
 		Subway: "subway-outline",
+	};
+
+	const handlePress = () => {
+		setProgress((prevCoins) => Math.min(prevCoins + coin, totalCoins)); //set the value of the progress bar to
 	};
 	return (
 		<View className="flex flex-col justify-center px-1 pt-2">
@@ -66,7 +70,10 @@ const StopSection = ({ stop, coin }) => {
 					<Text className="text-neutral-100 text-sm text-left">
 						~ {stop?.durationLeg} min
 					</Text>
-					<TouchableOpacity className="flex flex-row items-center justify-center py-3 px-2">
+					<TouchableOpacity
+						className="flex flex-row items-center justify-center py-3 px-2"
+						onPress={() => handlePress({ coin })}
+					>
 						<Text className=" text-neutral-100 text-base mr-1"> + </Text>
 						<FontAwesome5 name="coins" size={16} color="#f5f5f5" />
 						<Text className=" text-neutral-100 text-base ml-1">{coin}</Text>
@@ -77,12 +84,12 @@ const StopSection = ({ stop, coin }) => {
 	);
 };
 
-export default function JourneyInfo({ legs, coins }) {
-	//get all the duration of each leg and sum them up
-	const totalDuration = legs.reduce((total, leg) => {
-		return total + leg.durationLeg;
-	}, 0);
-
+export default function JourneyInfo({
+	legs,
+	coins,
+	setProgress,
+	totalDuration,
+}) {
 	// divide the coins by the toal duration and assign it to each leg
 	const coinsPerLeg = legs.map((leg) => {
 		return Math.round((leg.durationLeg / totalDuration) * coins);
@@ -92,7 +99,12 @@ export default function JourneyInfo({ legs, coins }) {
 		<ScrollView className="flex-1 w-full mt-4 bg-neutral-900 mx-2 px-2">
 			{legs.map((stop, index) => (
 				<View key={index} className="mr-3">
-					<StopSection stop={stop} coin={coinsPerLeg[index]} />
+					<StopSection
+						stop={stop}
+						coin={coinsPerLeg[index]}
+						setProgress={setProgress}
+						totalCoins={coins}
+					/>
 				</View>
 			))}
 		</ScrollView>

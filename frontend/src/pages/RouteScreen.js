@@ -143,7 +143,7 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 						{/* <View className="flex-row items-center justify-center"></View> */}
 						<FontAwesome5 name="clock" size={15} color="#f5f5f5" />
 						<Text className="text-neutral-100 text-base ml-1">
-							{formattedJourney?.duration}
+							{formattedJourney?.durationStr}
 						</Text>
 					</View>
 				</View>
