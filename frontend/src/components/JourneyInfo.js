@@ -1,10 +1,17 @@
-import { FlatList, StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+	FlatList,
+	StyleSheet,
+	Text,
+	View,
+	ScrollView,
+	TouchableOpacity,
+} from "react-native";
 
 import React from "react";
 
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 
-const StopSection = ({ stop }) => {
+const StopSection = ({ stop, coin }) => {
 	const modalityIcon = {
 		Bus: "bus-outline",
 		Train: "train-outline",
@@ -13,7 +20,7 @@ const StopSection = ({ stop }) => {
 		Subway: "subway-outline",
 	};
 	return (
-		<View className="flex flex-col justify-center px-4 py-2">
+		<View className="flex flex-col justify-center px-1 pt-2">
 			{/* Row 1: Departure time + Rounded Circle (Square if last time ) + Location */}
 			<View className="flex flex-row items-center justify-start">
 				<Text className="text-neutral-100 text-sm pl-1 mr-3">
@@ -55,20 +62,37 @@ const StopSection = ({ stop }) => {
 					<View className="h-full w-[2px] bg-teal-400 mx-5" />
 				)}
 				{/* Duration */}
-				<Text className="text-neutral-100 text-sm text-left mx-2">
-					~ {stop?.durationLeg} min
-				</Text>
+				<View className="flex flex-row items-center justify-between flex-grow mx-2">
+					<Text className="text-neutral-100 text-sm text-left">
+						~ {stop?.durationLeg} min
+					</Text>
+					<TouchableOpacity className="flex flex-row items-center justify-center py-3 px-2">
+						<Text className=" text-neutral-100 text-base mr-1"> + </Text>
+						<FontAwesome5 name="coins" size={16} color="#f5f5f5" />
+						<Text className=" text-neutral-100 text-base ml-1">{coin}</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		</View>
 	);
 };
 
-export default function JourneyInfo({ legs }) {
+export default function JourneyInfo({ legs, coins }) {
+	//get all the duration of each leg and sum them up
+	const totalDuration = legs.reduce((total, leg) => {
+		return total + leg.durationLeg;
+	}, 0);
+
+	// divide the coins by the toal duration and assign it to each leg
+	const coinsPerLeg = legs.map((leg) => {
+		return Math.round((leg.durationLeg / totalDuration) * coins);
+	});
+
 	return (
 		<ScrollView className="flex-1 w-full mt-4 bg-neutral-900 mx-2 px-2">
 			{legs.map((stop, index) => (
 				<View key={index} className="mr-3">
-					<StopSection stop={stop} />
+					<StopSection stop={stop} coin={coinsPerLeg[index]} />
 				</View>
 			))}
 		</ScrollView>

@@ -96,7 +96,10 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 
 	const journeyIcons = formattedJourney?.modalities.map((modality, index) => {
 		return (
-			<View className="flex flex-row items-center justify-center mr-1">
+			<View
+				key={index}
+				className="flex flex-row items-center justify-center mr-1"
+			>
 				{modality === "Tram" ? (
 					<MaterialIcons name="tram" size={22} color="#f5f5f5" />
 				) : (
@@ -160,7 +163,7 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 				</View>
 				<View className="flex flex-row items-center justify-end pt-2">
 					<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
-					<Text className="text-neutral-100 text-base ml-1">
+					<Text className="text-neutral-100 text-base ml-2 mr-1">
 						{formattedJourney?.coins}
 					</Text>
 				</View>
@@ -170,9 +173,6 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 };
 
 export default function RouteScreen({ route, navigation }) {
-	// console.log("Journey data:", journeyData);
-	// console.log("Journeys:", journeyData.selected_journey);
-
 	//fetch Journeys
 	const { fromId, toId, fromName, toName } = route.params;
 	console.log(

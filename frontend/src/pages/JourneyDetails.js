@@ -52,7 +52,10 @@ export default function JourneyDetails({ route, navigation }) {
 	const formattedJourney = formatJourney(journey);
 	const journeyIcons = formattedJourney?.modalities.map((modality, index) => {
 		return (
-			<View className="flex flex-row items-center justify-center mr-1">
+			<View
+				key={index}
+				className="flex flex-row items-center justify-center mr-1"
+			>
 				{modality === "Tram" ? (
 					<MaterialIcons name="tram" size={22} color="#f5f5f5" />
 				) : (
@@ -77,10 +80,10 @@ export default function JourneyDetails({ route, navigation }) {
 					</Text>
 					<View className="flex flex-row items-center justify-end py-3 px-2">
 						<FontAwesome5 name="coins" size={24} color="#eab308" />
-						<Text className=" text-amber-400 text-xl ml-1">
-							{" "}
-							100
-							{/* {formattedJourney?.coins} */}
+						<Text className=" text-amber-400 text-xl ml-2">
+							{/* {" "}
+							100 */}
+							{formattedJourney?.coins}
 						</Text>
 					</View>
 				</View>
@@ -124,7 +127,10 @@ export default function JourneyDetails({ route, navigation }) {
 			<Text className="text-neutral-100 text-xl text-left px-4 pt-4">
 				Journey Details
 			</Text>
-			<JourneyInfo legs={formattedJourney?.legs} />
+			<JourneyInfo
+				legs={formattedJourney?.legs}
+				coins={formattedJourney?.coins}
+			/>
 
 			{/* Navigate Button */}
 			<TouchableOpacity
