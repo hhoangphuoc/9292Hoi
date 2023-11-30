@@ -26,7 +26,7 @@ import JourneyInfo from "../components/JourneyInfo";
 const Header = ({ navigation, fromName, toName }) => {
 	return (
 		<View
-			className="flex flex-row items-center justify-center mt-12 pt-4 pb-2 px-4 ml-1"
+			className="flex flex-row items-center justify-center self-center mt-12 pt-4 pb-2 px-4 ml-1"
 			// style={{ width: "100%" }}
 		>
 			<Text className="text-neutral-100 mr-2">{fromName}</Text>
@@ -84,7 +84,7 @@ export default function JourneyDetails({ route, navigation }) {
 			<View className="w-1/2 self-center h-[1px] bg-neutral-400 my-2" />
 
 			{/* General Journey Info Section */}
-			<View className="flex flex-row bg-neutral-800 mr-4 mt-2 items-start rounded-md">
+			<View className="flex flex-row bg-neutral-800 mt-2 items-center self-center rounded-md">
 				{/* Column 1: Coins */}
 				<View className="flex flex-col justify-center items-center py-2">
 					<Text className="text-neutral-100 px-8 pt-1 ">Coins Earned</Text>

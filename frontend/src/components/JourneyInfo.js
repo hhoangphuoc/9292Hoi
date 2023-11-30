@@ -12,7 +12,14 @@ import React, { useEffect, useState } from "react";
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const StopSection = ({ stop, coin, setProgress, totalCoins }) => {
+const StopSection = ({
+	legs,
+	stop,
+	coinsPerLeg,
+	coin,
+	setProgress,
+	totalCoins,
+}) => {
 	const navigation = useNavigation();
 	const modalityIcon = {
 		Bus: "bus-outline",
@@ -34,11 +41,19 @@ const StopSection = ({ stop, coin, setProgress, totalCoins }) => {
 					{stop?.departureTimeLeg.slice(11, 16)}
 				</Text>
 				{/* Rounded Circle */}
-				<View className="w-3 h-3 rounded-lg border-[1px] border-neutral-100 bg-neutral-800 mr-3" />
-				<View className="flex flex-row items-center justify-start flex-grow mr-2">
+				<View className="w-3 h-3 rounded-lg border-[1px] border-neutral-100 bg-neutral-800 mx-[10px]" />
+				<View className="flex flex-row items-center justify-start flex-grow">
 					<TouchableOpacity
 						className="flex flex-row items-center justify-between"
-						onPress={() => navigation.navigate("MapScreen")}
+						onPress={() =>
+							navigation.navigate("MapScreen", {
+								legs: legs,
+								// stop: stop,
+								// coin: coin,
+								coinsPerLeg: coinsPerLeg,
+								// totalCoins: totalCoins,
+							})
+						}
 					>
 						<Text
 							className="text-neutral-100 text-base mx-3"
@@ -117,7 +132,9 @@ export default function JourneyInfo({
 			{legs.map((stop, index) => (
 				<View key={index} className="mr-3">
 					<StopSection
+						legs={legs}
 						stop={stop}
+						coinsPerLeg={coinsPerLeg}
 						coin={coinsPerLeg[index]}
 						setProgress={setProgress}
 						totalCoins={coins}
