@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 
 import { BASE_URL, ENDPOINTS, TOKEN } from "../constant";
 
-const journeyData = require("../data/journey_info.json");
+const journeyData = require("../data/journey_info_1.json"); //TODO: change back to journey_info.json
 
 //functions
 import {

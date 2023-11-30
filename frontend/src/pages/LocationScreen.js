@@ -8,13 +8,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import { useSelector } from "react-redux";
 
-import { BASE_URL, ENDPOINTS, TOKEN } from "../constant";
+import { TOKEN_9292 } from "@env";
 
 export default function LocationScreen({ navigation }) {
 	//fetch the 9292 API Locations
 	async function fetchLocations(query) {
 		const headers = new Headers();
-		headers.append("Authorization", `Token ${TOKEN}`);
+		headers.append("Authorization", `Token ${TOKEN_9292}`);
 
 		const response = await fetch(
 			`https://reisadvies-api-ast.9292.nl/v4/Locations?query=${query}&Rows=5`,
@@ -43,7 +43,7 @@ export default function LocationScreen({ navigation }) {
 
 		const loadAndPlayAudio = async () => {
 			try {
-				await sound.loadAsync(locationVoice.voiceUrl);
+				await sound.loadAsync(locationVoice?.voiceUrl);
 				await sound.playAsync();
 			} catch (error) {
 				console.error("AUDIO PLAY: ", error);
@@ -147,8 +147,8 @@ export default function LocationScreen({ navigation }) {
 				>
 					<Ionicons name="arrow-forward-outline" size={100} color="#99f6e4" />
 					<Text className="text-neutral-100 text-sm  px-4">
-						{selectedFromLocation.displayName} to{" "}
-						{selectedToLocation.displayName}
+						{selectedFromLocation?.displayName} to{" "}
+						{selectedToLocation?.displayName}
 					</Text>
 				</TouchableOpacity>
 			) : (

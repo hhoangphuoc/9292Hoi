@@ -16,6 +16,7 @@ import {
 	VoiceSettings,
 	ChatScreen,
 	JourneyDetails,
+	MapScreen,
 } from "../pages";
 // import VoiceSettingsLayout from "./VoiceSettingsLayout";
 // import ProfileLayout from "./ProfileLayout";
@@ -68,6 +69,7 @@ const MainLayout = () => {
 			<MainStack.Screen name="LocationScreen" component={LocationScreen} />
 			<MainStack.Screen name="RouteScreen" component={RouteScreen} />
 			<MainStack.Screen name="JourneyDetails" component={JourneyDetails} />
+			<MainStack.Screen name="MapScreen" component={MapScreen} />
 		</MainStack.Navigator>
 	);
 };

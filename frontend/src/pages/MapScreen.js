@@ -1,63 +1,70 @@
+// require("dotenv").config({ path: "../../.env" });
 import React, { useEffect, useState, useRef } from "react";
 import {
 	View,
 	Text,
 	FlatList,
+	TouchableOpacity,
 	Animated,
 	useWindowDimensions,
 } from "react-native";
-import MapView, { Polyline, Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
 // import Carousel from "react-native-snap-carousel";
 
 // const { width: viewportWidth } = Dimensions.get("window");
-const INITIAL_LAT_LONG = {
-	latitude: 52.378706,
-	longitude: 4.900489,
-	latitudeDelta: 0.0922,
-	longitudeDelta: 0.0421,
-};
 
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { modalityIcon } from "../constant";
+import { GOOGLE_MAPS_KEY } from "@env";
 
 export default function MapScreen({ route, navigation }) {
 	const { legs, coinsPerLeg } = route.params;
-	// console.log("legs", legs);
-	// console.log("coinsPerLeg", coinsPerLeg);
-	const { width } = useWindowDimensions();
+	// const GOOGLE_MAPS_KEY = "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg";
+	const { width, height } = useWindowDimensions();
+
+	const INITIAL_LAT_LONG = {
+		//initial map view
+		latitude: 52.361157,
+		longitude: 4.908037,
+		latitudeDelta: 0.002363,
+		longitudeDelta: 0.011103,
+	};
 
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [coordinates, setCoordinates] = useState([
 		{
+			//start location
 			latitude: 52.36352,
 			longitude: 4.91914,
 		},
 		{
+			//end location
 			latitude: 52.361157,
 			longitude: 4.908037,
 		},
 	]);
-	const [isMapReady, setIsMapReady] = useState(false);
-
+	const [region, setRegion] = useState(INITIAL_LAT_LONG);
+	const [directionMode, setDirectionMode] = useState("TRANSIT");
 	const [currentCoin, setCurrentCoin] = useState(coinsPerLeg[0]);
 
 	const onMapLayout = () => {
-		setIsMapReady(true);
+		// setIsMapReady(true);
 	};
 	const scrollX = useRef(new Animated.Value(0)).current;
 
 	const viewableItemsChanged = useRef(({ viewableItems }) => {
 		setActiveIndex(viewableItems[0].index);
 
-		const selectedLeg = legs[viewableItems[0].index];
-		console.log("selectedLeg", selectedLeg);
+		// const selectedLeg = legs[viewableItems[0].index];
+		// console.log("selectedLeg", selectedLeg);
 	}).current;
 	const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 	const slidesRef = useRef(null);
 
 	const Pagination = ({ data, scrollX }) => {
 		return (
-			<View className="flex flex-row items-center self-center mt-2 py-2 px-2">
+			<View className="flex flex-row items-center self-center px-2 py-1">
 				{data.map((_, i) => {
 					const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
 					const dotWidth = scrollX.interpolate({
@@ -92,7 +99,7 @@ export default function MapScreen({ route, navigation }) {
 		return (
 			<View
 				key={index}
-				className="flex-1 justify-center bg-neutral-800 my-2 rounded-sm w-screen"
+				className="flex-1 justify-center bg-neutral-800 mb-2 mt-4 rounded-sm w-screen"
 			>
 				{/* Row 1: departure time and arrival time, justify content between */}
 				<View
@@ -170,80 +177,105 @@ export default function MapScreen({ route, navigation }) {
 		);
 	};
 
+	//when the index changes, update the coordinates, the current coins and the mode of transport
 	useEffect(() => {
-		// const selectedLeg = legs[0];
-		// const calls_length = selectedLeg?.calls_info.length;
-		// //start location
-		// const start = {
-		// 	latitude: selectedLeg?.calls_info[0]?.latitude,
-		// 	longitude: selectedLeg?.calls_info[0]?.longitude,
-		// };
-		// //end location
-		// const end = {
-		// 	latitude: selectedLeg?.calls_info[calls_length - 1]?.latitude,
-		// 	longitude: selectedLeg?.calls_info[calls_length - 1]?.longitude,
-		// };
-		// setCoordinates([
-		// 	...coordinates,
-		// 	{ latitude: start.latitude, longitude: start.longitude },
-		// 	{ latitude: end.latitude, longitude: end.longitude },
-		// ]);
-		// setCurrentCoin(coinsPerLeg[0]);
-		// setActiveIndex(0);
+		const selectedLeg = legs[activeIndex];
+		const calls_length = selectedLeg?.calls_info.length;
+
+		//start location
+		const start = {
+			latitude: selectedLeg?.calls_info[0]?.latitude,
+			longitude: selectedLeg?.calls_info[0]?.longitude,
+		};
+
+		//end location
+		const end = {
+			latitude: selectedLeg?.calls_info[calls_length - 1]?.latitude,
+			longitude: selectedLeg?.calls_info[calls_length - 1]?.longitude,
+		};
+
+		//set to the different coordinates for the map, replacing the previous coordinates
+		setCoordinates([
+			{ latitude: start.latitude, longitude: start.longitude },
+			{ latitude: end.latitude, longitude: end.longitude },
+		]);
+		setRegion({
+			latitude: (start.latitude + end.latitude) / 2,
+			longitude: (start.longitude + end.longitude) / 2,
+			latitudeDelta: Math.abs(start.latitude - end.latitude),
+			longitudeDelta: Math.abs(start.longitude - end.longitude),
+		});
+
+		setCurrentCoin(coinsPerLeg[activeIndex]);
+		setDirectionMode(
+			selectedLeg?.modality === "Walking" ? "WALKING" : "TRANSIT"
+		);
 	}, [activeIndex]);
 
 	return (
-		<View
-			className="flex-1 flex-col items-center justify-center bg-neutral-900 pt-8"
-			// style={{
-			// 	width: width,
-			// 	height: "100%",
-			// }}
-		>
+		<View className="flex-1 flex-col items-center justify-center bg-neutral-900 pt-8">
+			{/* Floating button to go back to the previous screen */}
+			{/* <TouchableOpacity
+				onPress={() => navigation.goBack()}
+				className="absolute top-9 left-2 mt-4 ml-4 elevation-2 rounded-full bg-black"
+			>
+				<Ionicons name="arrow-back" size={24} color="black" />
+			</TouchableOpacity> */}
+
 			{/* Renders the map */}
 			<View className="flex w-full h-2/3">
 				<MapView
-					style={{ flex: 1 }}
-					// initialRegion={{
-					// 	latitude: legs[0]?.calls_info[0]?.placeLatitude,
-					// 	longitude: legs[0]?.calls_info[0]?.placeLongitude,
-					// 	latitudeDelta: 0.0922,
-					// 	longitudeDelta: 0.0421,
-					// }}
+					style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
 					initialRegion={INITIAL_LAT_LONG}
-					provider="google"
-					showsUserLocation={true}
+					region={region}
+					provider={PROVIDER_GOOGLE}
+					// showsUserLocation={true}
 					onLayout={onMapLayout}
 					zoomEnabled={true}
-					minZoomLevel={8}
+					// maxZoomLevel={18}
+					userInterfaceStyle="dark"
+					loadingIndicatorColor="#99f6e4"
+					loadingEnabled={true}
+					// minZoomLevel={1}
+					zoomControlEnabled={true}
 				>
 					{/* Renders the polyline */}
-					{isMapReady && (
-							<Marker coordinate={coordinates[0]} pinColor="#99f6e4" />
-						) && (
-							<Marker coordinate={coordinates[coordinates.length - 1]}>
-								<View className="flex flex-row items-center justify-center py-1 px-1">
-									<Text className="text-neutral-100 text-lg mr-1">
-										{currentCoin}
-									</Text>
-								</View>
-								<FontAwesome5 name="coins" size={24} color="#eab308" />
-							</Marker>
-						) && (
-							<Polyline
-								coordinates={coordinates}
-								strokeColor="#99f6e4"
-								strokeWidth={4}
-							/>
-						)}
+					{/* {isMapReady && ( */}
+					{coordinates.length > 0 && (
+						<MapViewDirections
+							origin={coordinates[0]}
+							destination={coordinates[coordinates.length - 1]}
+							apikey={GOOGLE_MAPS_KEY}
+							strokeWidth={4}
+							strokeColor="#171717" //neutral-900
+							mode={directionMode}
+							//dottedLine={true}
+							lineDashPattern={directionMode === "WALKING" ? [0] : null}
+						/>
+					)}
+					<Marker
+						coordinate={coordinates[coordinates.length - 1]}
+						title="End"
+						description="End location"
+					>
+						{/* <View className="flex flex-row items-center justify-center py-1 px-1"> */}
+						{/* <Text className="text-neutral-100 text-lg mr-1">{currentCoin}</Text> */}
+						<FontAwesome5 name="coins" size={30} color="#eab308" />
+						{/* </View> */}
+					</Marker>
+					<Marker
+						coordinate={coordinates[0]}
+						title="Start"
+						description="Start location"
+						pinColor="#f43f5e"
+						style={{ width: 5, height: 5 }}
+					>
+						{/* <FontAwesome5 name="walking" size={20} color="#f43f5e" /> */}
+					</Marker>
+					{/* )} */}
 				</MapView>
 			</View>
-			<View
-				className="flex flex-col items-center py-1 w-screen"
-				// style={{
-				// 	flex: 1,
-				// }}
-			>
+			<View className="flex flex-col items-center py-1 w-screen px-1">
 				{/* Renders list of journey carousel */}
 				<FlatList
 					horizontal={true}
@@ -255,40 +287,10 @@ export default function MapScreen({ route, navigation }) {
 						<JourneyCarousel item={item} key={index} />
 					)}
 					// keyExtractor={(item, index) => index.toString()}
-					onScroll={
-						Animated.event(
-							[{ nativeEvent: { contentOffset: { x: scrollX } } }],
-							{ useNativeDriver: false }
-						)
-						// (event) => {
-						// const index = Math.round(event.nativeEvent.contentOffset.x / width);
-
-						// console.log("index", index);
-						// setActiveIndex(index);
-
-						// const selectedLeg = legs[index];
-						// const calls_length = selectedLeg?.calls_info.length;
-
-						// //start location
-						// const start = {
-						// 	latitude: selectedLeg?.calls_info[0]?.latitude,
-						// 	longitude: selectedLeg?.calls_info[0]?.longitude,
-						// };
-
-						// //end location
-						// const end = {
-						// 	latitude: selectedLeg?.calls_info[calls_length - 1]?.latitude,
-						// 	longitude: selectedLeg?.calls_info[calls_length - 1]?.longitude,
-						// };
-
-						// setCoordinates([
-						// 	...coordinates,
-						// 	{ latitude: start.latitude, longitude: start.longitude },
-						// 	{ latitude: end.latitude, longitude: end.longitude },
-						// ]);
-
-						// setCurrentCoin(coinsPerLeg[index]);
-					}
+					onScroll={Animated.event(
+						[{ nativeEvent: { contentOffset: { x: scrollX } } }],
+						{ useNativeDriver: false }
+					)}
 					scrollEventThrottle={32}
 					onViewableItemsChanged={viewableItemsChanged}
 					viewabilityConfig={viewConfig}
