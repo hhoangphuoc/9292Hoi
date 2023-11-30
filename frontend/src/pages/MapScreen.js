@@ -260,17 +260,19 @@ export default function MapScreen({ route, navigation }) {
 					>
 						{/* <View className="flex flex-row items-center justify-center py-1 px-1"> */}
 						{/* <Text className="text-neutral-100 text-lg mr-1">{currentCoin}</Text> */}
-						<FontAwesome5 name="coins" size={30} color="#eab308" />
+
+						<FontAwesome5 name="map-marker-alt" size={30} color="#f43f5e" />
+						<FontAwesome5 name="coins" size={24} color="#eab308" />
 						{/* </View> */}
 					</Marker>
 					<Marker
 						coordinate={coordinates[0]}
 						title="Start"
 						description="Start location"
-						pinColor="#f43f5e"
-						style={{ width: 5, height: 5 }}
+						// pinColor="#f43f5e"
+						style={{ paddingBottom: 5, paddingRight: 5 }}
 					>
-						{/* <FontAwesome5 name="walking" size={20} color="#f43f5e" /> */}
+						<FontAwesome5 name="walking" size={30} color="#f43f5e" />
 					</Marker>
 					{/* )} */}
 				</MapView>

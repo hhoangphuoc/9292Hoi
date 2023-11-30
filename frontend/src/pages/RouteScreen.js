@@ -112,7 +112,7 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 	return (
 		<View key={formattedJourney?.journeyId}>
 			<TouchableOpacity
-				className="flex flex-col bg-neutral-700 px-2 py-2 rounded-md mb-2"
+				className="flex flex-col bg-neutral-800 px-2 py-2 rounded-sm mb-2"
 				// key={formattedJourney?.journeyId}
 				onPress={() =>
 					navigation.navigate("JourneyDetails", {
@@ -125,7 +125,7 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 				<View className="flex flex-row items-center justify-between py-1 px-1">
 					{/* Row 1: departure time and arrival time + duration */}
 					{/* Section 1: Departure time, arrival time */}
-					<View className="flex flex-row items-center justify-between py-1 px-2">
+					<View className="flex flex-row items-center justify-between py-1">
 						{/* Departure time */}
 						<View className="flex flex-row items-center justify-center">
 							<Text className="text-neutral-100 text-lg mr-2">
@@ -156,17 +156,21 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 					{/* Coin*/}
 					<View className="flex flex-row items-center justify-center py-1">
 						<FontAwesome5 name="euro-sign" size={15} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-base ml-1">
+						<Text className="text-neutral-100 text-base ml-1 mr-4">
 							{formattedJourney?.price}
+						</Text>
+						<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
+						<Text className="text-neutral-100 text-base ml-1">
+							+ {formattedJourney?.coins}
 						</Text>
 					</View>
 				</View>
-				<View className="flex flex-row items-center justify-end pt-2">
+				{/* <View className="flex flex-row items-center justify-end pt-2">
 					<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
 					<Text className="text-neutral-100 text-base ml-2 mr-1">
 						{formattedJourney?.coins}
 					</Text>
-				</View>
+				</View> */}
 			</TouchableOpacity>
 		</View>
 	);
@@ -232,7 +236,6 @@ export default function RouteScreen({ route, navigation }) {
 
 	// //fetch the journey list
 	useEffect(() => {
-		// fetchJourneys(fromId, toId);
 		if (
 			fromId === "amsterdam/bus-tramhalte-alexanderplein" &&
 			toId === "station-rotterdam-centraal" &&
@@ -256,14 +259,61 @@ export default function RouteScreen({ route, navigation }) {
 
 			<ScrollView className="flex flex-col mx-2 px-2 pt-2 mt-4">
 				{journeyList.map((journey, index) => {
+					//get the list of journey which have journey_type as "normal_journey"
+					const normalJourneys = journeyList.filter(
+						(journey) => journey.journey_type === "normal_journey"
+					);
+
 					return (
 						<View key={index} className="flex flex-col">
-							<JourneyCard
-								fromName={fromName}
-								toName={toName}
-								journey={journey}
-								navigation={navigation}
-							/>
+							{index === 0 ? (
+								<View>
+									<Text className="text-teal-200 text-lg mb-1">
+										Shortest Journey
+									</Text>
+									<JourneyCard
+										fromName={fromName}
+										toName={toName}
+										journey={journey}
+										navigation={navigation}
+									/>
+								</View>
+							) : index === 1 ? (
+								<View>
+									<Text className="text-teal-200 text-lg mt-2 mb-1">
+										Minimal Transits
+									</Text>
+									<JourneyCard
+										fromName={fromName}
+										toName={toName}
+										journey={journey}
+										navigation={navigation}
+									/>
+								</View>
+							) : index === 2 ? (
+								<View>
+									<Text className="text-teal-200 text-lg mt-2 mb-1">
+										Cheapest Journey
+									</Text>
+									<JourneyCard
+										fromName={fromName}
+										toName={toName}
+										journey={journey}
+										navigation={navigation}
+									/>
+									<View className="w-full h-[1px] bg-neutral-600 my-2" />
+									<Text className="text-neutral-100 text-lg mt-2 mb-1">
+										All Journeys
+									</Text>
+								</View>
+							) : (
+								<JourneyCard
+									fromName={fromName}
+									toName={toName}
+									journey={journey}
+									navigation={navigation}
+								/>
+							)}
 						</View>
 					);
 				})}

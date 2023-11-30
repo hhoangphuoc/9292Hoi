@@ -106,9 +106,9 @@ const StopSection = ({
 						className="flex flex-row items-center justify-center py-3 px-2"
 						onPress={() => handlePress({ coin })}
 					>
-						<Text className=" text-neutral-100 text-base mr-1"> + </Text>
-						<FontAwesome5 name="coins" size={16} color="#f5f5f5" />
-						<Text className=" text-neutral-100 text-base ml-1">{coin}</Text>
+						<Text className=" text-amber-400 text-base mr-0.5"> + </Text>
+						<FontAwesome5 name="coins" size={16} color="#eab308" />
+						<Text className=" text-amber-400 text-base ml-1">{coin}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

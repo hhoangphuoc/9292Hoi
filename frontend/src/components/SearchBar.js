@@ -4,23 +4,18 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function SearchBar({
-	// fromAddress,
-	// setFromAddress,
-	// toAddress,
-	// setToAddress,
-	// selectedFromLocation,
-	// selectedToLocation,
 	addressType,
 	address,
 	setAddress,
 	selectedLocation,
 	placeholder,
 }) {
-	// console.log("Search bar rendered with address type: ", addressType);
 	return (
 		<View className="flex flex-row justify-start items-center ml-3">
 			<TextInput
-				className="bg-transparent w-full rounded-sm px-2 mt-2"
+				className="bg-transparent w-full rounded-sm px-2 mt-2 text-neutral-100"
+				placeholderTextColor={"#f5f5f5"}
+				cursorColor={"#99f6e4"}
 				placeholder={placeholder}
 				value={
 					selectedLocation === null

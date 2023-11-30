@@ -47,12 +47,6 @@ const modalityIcon = {
 export default function JourneyDetails({ route, navigation }) {
 	const { fromName, toName, journey } = route.params;
 
-	const routeInfoVoice = useSelector((state) => state.selectedVoice.voices[2]); //voices 2 contains the voice of route information
-	const [sound, setSound] = useState();
-
-	const [progress, setProgress] = useState(0);
-	const [finished, setFinished] = useState(false);
-
 	//journey info
 	const formattedJourney = formatJourney(journey);
 	const journeyIcons = formattedJourney?.modalities.map((modality, index) => {
@@ -75,6 +69,12 @@ export default function JourneyDetails({ route, navigation }) {
 	const legs = formattedJourney?.legs;
 	const coins = formattedJourney?.coins;
 	const duration = formattedJourney?.duration;
+
+	const routeInfoVoice = useSelector((state) => state.selectedVoice.voices[2]); //voices 2 contains the voice of route information
+	const [sound, setSound] = useState();
+
+	const [progress, setProgress] = useState(0);
+	const [finished, setFinished] = useState(false);
 
 	useEffect(() => {}, [progress, finished]);
 
@@ -134,9 +134,25 @@ export default function JourneyDetails({ route, navigation }) {
 			</View>
 
 			{/* Journey Details Section */}
-			<Text className="text-neutral-100 text-xl text-left px-4 pt-4">
-				Journey Details
-			</Text>
+			<View className="flex flex-row pt-4 px-4 items-center justify-between w-full">
+				<Text className="text-neutral-100 text-xl text-left">
+					Journey Details
+				</Text>
+				<View
+					className="flex flex-row items-center justify-center py-1 px-2"
+					onPress={() => {
+						handleStop(sound, setSound);
+						navigation.navigate("Home");
+					}}
+				>
+					<Ionicons name="close" size={20} color="#f87171" />
+					<Text className="text-red-400 text-base underline mb-0.5">
+						Cancel
+					</Text>
+				</View>
+			</View>
+
+			<View className="w-full h-[1px] bg-neutral-600 my-2 mx-3" />
 			<JourneyInfo
 				legs={legs}
 				coins={coins}
@@ -170,12 +186,12 @@ export default function JourneyDetails({ route, navigation }) {
 				<View className="flex flex-row items-center bg-neutral-800 justify-center w-full rounded-md py-4 px-2">
 					<Progress.Bar
 						progress={progress / coins}
-						width={250}
+						width={300}
 						height={20}
 						color="#99f6e4"
 						borderColor="#f5f5f5"
 						borderWidth={1}
-						borderRadius={10}
+						borderRadius={8}
 					/>
 					<Text className="text-neutral-100 text-base ml-2 mr-1">
 						{Math.floor((progress / coins) * 100)}%

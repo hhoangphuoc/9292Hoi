@@ -68,11 +68,11 @@ export default function LocationScreen({ navigation }) {
 	}, [fromAddress, toAddress, selectedFromLocation, selectedToLocation]);
 
 	return (
-		<View className="flex-1 items-start bg-neutral-900 pt-8">
+		<View className="flex-1 items-start bg-neutral-900 pt-20">
 			<View>
-				<Text className="text-neutral-100 text-lg my-3 px-4">Where to?</Text>
+				<Text className="text-neutral-100 text-xl my-3 px-4">Where to?</Text>
 			</View>
-			<View className="flex-row items-start justify-center bg-neutral-600 ml-3 mr-8 px-4 py-4">
+			<View className="flex-row items-start justify-center bg-neutral-800 mt-3 ml-3 mr-8 px-4 py-4">
 				{/* an input text field with 2 rows - from and to */}
 				<View className="flex flex-col justify-center items-center">
 					<SearchBar
@@ -82,7 +82,7 @@ export default function LocationScreen({ navigation }) {
 						setAddress={setFromAddress}
 						selectedLocation={selectedFromLocation}
 					/>
-					<View className="w-full h-[1px] ml-6 bg-neutral-900 mt-2"></View>
+					<View className="w-full h-[1px] ml-6 bg-neutral-500 mt-2"></View>
 					<SearchBar
 						addressType="To"
 						placeholder="To: Address, Station, Stop,..."
@@ -94,21 +94,22 @@ export default function LocationScreen({ navigation }) {
 				{/* a button to navigate to the route page, with the From and To address as the parameters */}
 				<View className="flex justify-center self-center pl-4 z-10">
 					<TouchableOpacity
-						onPress={() => {
-							console.log("From Address id: ", selectedFromLocation?.id);
-							console.log("To Address id: ", selectedToLocation?.id);
-							navigation.navigate("RouteScreen", {
-								fromId: selectedFromLocation?.id,
-								toId: selectedToLocation?.id,
-								fromName: selectedFromLocation?.displayName,
-								toName: selectedToLocation?.displayName,
-							});
-						}}
+						// onPress={() => {
+						// 	console.log("From Address id: ", selectedFromLocation?.id);
+						// 	console.log("To Address id: ", selectedToLocation?.id);
+						// 	navigation.navigate("RouteScreen", {
+						// 		fromId: selectedFromLocation?.id,
+						// 		toId: selectedToLocation?.id,
+						// 		fromName: selectedFromLocation?.displayName,
+						// 		toName: selectedToLocation?.displayName,
+						// 	});
+						// }}
+						className="items-center justify-center self-center mt-2 pl-2"
 					>
 						<Ionicons
-							name="arrow-forward-circle-outline"
-							size={30}
-							color="#2e2e2e"
+							name="swap-vertical-outline"
+							size={28}
+							color="#f5f5f5"
 							className="mr-3"
 						/>
 					</TouchableOpacity>
