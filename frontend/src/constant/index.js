@@ -5,7 +5,7 @@ import {
 	gamificationList,
 	rankCategories,
 } from "./featureItems";
-import { ENDPOINTS, BASE_URL, TOKEN, OPENAI_KEY } from "./configuration";
+import { ENDPOINTS, BASE_URL } from "./configuration";
 import { voicePackages } from "./voice";
 import { modalityIcon } from "./featureItems";
 export {
@@ -16,8 +16,6 @@ export {
 	rankCategories,
 	ENDPOINTS,
 	BASE_URL,
-	TOKEN,
-	OPENAI_KEY,
 	voicePackages,
 	modalityIcon,
 };

@@ -110,9 +110,18 @@ const rankCategories = [
 	},
 ];
 
+const modalityIcon = {
+	Bus: "bus-outline",
+	Train: "train-outline",
+	Walking: "walk-outline",
+	Tram: "tram",
+	Subway: "subway-outline",
+};
+
 export {
 	voiceAssitantList,
 	voiceSettingsList,
 	gamificationList,
 	rankCategories,
+	modalityIcon,
 };

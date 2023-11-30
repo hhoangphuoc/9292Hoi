@@ -12,7 +12,7 @@ export default function LocationList({
 	// setAddress,
 	// addressType,
 }) {
-	console.log("Location List rendered: ", locations.length);
+	// console.log("Location List rendered: ", locations?.length);
 	// console.log("Address type: ", addressType);
 
 	return (
@@ -20,7 +20,7 @@ export default function LocationList({
 			<Text className="text-neutral-100 text-lg my-3 px-4">
 				Suggested Location
 			</Text>
-			{locations.length > 0 ? (
+			{locations?.length > 0 ? (
 				<FlatList
 					data={locations}
 					showsVerticalScrollIndicator={false}

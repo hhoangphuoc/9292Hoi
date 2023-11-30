@@ -1,4 +1,3 @@
-// require("dotenv").config({ path: "../../.env" });
 import React, { useEffect, useState, useRef } from "react";
 import {
 	View,
@@ -10,19 +9,22 @@ import {
 } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-// import Carousel from "react-native-snap-carousel";
-
-// const { width: viewportWidth } = Dimensions.get("window");
 
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { modalityIcon } from "../constant";
 import { GOOGLE_MAPS_KEY } from "@env";
 
+import { useSelector } from "react-redux";
+import { Audio } from "expo-av";
+
 export default function MapScreen({ route, navigation }) {
 	const { legs, coinsPerLeg } = route.params;
-	// const GOOGLE_MAPS_KEY = "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg";
-	const { width, height } = useWindowDimensions();
 
+	//state for sound
+	const selectedVoice = useSelector((state) => state.selectedVoice);
+
+	//state for map
+	const { width, height } = useWindowDimensions();
 	const INITIAL_LAT_LONG = {
 		//initial map view
 		latitude: 52.361157,
@@ -30,7 +32,6 @@ export default function MapScreen({ route, navigation }) {
 		latitudeDelta: 0.002363,
 		longitudeDelta: 0.011103,
 	};
-
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [coordinates, setCoordinates] = useState([
 		{
@@ -48,11 +49,8 @@ export default function MapScreen({ route, navigation }) {
 	const [directionMode, setDirectionMode] = useState("TRANSIT");
 	const [currentCoin, setCurrentCoin] = useState(coinsPerLeg[0]);
 
-	const onMapLayout = () => {
-		// setIsMapReady(true);
-	};
+	//for carousel animation
 	const scrollX = useRef(new Animated.Value(0)).current;
-
 	const viewableItemsChanged = useRef(({ viewableItems }) => {
 		setActiveIndex(viewableItems[0].index);
 
@@ -113,7 +111,7 @@ export default function MapScreen({ route, navigation }) {
 						</Text>
 					</View>
 
-					<Text className="text-neutral-100 text-sm mt-4">
+					<Text className="text-neutral-100 text-sm mt-4 top-3">
 						~ {item?.durationLeg} min
 					</Text>
 					<View className="flex-row items-center justify-center">
@@ -213,30 +211,32 @@ export default function MapScreen({ route, navigation }) {
 	}, [activeIndex]);
 
 	return (
-		<View className="flex-1 flex-col items-center justify-center bg-neutral-900 pt-8">
+		<View className="flex-1 items-center justify-center bg-neutral-900 pt-8">
 			{/* Floating button to go back to the previous screen */}
-			{/* <TouchableOpacity
-				onPress={() => navigation.goBack()}
-				className="absolute top-9 left-2 mt-4 ml-4 elevation-2 rounded-full bg-black"
-			>
-				<Ionicons name="arrow-back" size={24} color="black" />
-			</TouchableOpacity> */}
 
 			{/* Renders the map */}
 			<View className="flex w-full h-2/3">
+				<TouchableOpacity
+					onPress={() => navigation.goBack()}
+					className="absolute top-1 w-12 h-12 mt-3 ml-1 z-20 rounded-full bg-neutral-700 items-center justify-center"
+				>
+					<Ionicons name="arrow-back" size={24} color="#f5f5f5" />
+				</TouchableOpacity>
+				<TouchableOpacity
+					onPress={() => navigation.goBack()}
+					className="absolute bottom-1 w-12 h-12 mt-4 ml-1.5 z-20 rounded-md bg-neutral-700 items-center justify-center"
+				>
+					<Ionicons name="volume-high" size={26} color="#5eead4" />
+				</TouchableOpacity>
 				<MapView
 					style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
 					initialRegion={INITIAL_LAT_LONG}
 					region={region}
 					provider={PROVIDER_GOOGLE}
-					// showsUserLocation={true}
-					onLayout={onMapLayout}
 					zoomEnabled={true}
-					// maxZoomLevel={18}
 					userInterfaceStyle="dark"
 					loadingIndicatorColor="#99f6e4"
 					loadingEnabled={true}
-					// minZoomLevel={1}
 					zoomControlEnabled={true}
 				>
 					{/* Renders the polyline */}
@@ -275,7 +275,7 @@ export default function MapScreen({ route, navigation }) {
 					{/* )} */}
 				</MapView>
 			</View>
-			<View className="flex flex-col items-center py-1 w-screen px-1">
+			<View className="flex flex-col items-center py-1 w-screen">
 				{/* Renders list of journey carousel */}
 				<FlatList
 					horizontal={true}
