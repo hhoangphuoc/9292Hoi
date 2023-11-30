@@ -7,6 +7,7 @@ import {
 } from "./featureItems";
 import { ENDPOINTS, BASE_URL, TOKEN, OPENAI_KEY } from "./configuration";
 import { voicePackages } from "./voice";
+import { modalityIcon } from "./featureItems";
 export {
 	// sideMenu,
 	voiceAssitantList,
@@ -18,4 +19,5 @@ export {
 	TOKEN,
 	OPENAI_KEY,
 	voicePackages,
+	modalityIcon,
 };
