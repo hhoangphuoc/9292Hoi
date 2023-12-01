@@ -14,17 +14,15 @@ export default function FeatureNavigation({ item, navigation }) {
 	return (
 		<TouchableOpacity
 			collapsable={false}
-			className="flex-row items-center h-14 w-full bg-black justify-between mb-2"
+			className="flex-row items-center w-full justify-start mx-4 pb-2 my-2"
 			onPress={() => {
 				navigation.navigate(item.pageNavigationName);
 			}}
 		>
-			<View className="flex-col">
-				<Text className="flex-1 text-sm text-white ml-8">
-					{item.featureName}
-				</Text>
+			<View className="flex-col mr-1 mb-2">
+				<Text className="text-sm text-neutral-100">{item.featureName}</Text>
 				<Text
-					className="flex-1 text-xs italic text-white ml-8"
+					className="text-xs italic opacity-75 text-neutral-100"
 					numberOfLines={2}
 					ellipsizeMode="tail"
 				>

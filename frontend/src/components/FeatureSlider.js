@@ -6,17 +6,20 @@ import Slider from "@react-native-community/slider";
 
 export default function FeatureSlider({ item }) {
 	return (
-		<View collapsable={false} className="flex-col h-14 w-full mb-2">
+		<View
+			collapsable={false}
+			className="flex-col h-14 w-full ml-4 pb-2 mt-2 mb-4"
+		>
 			{/* <View className="flex-col"> */}
-			<Text className="flex-1 text-sm text-white ml-8">{item.featureName}</Text>
+			<Text className="text-sm text-neutral-100">{item.featureName}</Text>
 			<Text
-				className="flex-1 text-xs italic text-white ml-8"
+				className="text-xs italic text-neutral-100 opacity-75 text-clip mt-1"
 				//max 2 lines
 				numberOfLines={2}
 			>
 				{item.featureDescription}
 			</Text>
-			<View className="flex-1 px-4">
+			<View className="px-2 mt-1">
 				<Slider
 					className="w-48 h-10"
 					// style={{width: 200, height: 40}}

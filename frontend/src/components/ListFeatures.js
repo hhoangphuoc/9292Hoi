@@ -37,7 +37,7 @@ export default function ListFeatures({ list, navigation }) {
 	const listStyle = useAnimatedStyle(() => ({
 		opacity: progress.value === 0 ? 0 : 1,
 		// justifyContent: progress.value === 0 ? 'flex-start' : 'space-between',
-		paddingVertical: progress.value === 0 ? 0 : 8,
+		paddingVertical: progress.value === 0 ? 0 : 4,
 		paddingHorizontal: progress.value === 0 ? 0 : 8,
 	}));
 
