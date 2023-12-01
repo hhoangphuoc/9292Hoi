@@ -7,7 +7,7 @@ import {
 	Animated,
 	useWindowDimensions,
 } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
@@ -51,6 +51,8 @@ export default function MapScreen({ route, navigation }) {
 	const [directionMode, setDirectionMode] = useState("TRANSIT");
 	const [currentCoin, setCurrentCoin] = useState(coinsPerLeg[0]);
 
+	const [sound, setSound] = useState();
+	const [startStopLocation, setStartStopLocation] = useState({});
 	//for carousel animation
 	const scrollX = useRef(new Animated.Value(0)).current;
 	const viewableItemsChanged = useRef(({ viewableItems }) => {
@@ -184,17 +186,22 @@ export default function MapScreen({ route, navigation }) {
 		const selectedLeg = legs[activeIndex];
 		const calls_length = selectedLeg?.calls_info.length;
 
-		//start location
+		//start location latlong
 		const start = {
 			latitude: selectedLeg?.calls_info[0]?.latitude,
 			longitude: selectedLeg?.calls_info[0]?.longitude,
 		};
 
-		//end location
+		//end location latlong
 		const end = {
 			latitude: selectedLeg?.calls_info[calls_length - 1]?.latitude,
 			longitude: selectedLeg?.calls_info[calls_length - 1]?.longitude,
 		};
+
+		setStartStopLocation({
+			startLocation: selectedLeg?.startStopLeg,
+			endLocation: selectedLeg?.endStopLeg,
+		});
 
 		//set to the different coordinates for the map, replacing the previous coordinates
 		setCoordinates([
@@ -221,8 +228,6 @@ export default function MapScreen({ route, navigation }) {
 
 	return (
 		<View className="flex-1 items-center justify-center bg-neutral-900 pt-8">
-			{/* Floating button to go back to the previous screen */}
-
 			{/* Renders the map */}
 			<View className="flex w-full h-2/3">
 				<TouchableOpacity
@@ -256,27 +261,14 @@ export default function MapScreen({ route, navigation }) {
 							destination={coordinates[coordinates.length - 1]}
 							apikey={GOOGLE_MAPS_KEY}
 							strokeWidth={4}
-							strokeColor="#171717" //neutral-900
+							strokeColor="#f5f5f5" //neutral-100
 							mode={directionMode}
 							lineDashPattern={directionMode === "WALKING" ? [0] : null}
 						/>
 					)}
 					<Marker
-						coordinate={coordinates[coordinates.length - 1]}
-						title="End"
-						description="End location"
-						identifier="endLocation"
-					>
-						{/* <View className="flex flex-row items-center justify-center py-1 px-1"> */}
-						{/* <Text className="text-neutral-100 text-lg mr-1">{currentCoin}</Text> */}
-
-						<FontAwesome5 name="map-marker-alt" size={30} color="#f43f5e" />
-						<FontAwesome5 name="coins" size={24} color="#eab308" />
-						{/* </View> */}
-					</Marker>
-					<Marker
 						coordinate={coordinates[0]}
-						title="Start"
+						title={startStopLocation.startLocation}
 						description="Start location"
 						identifier="startLocation"
 						// pinColor="#f43f5e"
@@ -284,7 +276,16 @@ export default function MapScreen({ route, navigation }) {
 					>
 						<FontAwesome5 name="walking" size={30} color="#f43f5e" />
 					</Marker>
-					{/* )} */}
+					<Marker
+						coordinate={coordinates[coordinates.length - 1]}
+						title={startStopLocation.endLocation}
+						description="End location"
+						identifier="endLocation"
+					>
+						<FontAwesome5 name="map-marker-alt" size={30} color="#f43f5e" />
+						<FontAwesome5 name="coins" size={24} color="#eab308" />
+						{/* </View> */}
+					</Marker>
 				</MapView>
 			</View>
 			<View className="flex flex-col items-center py-1 w-screen">
@@ -298,7 +299,6 @@ export default function MapScreen({ route, navigation }) {
 					renderItem={({ item, index }) => (
 						<JourneyCarousel item={item} key={index} />
 					)}
-					// keyExtractor={(item, index) => index.toString()}
 					onScroll={Animated.event(
 						[{ nativeEvent: { contentOffset: { x: scrollX } } }],
 						{ useNativeDriver: false }

@@ -192,7 +192,7 @@ export default function JourneyDetails({ route, navigation }) {
 						</Text>
 					</View>
 					<Text className="text-neutral-100 opacity-30 text-center text-base top-1/3 mx-2">
-						Congratulation! Press to celebrate
+						Congratulation! Press again to celebrate
 					</Text>
 					<LottieView
 						ref={confettiLottieRef}
