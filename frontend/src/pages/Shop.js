@@ -151,7 +151,7 @@ export default function Shop({ route, navigation }) {
 					)}
 				</ScrollView>
 				{/* List of Redeemed Voice that userhave */}
-				<ScrollView className="flex flex-col pt-2 pb-2 px-4">
+				<ScrollView className="flex flex-col pb-2 px-4 mb-4 flex-grow">
 					<Text className="text-neutral-100 font-bold text-lg text-left mt-2 pt-3 mb-1">
 						Redeem History
 					</Text>
@@ -181,19 +181,19 @@ export default function Shop({ route, navigation }) {
 						))
 					) : (
 						<Text className="text-center text-sm text-neutral-100  items-center my-6">
-							You have not redeemed any rewards
+							Your redeemed rewards will be here
 						</Text>
 					)}
 				</ScrollView>
 				{/* Navigate to custom voice screen*/}
 				<TouchableOpacity
-					className="flex flex-row items-center bg-neutral-800 justify-center w-full rounded-md py-2 px-4 mt-6"
+					className="flex flex-row items-center bg-teal-400 justify-center w-full rounded-md py-2 px-4 mt-1"
 					onPress={() => navigation.navigate("CustomVoiceSettings")}
 				>
-					<Text className="text-neutral-100 text-base mr-2">
+					<Text className="text-neutral-900 text-base mr-2">
 						Set your voice assistant
 					</Text>
-					<MaterialIcons name="multitrack-audio" size={16} color="#f5f5f5" />
+					<MaterialIcons name="multitrack-audio" size={24} color="#171717" />
 				</TouchableOpacity>
 			</View>
 		</View>

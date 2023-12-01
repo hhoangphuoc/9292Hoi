@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect } from "react";
 
 //handling state change in Redux
@@ -51,42 +51,48 @@ export default function CustomVoiceSettings({ navigation }) {
 						"This is the list of voice you have redeemed, please select one for
 						the voice companion that you want!"
 					</Text>
-					{voiceList.map((voice, index) => (
-						<View
-							key={index}
-							className="flex flex-row items-center justify-center px-2 py-1 my-1 bg-neutral-900"
-						>
-							<TouchableOpacity
+					<ScrollView>
+						{voiceList.map((voice, index) => (
+							<View
 								key={index}
-								// key={index}
-								className="flex flex-row items-center justify-between bg-neutral-800 rounded-sm px-2 py-3 w-full"
-								onPress={() => {
-									dispatch(switchVoice(voice)); //switch the voice when user select this option
-									handlePlay(voice); //play the voice demo
-								}}
+								className="flex flex-row items-center justify-center px-2 py-1 my-1 bg-neutral-900"
 							>
-								{/* Display the voice name */}
-								<Text
-									className="text-neutral-100 text-base mx-3"
-									numberOfLines={2}
-									ellipsizeMode="tail"
+								<TouchableOpacity
+									key={index}
+									// key={index}
+									className="flex flex-row items-center justify-between bg-neutral-800 rounded-sm px-2 py-3 w-full"
+									onPress={() => {
+										dispatch(switchVoice(voice)); //switch the voice when user select this option
+										handlePlay(voice); //play the voice demo
+									}}
 								>
-									{voice.name}
-								</Text>
-								{/* Display the check mark*/}
-								{voice.name === selectedVoice.name ? (
-									<Ionicons name="checkmark-circle" size={22} color="#99f6e4" />
-								) : (
-									// <Ionicons name="checkmark-circle" size={22} color="#1f2937" />
-									<MaterialIcons
-										name="radio-button-unchecked"
-										size={24}
-										color="black"
-									/>
-								)}
-							</TouchableOpacity>
-						</View>
-					))}
+									{/* Display the voice name */}
+									<Text
+										className="text-neutral-100 text-base mx-3"
+										numberOfLines={2}
+										ellipsizeMode="tail"
+									>
+										{voice.name}
+									</Text>
+									{/* Display the check mark*/}
+									{voice.name === selectedVoice.name ? (
+										<Ionicons
+											name="checkmark-circle"
+											size={22}
+											color="#99f6e4"
+										/>
+									) : (
+										// <Ionicons name="checkmark-circle" size={22} color="#1f2937" />
+										<MaterialIcons
+											name="radio-button-unchecked"
+											size={24}
+											color="black"
+										/>
+									)}
+								</TouchableOpacity>
+							</View>
+						))}
+					</ScrollView>
 				</View>
 			)}
 			<Text className="text-neutral-100 text-sm font-light text-center mt-6 px-2">

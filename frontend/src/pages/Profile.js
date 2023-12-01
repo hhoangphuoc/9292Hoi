@@ -87,7 +87,7 @@ export default function Profile({ route, navigation }) {
 			</View>
 			{/* A section that contains 2 button to redeem page and home page */}
 			<View className="flex flex-col justify-center bg-transparent my-1 w-full">
-				<View className="flex flex-row items-center justify-between px-2">
+				<View className="flex flex-row items-center justify-center px-2">
 					<TouchableOpacity
 						onPress={() =>
 							navigation.navigate("Shop", {
@@ -95,10 +95,10 @@ export default function Profile({ route, navigation }) {
 								historyJourneys: userData.historyJourneys,
 							})
 						}
-						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-4"
+						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-2 mx-1"
 					>
 						<FontAwesome5 name="store" size={20} color="#99f6e4" />
-						<Text className="text-center text-sm text-neutral-300 ml-3">
+						<Text className="text-center sm:text-xs md:text-sm text-neutral-300 ml-2">
 							Redeem Rewards
 						</Text>
 					</TouchableOpacity>
@@ -106,10 +106,10 @@ export default function Profile({ route, navigation }) {
 						onPress={() => {
 							navigation.navigate("Home");
 						}}
-						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-4 ml-2"
+						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-2 mx-1"
 					>
 						<FontAwesome5 name="search-location" size={20} color="#99f6e4" />
-						<Text className="text-center text-base text-neutral-300 ml-3">
+						<Text className="text-center text-sm text-neutral-300 ml-2">
 							Continue Travel
 						</Text>
 					</TouchableOpacity>
