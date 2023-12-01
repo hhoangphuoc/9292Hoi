@@ -15,12 +15,29 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg"
+        },
+        "supportsTablet": true,
+        "bundleIdentifier": "com.hhoangphuoc.frontend"
+      }
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.hhoangphuoc.frontend"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2ca2438e-641e-4238-9c4a-c7e91f619f5a"
       }
     },
     "web": {
