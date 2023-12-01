@@ -41,7 +41,7 @@ const StopSection = ({
 					{stop?.departureTimeLeg.slice(11, 16)}
 				</Text>
 				{/* Rounded Circle */}
-				<View className="w-3 h-3 rounded-lg border-[1px] border-neutral-100 bg-neutral-800 mx-[10px]" />
+				<View className="w-3 h-3 rounded-lg border-[1px] border-neutral-100 bg-neutral-800 mx-4" />
 				<View className="flex flex-row items-center justify-start flex-grow">
 					<TouchableOpacity
 						className="flex flex-row items-center justify-between"
@@ -80,13 +80,13 @@ const StopSection = ({
 					{stop?.modality === "Tram" ? (
 						<MaterialIcons
 							name={modalityIcon[stop?.modality]}
-							size={22}
+							size={28}
 							color="#f5f5f5"
 						/>
 					) : (
 						<Ionicons
 							name={modalityIcon[stop?.modality]}
-							size={22}
+							size={28}
 							color="#f5f5f5"
 						/>
 					)}

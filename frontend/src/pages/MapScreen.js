@@ -17,6 +17,8 @@ import { GOOGLE_MAPS_KEY } from "@env";
 import { useSelector } from "react-redux";
 import { Audio } from "expo-av";
 
+const mapStyle = require("../data/mapStyle.json");
+
 export default function MapScreen({ route, navigation }) {
 	const { legs, coinsPerLeg } = route.params;
 
@@ -59,6 +61,8 @@ export default function MapScreen({ route, navigation }) {
 	}).current;
 	const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 	const slidesRef = useRef(null);
+
+	const mapRef = useRef(null);
 
 	const Pagination = ({ data, scrollX }) => {
 		return (
@@ -208,6 +212,11 @@ export default function MapScreen({ route, navigation }) {
 		setDirectionMode(
 			selectedLeg?.modality === "Walking" ? "WALKING" : "TRANSIT"
 		);
+
+		//change the camera view based on the region
+		if (mapRef?.current) {
+			mapRef?.current.animateToRegion({});
+		}
 	}, [activeIndex]);
 
 	return (
@@ -218,7 +227,7 @@ export default function MapScreen({ route, navigation }) {
 			<View className="flex w-full h-2/3">
 				<TouchableOpacity
 					onPress={() => navigation.goBack()}
-					className="absolute top-1 w-12 h-12 mt-3 ml-1 z-20 rounded-full bg-neutral-700 items-center justify-center"
+					className="absolute top-3 w-12 h-12 mt-3 ml-1 z-20 rounded-full bg-neutral-700 items-center justify-center"
 				>
 					<Ionicons name="arrow-back" size={24} color="#f5f5f5" />
 				</TouchableOpacity>
@@ -235,12 +244,12 @@ export default function MapScreen({ route, navigation }) {
 					provider={PROVIDER_GOOGLE}
 					zoomEnabled={true}
 					userInterfaceStyle="dark"
+					customMapStyle={mapStyle}
 					loadingIndicatorColor="#99f6e4"
 					loadingEnabled={true}
 					zoomControlEnabled={true}
+					ref={mapRef}
 				>
-					{/* Renders the polyline */}
-					{/* {isMapReady && ( */}
 					{coordinates.length > 0 && (
 						<MapViewDirections
 							origin={coordinates[0]}
@@ -249,7 +258,6 @@ export default function MapScreen({ route, navigation }) {
 							strokeWidth={4}
 							strokeColor="#171717" //neutral-900
 							mode={directionMode}
-							//dottedLine={true}
 							lineDashPattern={directionMode === "WALKING" ? [0] : null}
 						/>
 					)}
@@ -257,6 +265,7 @@ export default function MapScreen({ route, navigation }) {
 						coordinate={coordinates[coordinates.length - 1]}
 						title="End"
 						description="End location"
+						identifier="endLocation"
 					>
 						{/* <View className="flex flex-row items-center justify-center py-1 px-1"> */}
 						{/* <Text className="text-neutral-100 text-lg mr-1">{currentCoin}</Text> */}
@@ -269,6 +278,7 @@ export default function MapScreen({ route, navigation }) {
 						coordinate={coordinates[0]}
 						title="Start"
 						description="Start location"
+						identifier="startLocation"
 						// pinColor="#f43f5e"
 						style={{ paddingBottom: 5, paddingRight: 5 }}
 					>

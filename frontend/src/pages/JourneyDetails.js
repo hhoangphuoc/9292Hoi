@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import LottieView from "lottie-react-native";
 import {
 	Ionicons,
 	AntDesign,
@@ -19,6 +20,7 @@ import {
 import * as Progress from "react-native-progress";
 
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 //components
 import JourneyInfo from "../components/JourneyInfo";
@@ -47,6 +49,8 @@ const modalityIcon = {
 export default function JourneyDetails({ route, navigation }) {
 	const { fromName, toName, journey } = route.params;
 
+	const otherStackNavigation = useNavigation();
+
 	//journey info
 	const formattedJourney = formatJourney(journey);
 	const journeyIcons = formattedJourney?.modalities.map((modality, index) => {
@@ -65,7 +69,6 @@ export default function JourneyDetails({ route, navigation }) {
 		);
 	});
 
-	// const coins = formattedJourney?.coins;
 	const legs = formattedJourney?.legs;
 	const coins = formattedJourney?.coins;
 	const duration = formattedJourney?.duration;
@@ -75,8 +78,13 @@ export default function JourneyDetails({ route, navigation }) {
 
 	const [progress, setProgress] = useState(0);
 	const [finished, setFinished] = useState(false);
+	const confettiLottieRef = useRef(null);
 
 	useEffect(() => {}, [progress, finished]);
+
+	function triggerConfetti() {
+		confettiLottieRef.current?.play(0);
+	}
 
 	return (
 		<View className="flex-1 items-start justify-center bg-neutral-900 pt-8">
@@ -138,18 +146,21 @@ export default function JourneyDetails({ route, navigation }) {
 				<Text className="text-neutral-100 text-xl text-left">
 					Journey Details
 				</Text>
-				<View
+				<TouchableOpacity
 					className="flex flex-row items-center justify-center py-1 px-2"
 					onPress={() => {
-						handleStop(sound, setSound);
+						// handleStop(sound, setSound);
 						navigation.navigate("Home");
+						setProgress(0);
+						setFinished(false);
+						confettiLottieRef.current?.reset();
 					}}
 				>
 					<Ionicons name="close" size={20} color="#f87171" />
 					<Text className="text-red-400 text-base underline mb-0.5">
 						Cancel
 					</Text>
-				</View>
+				</TouchableOpacity>
 			</View>
 
 			<View className="w-full h-[1px] bg-neutral-600 my-2 mx-3" />
@@ -161,32 +172,78 @@ export default function JourneyDetails({ route, navigation }) {
 			/>
 			{progress / coins >= 1 ? (
 				<TouchableOpacity
-					className="flex flex-row items-center bg-neutral-800 justify-center w-full rounded-md py-3 px-2"
+					// onPress={setFinished(true)}
+					className="flex flex-col bg-neutral-800 justify-center w-full rounded-md py-5 px-2"
 					onPress={() => {
-						setFinished(true);
-						navigation.navigate("Home");
+						triggerConfetti();
 					}}
 				>
-					<Text className="text-green-400 text-base ml-2 mr-2 mb-1">
-						Congrats! You earned
-						<Text className="text-amber-400" style={{ fontWeight: "bold" }}>
-							{" "}
+					<Text className="text-green-400 text-center text-lg ml-2 mr-2">
+						From this journey, you earned
+					</Text>
+
+					<View className="flex flex-row items-center justify-center pl-2 mt-2.5">
+						<FontAwesome5 name="coins" size={24} color="#eab308" />
+						<Text
+							className="text-amber-400 text-center text-xl mx-2 "
+							style={{ fontWeight: "bold" }}
+						>
 							{coins} coins
 						</Text>
+					</View>
+					<Text className="text-neutral-100 opacity-30 text-center text-base top-1/3 mx-2">
+						Congratulation! Press to celebrate
 					</Text>
-					{/* <FontAwesome5 name="arrowright" size={24} color="#22c55e" /> */}
-					{/* <FontAwesome5
-						name="arrow-alt-circle-right"
-						size={20}
-						color="#f5f5f5"
-					/> */}
-					<AntDesign name="rightcircleo" size={20} color="#f5f5f5" />
+					<LottieView
+						ref={confettiLottieRef}
+						autoPlay
+						loop={false}
+						style={{
+							width: "100%",
+							height: 250,
+							alignSelf: "center",
+						}}
+						source={require("../data/confetti.json")}
+					/>
+					<View className="flex flex-row items-center justify-center mx-2">
+						<TouchableOpacity
+							className="flex flex-row items-center justify-center bg-neutral-700 rounded-md py-1 px-2 mx-2 z-20"
+							onPress={() => {
+								// handleStop(sound, setSound);
+								navigation.navigate("Home");
+							}}
+						>
+							{/* <AntDesign name="rightcircleo" size={20} color="#f5f5f5" /> */}
+							<FontAwesome5 name="door-open" size={20} color="#f5f5f5" />
+							<Text className="text-neutral-100 text-base ml-1.5 my-0.5">
+								Return Home
+							</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							className="flex flex-row items-center justify-center bg-neutral-700 rounded-md py-1 px-2 mx-2 z-20"
+							onPress={() => {
+								// handleStop(sound, setSound);
+
+								//navigate to the profile screen in the other stack
+								otherStackNavigation.navigate("User Profile");
+							}}
+						>
+							<FontAwesome5 name="user-circle" size={24} color="#f5f5f5" />
+							<Text className="text-neutral-100 text-base ml-1.5 my-0.5">
+								Your Profile
+							</Text>
+						</TouchableOpacity>
+					</View>
+					{/* {finished && triggerConfetti() ( */}
+
+					{/* )} */}
 				</TouchableOpacity>
 			) : (
 				<View className="flex flex-row items-center bg-neutral-800 justify-center w-full rounded-md py-4 px-2">
 					<Progress.Bar
 						progress={progress / coins}
-						width={300}
+						width={260}
 						height={20}
 						color="#99f6e4"
 						borderColor="#f5f5f5"
@@ -199,23 +256,6 @@ export default function JourneyDetails({ route, navigation }) {
 					<FontAwesome5 name="flag-checkered" size={24} color="#99f6e4" />
 				</View>
 			)}
-
-			{/* Navigate Button */}
-			{/* <TouchableOpacity
-				className="flex flex-row items-center bg-neutral-800 justify-center w-full rounded-md py-1 px-4"
-				onPress={
-					//play the audio with route guidance
-					() => {
-						handlePlay(routeInfoVoice, setSound);
-					}
-				}
-			>
-				<Text className="text-neutral-100 text-base mr-2">
-					Route Instruction
-				</Text>
-				<Ionicons name="navigate-outline" size={16} color="#f5f5f5" />
-			</TouchableOpacity> */}
-			{/* </View> */}
 		</View>
 	);
 }

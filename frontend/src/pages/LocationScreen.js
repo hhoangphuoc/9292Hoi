@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import SearchBar from "../components/SearchBar";
 import LocationList from "../components/LocationList";
@@ -25,7 +25,6 @@ export default function LocationScreen({ navigation }) {
 		);
 
 		const data = await response.json();
-		// console.log("Location list:", data.locations);
 		setLocationList(data.locations);
 	}
 
@@ -51,6 +50,7 @@ export default function LocationScreen({ navigation }) {
 		};
 
 		loadAndPlayAudio();
+		// triggerConfetti();
 
 		return () => {
 			sound.unloadAsync(); // Unload the sound when the component unmounts
@@ -70,9 +70,9 @@ export default function LocationScreen({ navigation }) {
 	return (
 		<View className="flex-1 items-start bg-neutral-900 pt-20">
 			<View>
-				<Text className="text-neutral-100 text-xl my-3 px-4">Where to?</Text>
+				<Text className="text-neutral-100 text-2xl my-3 px-4">Where to?</Text>
 			</View>
-			<View className="flex-row items-start justify-center bg-neutral-800 mt-3 ml-3 mr-8 px-4 py-4">
+			<View className="flex-row items-start justify-center bg-neutral-800 mt-1 ml-3 mr-8 px-4 pt-2 pb-4">
 				{/* an input text field with 2 rows - from and to */}
 				<View className="flex flex-col justify-center items-center">
 					<SearchBar
@@ -93,19 +93,7 @@ export default function LocationScreen({ navigation }) {
 				</View>
 				{/* a button to navigate to the route page, with the From and To address as the parameters */}
 				<View className="flex justify-center self-center pl-4 z-10">
-					<TouchableOpacity
-						// onPress={() => {
-						// 	console.log("From Address id: ", selectedFromLocation?.id);
-						// 	console.log("To Address id: ", selectedToLocation?.id);
-						// 	navigation.navigate("RouteScreen", {
-						// 		fromId: selectedFromLocation?.id,
-						// 		toId: selectedToLocation?.id,
-						// 		fromName: selectedFromLocation?.displayName,
-						// 		toName: selectedToLocation?.displayName,
-						// 	});
-						// }}
-						className="items-center justify-center self-center mt-2 pl-2"
-					>
+					<TouchableOpacity className="items-center justify-center self-center mt-2 pl-2">
 						<Ionicons
 							name="swap-vertical-outline"
 							size={28}
@@ -146,11 +134,14 @@ export default function LocationScreen({ navigation }) {
 						});
 					}}
 				>
-					<Ionicons name="arrow-forward-outline" size={100} color="#99f6e4" />
-					<Text className="text-neutral-100 text-sm  px-4">
-						{selectedFromLocation?.displayName} to{" "}
-						{selectedToLocation?.displayName}
-					</Text>
+					<View className="flex flex-row items-center justify-center bg-teal-400 rounded-md px-2">
+						<Text className="text-neutral-900 text-base pl-2 pr-1 py-2">
+							{selectedFromLocation?.displayName}
+							{" to "}
+							{selectedToLocation?.displayName}
+						</Text>
+						<Ionicons name="navigate" color="#171717" size={20} />
+					</View>
 				</TouchableOpacity>
 			) : (
 				<View className="items-center justify-center self-center mb-3 mt-6">
