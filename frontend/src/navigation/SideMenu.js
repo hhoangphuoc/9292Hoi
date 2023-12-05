@@ -14,7 +14,7 @@ import {
 	LocationScreen,
 	RouteScreen,
 	VoiceSettings,
-	ChatScreen,
+	// ChatScreen,
 	JourneyDetails,
 	MapScreen,
 } from "../pages";
@@ -65,7 +65,7 @@ const MainLayout = () => {
 		>
 			{/* <MainStack.Screen name="Menu" component={SideMenu} /> */}
 			<MainStack.Screen name="Home" component={Home} />
-			<MainStack.Screen name="ChatScreen" component={ChatScreen} />
+			{/* <MainStack.Screen name="ChatScreen" component={ChatScreen} /> */}
 			<MainStack.Screen name="LocationScreen" component={LocationScreen} />
 			<MainStack.Screen name="RouteScreen" component={RouteScreen} />
 			<MainStack.Screen name="JourneyDetails" component={JourneyDetails} />
