@@ -17,6 +17,7 @@ for journey in copied_data['journeys']:
     # coins_collected = round(0.73 * duration + full_price * 0.27 + 10 / (emission + 1))
     coins_collected = round(0.32 * duration + full_price * 0.23 * 0.01 + emission * 1000 * 0.45)
     journey['coinsCollected'] = coins_collected
+    journey['co2emission'] = emission
 
 # Sort journeys by durationInMinutes
 if journeys:
@@ -88,6 +89,8 @@ if 'selected_journey' in data:
                 changes = item['numberOfChanges']
                 duration = item['durationInMinutes']
                 coinsCollected = item['coinsCollected']
+                co2emission = item['co2emission']
+                
 
                 journey_details = {
                     'journeyType': None,
@@ -98,6 +101,7 @@ if 'selected_journey' in data:
                     'duration': duration,
                     'fareInCents': item['fareInfo']['fullPriceEuroCents'],
                     'coinsCollected': coinsCollected,
+                    'Co2Emission': co2emission,
                     'legs': []
                 }
                 if key == 'journey1':
