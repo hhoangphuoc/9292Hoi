@@ -10,7 +10,6 @@ import React, { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 
 import Header from "../components/Header";
-import ChatModal from "../components/ChatModal";
 //icons
 import {
 	Ionicons,
@@ -24,7 +23,7 @@ import { useSelector } from "react-redux";
 // import { apiCall } from "../api/openAI";
 import { OPENAI_KEY } from "@env";
 const systemPrompt =
-	"You are a friendly and helpful traveling companion assistant who knows the information about the location and can give some recommendations and suggestions about different places for the location. You are chatting with a traveler who is interested in exploring the location.";
+	"You are a friendly and helpful travelling companion assistant who knows the information about the location that user want to travel. Give some recommendations and suggestions a list of different things for the corresponding location. Try to adapt with the conversation and asking the user as much as possible about their preferences.";
 const chatgptUrl = "https://api.openai.com/v1/chat/completions";
 
 export default function Home({ navigation }) {
@@ -86,6 +85,7 @@ export default function Home({ navigation }) {
 			body: JSON.stringify({
 				model: "gpt-3.5-turbo",
 				messages: [
+					//zero shot
 					{
 						role: "system",
 						content: systemPrompt,
@@ -95,9 +95,9 @@ export default function Home({ navigation }) {
 						content: userInput,
 					},
 				],
-				max_tokens: 200,
+				max_tokens: 256,
 				temperature: 0.2,
-				stop: "\n",
+				// stop: "\n",
 				n: 1,
 			}),
 		});

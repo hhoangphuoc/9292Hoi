@@ -6,7 +6,6 @@ import RouteScreen from "./RouteScreen";
 import JourneyDetails from "./JourneyDetails";
 import CustomVoiceSettings from "./CustomVoiceSettings";
 import Shop from "./Shop";
-import ChatScreen from "./ChatScreen";
 import MapScreen from "./MapScreen";
 
 export {
@@ -18,6 +17,5 @@ export {
 	JourneyDetails,
 	CustomVoiceSettings,
 	Shop,
-	ChatScreen,
 	MapScreen,
 };
