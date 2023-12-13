@@ -235,7 +235,7 @@ export default function JourneyDetails({ route, navigation }) {
 							height: 250,
 							alignSelf: "center",
 						}}
-						source={require("../data/confetti.json")}
+						source={require("../data/animation/confetti.json")}
 					/>
 					<View className="flex flex-row items-center justify-center mx-2">
 						<TouchableOpacity
