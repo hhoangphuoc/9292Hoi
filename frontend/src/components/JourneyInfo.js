@@ -37,11 +37,11 @@ const StopSection = ({
 		<View className="flex flex-col justify-center px-1 pt-2">
 			{/* Row 1: Departure time + Rounded Circle (Square if last time ) + Location */}
 			<View className="flex flex-row items-center justify-start">
-				<Text className="text-neutral-100 text-sm pl-1 mr-3">
+				<Text className="text-neutral-100 text-xs pl-1 mr-3">
 					{stop?.departureTimeLeg.slice(11, 16)}
 				</Text>
 				{/* Rounded Circle */}
-				<View className="w-3 h-3 rounded-lg border-[1px] border-neutral-100 bg-neutral-800 mx-4" />
+				<View className="w-3 h-3 rounded-lg border-[1px] border-neutral-100 bg-neutral-800 mx-3" />
 				<View className="flex flex-row items-center justify-start flex-grow">
 					<TouchableOpacity
 						className="flex flex-row items-center justify-between"
@@ -56,7 +56,7 @@ const StopSection = ({
 						}
 					>
 						<Text
-							className="text-neutral-100 text-base mx-3"
+							className="text-neutral-100 text-sm mx-3"
 							numberOfLines={2}
 							ellipsizeMode="tail"
 						>
@@ -67,7 +67,7 @@ const StopSection = ({
 
 						<FontAwesome5 name="map" size={20} color="#99f6e4" />
 						{/* <Ionicons name="navigate" size={20} color="#99f6e4" /> */}
-						{/* <Text className="text-teal-100 text-sm underline ml-1">
+						{/* <Text className="text-teal-100 text-xs underline ml-1">
 							{">"} route
 						</Text> */}
 					</TouchableOpacity>
@@ -99,16 +99,16 @@ const StopSection = ({
 				)}
 				{/* Duration */}
 				<View className="flex flex-row items-center justify-between flex-grow mx-2">
-					<Text className="text-neutral-100 text-sm text-left">
+					<Text className="text-neutral-100 text-xs text-left">
 						~ {stop?.durationLeg} min
 					</Text>
 					<TouchableOpacity
 						className="flex flex-row items-center justify-center py-3 px-2"
 						onPress={() => handlePress({ coin })}
 					>
-						<Text className=" text-amber-400 text-base mr-0.5"> + </Text>
+						<Text className=" text-amber-400 text-sm mr-0.5"> + </Text>
 						<FontAwesome5 name="coins" size={16} color="#eab308" />
-						<Text className=" text-amber-400 text-base ml-1">{coin}</Text>
+						<Text className=" text-amber-400 text-sm ml-1">{coin}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

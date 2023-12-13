@@ -15,7 +15,7 @@ export default function LocationScreen({ navigation }) {
 	async function fetchLocations(query) {
 		const headers = new Headers();
 		headers.append("Authorization", `Token ${TOKEN_9292}`);
-
+		console.log("fetching locations from 9292...");
 		const response = await fetch(
 			`https://reisadvies-api-ast.9292.nl/v4/Locations?query=${query}&Rows=5`,
 			{
@@ -26,6 +26,8 @@ export default function LocationScreen({ navigation }) {
 
 		const data = await response.json();
 		setLocationList(data.locations);
+
+		console.log("Found Locations: ", data.locations);
 	}
 
 	const locationVoice = useSelector((state) => state.selectedVoice.voices[1]); //voices 1 contains the voice of location information
@@ -135,7 +137,7 @@ export default function LocationScreen({ navigation }) {
 					}}
 				>
 					<View className="flex flex-row items-center justify-center bg-teal-400 rounded-md px-2">
-						<Text className="text-neutral-900 text-base pl-2 pr-1 py-2">
+						<Text className="text-neutral-900 text-sm pl-2 pr-1 py-2">
 							{selectedFromLocation?.displayName}
 							{" to "}
 							{selectedToLocation?.displayName}
@@ -146,7 +148,7 @@ export default function LocationScreen({ navigation }) {
 			) : (
 				<View className="items-center justify-center self-center mb-3 mt-6">
 					<Ionicons name="trail-sign-outline" size={150} color="#99f6e4" />
-					<Text className="text-neutral-100 text-sm  px-4">
+					<Text className="text-neutral-100 text-xs  px-4">
 						Find your suitable locations, and route
 					</Text>
 				</View>

@@ -11,11 +11,7 @@ import {
 import { Audio } from "expo-av";
 
 //function
-import {
-	formatJourney,
-	handlePlay,
-	handleStop,
-} from "../constant/helperFunctions";
+import { formatJourney } from "../constant/helperFunctions";
 //progress bar
 import * as Progress from "react-native-progress";
 
@@ -64,7 +60,7 @@ export default function JourneyDetails({ route, navigation }) {
 				) : (
 					<Ionicons name={modalityIcon[modality]} size={22} color="#f5f5f5" />
 				)}
-				<Text className="text-neutral-100 text-sm ml-1 mb-2">{"."}</Text>
+				<Text className="text-neutral-100 text-xs ml-1 mb-2">{"."}</Text>
 			</View>
 		);
 	});
@@ -73,9 +69,14 @@ export default function JourneyDetails({ route, navigation }) {
 	const coins = formattedJourney?.coins;
 	const duration = formattedJourney?.duration;
 
-	const routeInfoVoice = useSelector((state) => state.selectedVoice.voices[2]); //voices 2 contains the voice of route information
-	const [sound, setSound] = useState();
+	//voices
+	const journeySummaryVoice = useSelector(
+		(state) => state.selectedVoice.voices[5]
+	); //voice 5 is the summary of journey detail (duration + coins)
+	const congratsVoice = useSelector((state) => state.selectedVoice.voices[6]); //voices 6 is the congrats message
 
+	const [sound, setSound] = useState();
+	//play the confetti when the user finish the journey
 	const [progress, setProgress] = useState(0);
 	const [finished, setFinished] = useState(false);
 	const confettiLottieRef = useRef(null);
@@ -85,6 +86,30 @@ export default function JourneyDetails({ route, navigation }) {
 	function triggerConfetti() {
 		confettiLottieRef.current?.play(0);
 	}
+
+	async function triggerSound(soundUrl) {
+		console.log("Loading Sound");
+		const { sound } = await Audio.Sound.createAsync(soundUrl);
+		setSound(sound);
+
+		console.log("Playing Sound");
+		await sound.playAsync();
+	}
+
+	//play sound when the page is loaded
+	useEffect(() => {
+		triggerSound(journeySummaryVoice.voiceUrl);
+	}, []);
+
+	//play sound when finished
+	useEffect(() => {
+		if (progress / coins >= 1) {
+			triggerSound(congratsVoice.voiceUrl);
+		}
+		// return () => {
+		// 	sound.unloadAsync(); // Unload the sound when the component unmounts
+		// };
+	}, [progress, coins]);
 
 	return (
 		<View className="flex-1 items-start justify-center bg-neutral-900 pt-8">
@@ -123,13 +148,13 @@ export default function JourneyDetails({ route, navigation }) {
 					<View className="flex flex-row items-center self-center justify-center py-1 px-2">
 						<View className="flex-row items-center justify-center">
 							<FontAwesome5 name="clock" size={14} color="#f5f5f5" />
-							<Text className="text-neutral-100 text-sm ml-1">
+							<Text className="text-neutral-100 text-xs ml-1">
 								{formattedJourney?.durationStr}
 							</Text>
 						</View>
 						<View className="flex flex-row items-center justify-center py-1 px-2 ml-1">
 							<FontAwesome5 name="euro-sign" size={14} color="#f5f5f5" />
-							<Text className="text-neutral-100 text-sm ml-1">
+							<Text className="text-neutral-100 text-xs ml-1">
 								{formattedJourney?.price}
 							</Text>
 						</View>
@@ -143,7 +168,7 @@ export default function JourneyDetails({ route, navigation }) {
 
 			{/* Journey Details Section */}
 			<View className="flex flex-row pt-4 px-4 items-center justify-between w-full">
-				<Text className="text-neutral-100 text-xl text-left">
+				<Text className="text-neutral-100 text-lg text-left">
 					Journey Details
 				</Text>
 				<TouchableOpacity
@@ -157,13 +182,19 @@ export default function JourneyDetails({ route, navigation }) {
 					}}
 				>
 					<Ionicons name="close" size={20} color="#f87171" />
-					<Text className="text-red-400 text-base underline mb-0.5">
-						Cancel
-					</Text>
+					<Text className="text-red-400 text-sm underline mb-0.5">Cancel</Text>
 				</TouchableOpacity>
 			</View>
 
 			<View className="w-full h-[1px] bg-neutral-600 my-2 mx-3" />
+			<Text
+				className="text-neutral-400 text-xs text-center self-center mx-4"
+				// style={{ lineHeight: 20 }}
+			>
+				"Don't forget to
+				<Text className="text-amber-400"> collect your coins</Text> whenever you
+				complete a route of the journey!" ^^
+			</Text>
 			<JourneyInfo
 				legs={legs}
 				coins={coins}
@@ -176,22 +207,23 @@ export default function JourneyDetails({ route, navigation }) {
 					className="flex flex-col bg-neutral-800 justify-center w-full rounded-md py-5 px-2"
 					onPress={() => {
 						triggerConfetti();
+						triggerSound();
 					}}
 				>
-					<Text className="text-green-400 text-center text-lg ml-2 mr-2">
+					<Text className="text-green-400 text-center text-base ml-2 mr-2">
 						From this journey, you earned
 					</Text>
 
 					<View className="flex flex-row items-center justify-center pl-2 mt-2.5">
 						<FontAwesome5 name="coins" size={24} color="#eab308" />
 						<Text
-							className="text-amber-400 text-center text-xl mx-2 "
+							className="text-amber-400 text-center text-lg mx-2 "
 							style={{ fontWeight: "bold" }}
 						>
 							{coins} coins
 						</Text>
 					</View>
-					<Text className="text-neutral-100 opacity-30 text-center text-base top-1/3 mx-2">
+					<Text className="text-neutral-100 opacity-30 text-center text-sm top-1/3 mx-2">
 						Congratulation! Press again to celebrate
 					</Text>
 					<LottieView
@@ -215,7 +247,7 @@ export default function JourneyDetails({ route, navigation }) {
 						>
 							{/* <AntDesign name="rightcircleo" size={20} color="#f5f5f5" /> */}
 							<FontAwesome5 name="door-open" size={20} color="#f5f5f5" />
-							<Text className="text-neutral-100 text-base ml-1.5 my-0.5">
+							<Text className="text-neutral-100 text-sm ml-1.5 my-0.5">
 								Return Home
 							</Text>
 						</TouchableOpacity>
@@ -230,7 +262,7 @@ export default function JourneyDetails({ route, navigation }) {
 							}}
 						>
 							<FontAwesome5 name="user-circle" size={24} color="#f5f5f5" />
-							<Text className="text-neutral-100 text-base ml-1.5 my-0.5">
+							<Text className="text-neutral-100 text-sm ml-1.5 my-0.5">
 								Your Profile
 							</Text>
 						</TouchableOpacity>
@@ -250,7 +282,7 @@ export default function JourneyDetails({ route, navigation }) {
 						borderWidth={1}
 						borderRadius={8}
 					/>
-					<Text className="text-neutral-100 text-base ml-2 mr-1">
+					<Text className="text-neutral-100 text-sm ml-2 mr-1">
 						{Math.floor((progress / coins) * 100)}%
 					</Text>
 					<FontAwesome5 name="flag-checkered" size={24} color="#99f6e4" />

@@ -15,8 +15,6 @@ import ListFeatures from "../components/ListFeatures";
 // import { useNavigation } from '@react-navigation/native';
 
 export default function VoiceSettings({ navigation }) {
-	// const navigation = useNavigation();
-	//create list of multiple accordion
 	return (
 		<SafeAreaView className="flex-1 pt-20 items-center bg-neutral-900">
 			<ScrollView className="w-full" showsVerticalScrollIndicator={false}>

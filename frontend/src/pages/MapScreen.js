@@ -23,8 +23,10 @@ export default function MapScreen({ route, navigation }) {
 	const { legs, coinsPerLeg } = route.params;
 
 	//state for sound
-	const selectedVoice = useSelector((state) => state.selectedVoice);
-
+	const routeVoices = useSelector(
+		(state) => state.selectedVoice.voices[7].routeVoices
+	); //list of voices of all the routes
+	console.log("routeVoices", routeVoices);
 	//state for map
 	const { width, height } = useWindowDimensions();
 	const INITIAL_LAT_LONG = {
@@ -53,19 +55,18 @@ export default function MapScreen({ route, navigation }) {
 
 	const [sound, setSound] = useState();
 	const [startStopLocation, setStartStopLocation] = useState({});
+
 	//for carousel animation
 	const scrollX = useRef(new Animated.Value(0)).current;
 	const viewableItemsChanged = useRef(({ viewableItems }) => {
 		setActiveIndex(viewableItems[0].index);
-
-		// const selectedLeg = legs[viewableItems[0].index];
-		// console.log("selectedLeg", selectedLeg);
 	}).current;
 	const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 	const slidesRef = useRef(null);
 
 	const mapRef = useRef(null);
 
+	//screen components
 	const Pagination = ({ data, scrollX }) => {
 		return (
 			<View className="flex flex-row items-center self-center px-2 py-1">
@@ -112,17 +113,17 @@ export default function MapScreen({ route, navigation }) {
 				>
 					<View className="flex-row items-center justify-center">
 						<FontAwesome5 name="clock" size={16} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-lg ml-1 mb-0.5">
+						<Text className="text-neutral-100 text-base ml-1 mb-0.5">
 							{item?.departureTimeLeg.slice(11, 16)}
 						</Text>
 					</View>
 
-					<Text className="text-neutral-100 text-sm mt-4 top-3">
+					<Text className="text-neutral-100 text-xs mt-4 top-3">
 						~ {item?.durationLeg} min
 					</Text>
 					<View className="flex-row items-center justify-center">
 						<FontAwesome5 name="clock" size={16} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-lg ml-1 mb-0.5">
+						<Text className="text-neutral-100 text-base ml-1 mb-0.5">
 							{item?.arrivalTimeLeg.slice(11, 16)}
 						</Text>
 					</View>
@@ -163,22 +164,40 @@ export default function MapScreen({ route, navigation }) {
 				{/* Row 3: departure location and destination location*/}
 				<View className="flex flex-row items-start justify-between px-1 pb-3">
 					<View className="flex-col items-start justify-center px-1">
-						<Text className="text-neutral-100 text-base text-ellipsis max-w-3xl pb-0.5">
+						{/* Departure Location */}
+						<Text className="text-neutral-100 text-sm text-ellipsis max-w-3xl pb-0.5">
 							{item?.calls_info.length > 0
 								? item?.calls_info[0].displayName
 								: item?.startStopLeg}
 						</Text>
-						<Text className="text-neutral-100 text-sm pb-0.5">
+						{/* Transport Operator */}
+						<Text className="text-neutral-100 text-xs pb-0.5">
 							{item?.modalityOperator} {item?.modality}
 						</Text>
+						{/* Platform Number */}
+						{item?.calls_info[0]?.platform && (
+							<Text className="text-neutral-100 text-xs pb-0.5">
+								Platform - {item.calls_info[0].platform}
+							</Text>
+						)}
 					</View>
 					{/* <FontAwesome5 name="arrow-right" size={16} color="#f5f5f5" /> */}
-					<Text className="text-neutral-100 text-base px-1">
+					{/* Arrival Location */}
+					<Text className="text-neutral-100 text-sm px-1">
 						{item?.endStopLeg}
 					</Text>
 				</View>
 			</View>
 		);
+	};
+
+	const handlePlay = async (item) => {
+		console.log("Loading Sound");
+		const { sound } = await Audio.Sound.createAsync(item.voiceUrl);
+		setSound(sound);
+
+		console.log("Playing Sound");
+		await sound.playAsync();
 	};
 
 	//when the index changes, update the coordinates, the current coins and the mode of transport
@@ -226,6 +245,26 @@ export default function MapScreen({ route, navigation }) {
 		}
 	}, [activeIndex]);
 
+	//play the voice when the index changes (only once)
+	useEffect(() => {
+		if (routeVoices[activeIndex]?.context === "walk") {
+			return;
+		}
+		const sound = new Audio.Sound();
+		const loadAndPlayAudio = async () => {
+			try {
+				await sound.loadAsync(routeVoices[activeIndex]?.voiceUrl);
+				await sound.playAsync();
+			} catch (error) {
+				console.error("AUDIO PLAY: ", error);
+			}
+		};
+		loadAndPlayAudio();
+		return () => {
+			sound.unloadAsync(); // Unload the sound when the component unmounts
+		};
+	}, [activeIndex]);
+
 	return (
 		<View className="flex-1 items-center justify-center bg-neutral-900 pt-8">
 			{/* Renders the map */}
@@ -237,7 +276,12 @@ export default function MapScreen({ route, navigation }) {
 					<Ionicons name="arrow-back" size={24} color="#f5f5f5" />
 				</TouchableOpacity>
 				<TouchableOpacity
-					onPress={() => navigation.goBack()}
+					onPress={() => {
+						if (routeVoices[activeIndex]?.context === "walk") {
+							return;
+						}
+						handlePlay(routeVoices[activeIndex]);
+					}}
 					className="absolute bottom-1 w-12 h-12 mt-4 ml-1.5 z-20 rounded-md bg-neutral-700 items-center justify-center"
 				>
 					<Ionicons name="volume-high" size={26} color="#5eead4" />

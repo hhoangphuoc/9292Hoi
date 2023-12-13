@@ -152,8 +152,8 @@ export default function Home({ navigation }) {
 			<Text className="text-neutral-100 font-bold text-lg text-center mt-3">
 				Hoi! Let's go Travelling..
 			</Text>
-			<Text className="text-neutral-100 font-bold text-sm text-center mt-3 mb-12">
-				Don't know where to go? Ask our companion!
+			<Text className="text-neutral-100 font-bold text-xs text-center mt-3 mb-12">
+				Click the navigation icon and start your journey!
 			</Text>
 			{/* Create a floating button to navigate to the chat screen */}
 			<View className="absolute bottom-6 right-6">
@@ -213,7 +213,7 @@ export default function Home({ navigation }) {
 												} rounded-lg px-2 py-3`}
 											>
 												<Text
-													className={`text-neutral-100 text-sm ${
+													className={`text-neutral-100 text-xs ${
 														message.sender === "user"
 															? "text-right"
 															: "text-left"

@@ -42,7 +42,9 @@ const Header = () => {
 				>
 					<Ionicons name="arrow-back" size={24} color="white" />
 				</TouchableOpacity>
-				<Text className="text-neutral-100 text-lg ml-3">Route Information</Text>
+				<Text className="text-neutral-100 text-base ml-3">
+					Route Information
+				</Text>
 			</View>
 
 			<View className="flex-row items-center justify-center ml-3 mr-8 px-3">
@@ -66,7 +68,7 @@ const LocationInfo = ({ fromName, toName }) => {
 					<FontAwesome5 name="map-marker-alt" size={20} color="#f5f5f5" />
 				</View>
 				<View className="flex-row items-center justify-center ml-3">
-					<Text className="text-neutral-100 text-lg">{fromName}</Text>
+					<Text className="text-neutral-100 text-base">{fromName}</Text>
 				</View>
 			</View>
 			<View className="w-full h-[1px] bg-neutral-600 my-2" />
@@ -75,7 +77,7 @@ const LocationInfo = ({ fromName, toName }) => {
 					<FontAwesome5 name="map-marker-alt" size={20} color="#f5f5f5" />
 				</View>
 				<View className="flex-row items-center justify-center ml-3">
-					<Text className="text-neutral-100 text-lg">{toName}</Text>
+					<Text className="text-neutral-100 text-base">{toName}</Text>
 				</View>
 			</View>
 		</View>
@@ -105,7 +107,7 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 				) : (
 					<Ionicons name={modalityIcon[modality]} size={22} color="#f5f5f5" />
 				)}
-				<Text className="text-neutral-100 text-base ml-1 mb-2">{"."}</Text>
+				<Text className="text-neutral-100 text-xs ml-1 mb-2">{"."}</Text>
 			</View>
 		);
 	});
@@ -128,11 +130,11 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 					<View className="flex flex-row items-center justify-between py-1">
 						{/* Departure time */}
 						<View className="flex flex-row items-center justify-center">
-							<Text className="text-neutral-100 text-lg mr-2">
+							<Text className="text-neutral-100 text-base mr-2">
 								{formattedJourney?.dTime}
 							</Text>
 							<AntDesign name="arrowright" size={24} color="#f5f5f5" />
-							<Text className="text-neutral-100 text-lg ml-2">
+							<Text className="text-neutral-100 text-base ml-2">
 								{formattedJourney?.aTime}
 							</Text>
 						</View>
@@ -142,7 +144,7 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 					<View className="flex flex-row items-center justify-center">
 						{/* <View className="flex-row items-center justify-center"></View> */}
 						<FontAwesome5 name="clock" size={15} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-base ml-1">
+						<Text className="text-neutral-100 text-xs ml-1">
 							{formattedJourney?.durationStr}
 						</Text>
 					</View>
@@ -156,18 +158,18 @@ const JourneyCard = ({ fromName, toName, journey, navigation }) => {
 					{/* Coin*/}
 					<View className="flex flex-row items-center justify-center py-1">
 						<FontAwesome5 name="euro-sign" size={15} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-base ml-1 mr-4">
+						<Text className="text-neutral-100 text-xs ml-1 mr-4">
 							{formattedJourney?.price}
 						</Text>
 						<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
-						<Text className="text-neutral-100 text-base ml-1">
+						<Text className="text-neutral-100 text-xs ml-1">
 							+ {formattedJourney?.coins}
 						</Text>
 					</View>
 				</View>
 				{/* <View className="flex flex-row items-center justify-end pt-2">
 					<FontAwesome5 name="coins" size={18} color="#f5f5f5" />
-					<Text className="text-neutral-100 text-base ml-2 mr-1">
+					<Text className="text-neutral-100 text-xs ml-2 mr-1">
 						{formattedJourney?.coins}
 					</Text>
 				</View> */}
@@ -190,7 +192,7 @@ export default function RouteScreen({ route, navigation }) {
 		toName
 	);
 
-	const findRouteVoice = useSelector((state) => state.selectedVoice.voices[2]); //voices 1 contains the voice of route message
+	const findRouteVoice = useSelector((state) => state.selectedVoice.voices[4]); //voices 4 is the voice in route screen, autoplay when screen is loaded
 
 	//play the audio when page is loaded
 	useEffect(() => {
@@ -268,7 +270,7 @@ export default function RouteScreen({ route, navigation }) {
 						<View key={index} className="flex flex-col">
 							{index === 0 ? (
 								<View>
-									<Text className="text-teal-200 text-lg mb-1">
+									<Text className="text-teal-200 text-base mb-1">
 										Shortest Journey
 									</Text>
 									<JourneyCard
@@ -280,7 +282,7 @@ export default function RouteScreen({ route, navigation }) {
 								</View>
 							) : index === 1 ? (
 								<View>
-									<Text className="text-teal-200 text-lg mt-2 mb-1">
+									<Text className="text-teal-200 text-base mt-2 mb-1">
 										Minimal Transits
 									</Text>
 									<JourneyCard
@@ -292,7 +294,7 @@ export default function RouteScreen({ route, navigation }) {
 								</View>
 							) : index === 2 ? (
 								<View>
-									<Text className="text-teal-200 text-lg mt-2 mb-1">
+									<Text className="text-teal-200 text-base mt-2 mb-1">
 										Cheapest Journey
 									</Text>
 									<JourneyCard
@@ -302,7 +304,7 @@ export default function RouteScreen({ route, navigation }) {
 										navigation={navigation}
 									/>
 									<View className="w-full h-[1px] bg-neutral-600 my-2" />
-									<Text className="text-neutral-100 text-lg mt-2 mb-1">
+									<Text className="text-neutral-100 text-base mt-2 mb-1">
 										All Journeys
 									</Text>
 								</View>

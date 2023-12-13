@@ -51,26 +51,28 @@ export default function Profile({ route, navigation }) {
 					source={require("../../assets/images/9292.png")}
 				/>
 				{/* <Ionicons name="person-outline" size={30} color="white" /> */}
-				<Text className="text-neutral-100 text-lg ml-2">{userData?.name}</Text>
+				<Text className="text-neutral-100 text-base ml-2">
+					{userData?.name}
+				</Text>
 			</View>
 			<View className="w-full h-[1px] bg-neutral-400"></View>
 			{/* Card showing general information about coins and rank */}
 			<View className="flex-col justify-center rounded-xl bg-neutral-800 my-4 w-full">
 				<View className="flex flex-row items-center justify-between pt-6 pb-2 px-5">
 					<View className="flex flex-row items-center justify-center">
-						<Text className="text-center text-base text-neutral-100">
+						<Text className="text-center text-sm text-neutral-100">
 							Total Rewards
 						</Text>
 					</View>
 					<View className="flex flex-row items-center justify-center">
-						<Text className="text-center text-lg text-neutral-100 mr-2">
+						<Text className="text-center text-base text-neutral-100 mr-2">
 							{userData.coins}
 						</Text>
 						<FontAwesome5 name="coins" size={30} color="#eab308" />
 					</View>
 				</View>
 				<View className="flex flex-row items-start pb-2 px-5">
-					<Text className="text-center text-base text-neutral-100 my-2">
+					<Text className="text-center text-sm text-neutral-100 my-2">
 						{rank.name}
 					</Text>
 					<Slider
@@ -98,7 +100,7 @@ export default function Profile({ route, navigation }) {
 						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-2 mx-1"
 					>
 						<FontAwesome5 name="store" size={20} color="#99f6e4" />
-						<Text className="text-center sm:text-xs md:text-sm text-neutral-300 ml-2">
+						<Text className="text-center sm:text-xs md:text-xs text-neutral-300 ml-2">
 							Redeem Rewards
 						</Text>
 					</TouchableOpacity>
@@ -109,7 +111,7 @@ export default function Profile({ route, navigation }) {
 						className="flex flex-row items-center justify-center bg-neutral-800 rounded-lg py-4 px-2 mx-1"
 					>
 						<FontAwesome5 name="search-location" size={20} color="#99f6e4" />
-						<Text className="text-center text-sm text-neutral-300 ml-2">
+						<Text className="text-center text-xs text-neutral-300 ml-2">
 							Continue Travel
 						</Text>
 					</TouchableOpacity>
@@ -118,7 +120,7 @@ export default function Profile({ route, navigation }) {
 
 			{/* Card showing travel history */}
 			<View className="flex w-full items-start justify-center bg-transparent mt-4">
-				<Text className="text-neutral-100 text-lg my-3 px-4">
+				<Text className="text-neutral-100 text-base my-3 px-4">
 					Travel History
 				</Text>
 				{locations.length > 0 ? (
@@ -136,7 +138,7 @@ export default function Profile({ route, navigation }) {
 					// 	keyExtractor={(item) => item?.id.toString()}
 					// />
 					<View className="items-center justify-center self-center">
-						<Text className="text-neutral-100 text-sm mb-3 mt-6 px-4">
+						<Text className="text-neutral-100 text-xs mb-3 mt-6 px-4">
 							No recent journey was found
 						</Text>
 						{/* <FontAwesome5 name="history" size={30} color="#99f6e4" /> */}

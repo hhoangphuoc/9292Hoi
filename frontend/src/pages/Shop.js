@@ -77,14 +77,14 @@ export default function Shop({ route, navigation }) {
 		<View className="flex-1 pt-20">
 			<View className="flex-1 flex-col bg-neutral-900 pt-2">
 				<View className="flex flex-row items-center justify-end px-6 py-2">
-					<Text className="text-center text-xl text-neutral-100 mr-2">
+					<Text className="text-center text-lg text-neutral-100 mr-2">
 						{userCoins}
 					</Text>
 					<FontAwesome5 name="coins" size={30} color="#eab308" />
 				</View>
 				{/* List of voice options that user can redeem */}
 				<ScrollView className="flex flex-col px-4">
-					<Text className="text-neutral-100 font-bold text-lg text-left mt-2 mb-1">
+					<Text className="text-neutral-100 font-bold text-base text-left mt-2 mb-1">
 						Redeem Options
 					</Text>
 					<View className="w-full h-[1px] bg-neutral-400 pl-6 mb-2"></View>
@@ -98,7 +98,7 @@ export default function Shop({ route, navigation }) {
 							>
 								<View className="flex flex-col px-2 pb-1 w-full">
 									<View className="flex flex-row justify-between">
-										<Text className="text-center text-base text-neutral-100 my-2">
+										<Text className="text-center text-sm text-neutral-100 my-2">
 											{item.name}
 										</Text>
 										<TouchableOpacity
@@ -125,7 +125,7 @@ export default function Shop({ route, navigation }) {
 								</View>
 								<View className="flex flex-row justify-between w-full px-2 pb-2">
 									<View className="flex flex-row items-center justify-center rounded-lg px-2 py-1">
-										<Text className="text-center text-base text-neutral-100 mr-2">
+										<Text className="text-center text-sm text-neutral-100 mr-2">
 											{item.coins}
 										</Text>
 										<FontAwesome5 name="coins" size={20} color="#eab308" />
@@ -137,7 +137,7 @@ export default function Shop({ route, navigation }) {
 										}}
 										className="items-center justify-center bg-teal-300 rounded-lg py-1 px-2"
 									>
-										<Text className="text-center text-sm text-neutral-900">
+										<Text className="text-center text-xs text-neutral-900">
 											Redeem
 										</Text>
 									</TouchableOpacity>
@@ -145,14 +145,14 @@ export default function Shop({ route, navigation }) {
 							</View>
 						))
 					) : (
-						<Text className="text-center text-base text-neutral-100 my-2">
+						<Text className="text-center text-sm text-neutral-100 my-2">
 							Nothing else to redeem rewards
 						</Text>
 					)}
 				</ScrollView>
 				{/* List of Redeemed Voice that userhave */}
 				<ScrollView className="flex flex-col pb-2 px-4 mb-4 flex-grow">
-					<Text className="text-neutral-100 font-bold text-lg text-left mt-2 pt-3 mb-1">
+					<Text className="text-neutral-100 font-bold text-base text-left mt-2 pt-3 mb-1">
 						Redeem History
 					</Text>
 					<View className="w-full h-[1px] bg-neutral-400 pl-6"></View>
@@ -166,11 +166,11 @@ export default function Shop({ route, navigation }) {
 							>
 								<View className="flex flex-col px-2 pb-1 w-full">
 									<View className="flex flex-row justify-between">
-										<Text className="text-center text-base text-neutral-100 my-2">
+										<Text className="text-center text-sm text-neutral-100 my-2">
 											{item.name}
 										</Text>
 										<View className="flex flex-row items-center justify-center rounded-lg px-2 py-1">
-											<Text className="text-center text-base text-neutral-100 mr-2">
+											<Text className="text-center text-sm text-neutral-100 mr-2">
 												{item.coins}
 											</Text>
 											<FontAwesome5 name="coins" size={20} color="#eab308" />
@@ -180,7 +180,7 @@ export default function Shop({ route, navigation }) {
 							</View>
 						))
 					) : (
-						<Text className="text-center text-sm text-neutral-100  items-center my-6">
+						<Text className="text-center text-xs text-neutral-100  items-center my-6">
 							Your redeemed rewards will be here
 						</Text>
 					)}
@@ -190,7 +190,7 @@ export default function Shop({ route, navigation }) {
 					className="flex flex-row items-center bg-teal-400 justify-center w-full rounded-md py-2 px-4 mt-1"
 					onPress={() => navigation.navigate("CustomVoiceSettings")}
 				>
-					<Text className="text-neutral-900 text-base mr-2">
+					<Text className="text-neutral-900 text-sm mr-2">
 						Set your voice assistant
 					</Text>
 					<MaterialIcons name="multitrack-audio" size={24} color="#171717" />
