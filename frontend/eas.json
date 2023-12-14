@@ -8,34 +8,38 @@
       "distribution": "internal",
       "env": {
         "APP_ICON": "./assets/icon.png",
-        "OPENAI_KEY": "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",
+        "OPENAI_KEY": "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",
         "TOKEN_9292": "BPrtUvtota0IbdMkwYOt",
-        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg"
+        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg",
+        "GOOGLE_AI_KEY": "AIzaSyAf4jEfLaALne65sf5brx5-pUL70mol7ms"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
         "APP_ICON": "./assets/icon.png",
-        "OPENAI_KEY": "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",
+        "OPENAI_KEY": "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",
         "TOKEN_9292": "BPrtUvtota0IbdMkwYOt",
-        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg"
+        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg",
+        "GOOGLE_AI_KEY": "AIzaSyAf4jEfLaALne65sf5brx5-pUL70mol7ms"
       }
     },
     "production": {
       "env": {
         "APP_ICON": "./assets/icon.png",
-        "OPENAI_KEY": "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",
+        "OPENAI_KEY": "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",
         "TOKEN_9292": "BPrtUvtota0IbdMkwYOt",
-        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg"
+        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg",
+        "GOOGLE_AI_KEY": "AIzaSyAf4jEfLaALne65sf5brx5-pUL70mol7ms"
       }
     },
     "test": {
       "env": {
         "APP_ICON": "./assets/icon.png",
-        "OPENAI_KEY": "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",
+        "OPENAI_KEY": "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",
         "TOKEN_9292": "BPrtUvtota0IbdMkwYOt",
-        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg"
+        "GOOGLE_MAPS_KEY": "AIzaSyC0sqOq_L9FpAK5MmG9RX6mg8t5F1FVdrg",
+        "GOOGLE_AI_KEY": "AIzaSyAf4jEfLaALne65sf5brx5-pUL70mol7ms"
       }
     }
   },
