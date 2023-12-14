@@ -30,9 +30,21 @@ import {
 	Send,
 } from "react-native-gifted-chat";
 
-const systemPrompt =
-	"You are a friendly and helpful travelling companion assistant. You are helping a traveller to find a place to travel based on their interests and questions through a conversation with them";
-const chatgptUrl = "https://api.openai.com/v1/chat/completions";
+import {
+	OPENAI_ENDPOINT,
+	OPENAI_PROMPT,
+	GPT_MODEL,
+	GEMINI_ENDPOINT,
+	GCLOUD_PROJECT_ID,
+	GCLOUD_LOCATION,
+	GEMINI_MODEL,
+} from "../constant";
+
+// const systemPrompt =
+// 	"You are 9292Hoi, a friendly travel companion voice assistant. You only provide information about the locations, some suggestions and recommendations about activities or places to visit in the Netherlands. Try to adapt with the knowledge and traveller response, and provide some questions to help traveller finding the information they need.";
+// // const systemPrompt =
+// // 	"You are a friendly and helpful travelling companion assistant. You are helping a traveller to find a place to travel based on their interests and questions through a conversation with them";
+// const chatgptUrl = "https://api.openai.com/v1/chat/completions";
 
 const CHAT_BOT_FACE = require("../../assets/icon.png");
 export default function Home({ navigation }) {
@@ -43,6 +55,8 @@ export default function Home({ navigation }) {
 	const [messages, setMessages] = useState([]);
 	const [messageLoading, setMessageLoading] = useState(false);
 	const [userInput, setUserInput] = useState("");
+
+	const [botType, setBotType] = useState("gpt");
 
 	//play the audio when page is loaded
 	useEffect(() => {
@@ -64,11 +78,6 @@ export default function Home({ navigation }) {
 	//load initial messages everytime modal is opened
 	useEffect(() => {
 		setMessages([
-			// {
-			// 	role: "assistant",
-			// 	content:
-			// 		"Hoi! I'm your travel assistant. Please tell me first, where do you want to go?",
-			// },
 			{
 				_id: 1,
 				text: "Hoi! I'm your travel assistant. Please tell me first, where do you want to go?",
@@ -82,32 +91,25 @@ export default function Home({ navigation }) {
 		]);
 	}, [modalVisible]);
 
-	// const handleSendMessage = async () => {
-	// 	console.log("Sending...");
-	// 	setMessages((prevMessages) => [
-	// 		...prevMessages,
-	// 		{ content: userInput, role: "user" },
-	// 	]);
-	// 	// Call OpenAI API
-	// 	getGPTResponse(userInput);
-	// 	// Clear user input
-	// 	setUserInput("");
-	// };
-
 	const handleSend = useCallback((messages = []) => {
 		setMessages((previousMessages) =>
 			GiftedChat.append(previousMessages, messages)
 		);
 		if (messages[0].text) {
 			// Call OpenAI API
-			getGPTResponse(messages[0].text);
+			console.log("Sending...");
+			if (botType === "gemini") {
+				getGeminiResponse(messages[0].text);
+			} else {
+				getGPTResponse(messages[0].text);
+			}
 		}
 	}, []);
 
 	const getGPTResponse = async (userInput) => {
 		setMessageLoading(true);
 		// Call OpenAI API with the message
-		const aiResponse = await fetch(chatgptUrl, {
+		const aiResponse = await fetch(OPENAI_ENDPOINT, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -116,26 +118,32 @@ export default function Home({ navigation }) {
 			body: JSON.stringify({
 				model: "gpt-3.5-turbo",
 				messages: [
-					//zero shot
 					{
 						role: "system",
-						content: systemPrompt,
+						content:
+							"You are 9292Hoi, a friendly travel companion voice assistant. You only provide information about the locations, some suggestions and recommendations about activities or places to visit in the Netherlands. Try to adapt with the knowledge and traveller response, and provide some questions to help traveller finding the information they need. Your answer should be in short summary, and not too long.",
 					},
 					{
 						role: "user",
-						content: userInput,
+						content: "I want to go to <location>",
 					},
+					{
+						role: "user",
+						content: "Suggest me a place to do <activities> in <location>",
+					},
+					{ role: "user", content: userInput },
 				],
-				max_tokens: 512,
-				temperature: 0.5,
-				stop: "\n",
-				// n: 1,
+				max_tokens: 256,
+				temperature: 0.9,
+				top_p: 1,
+				// stop: "\n",
 			}),
 		});
 
 		const data = await aiResponse
 			.json()
 			.then((data) => {
+				console.log("checking data... ", data);
 				if (data?.choices[0]?.message?.content) {
 					setMessageLoading(false);
 
@@ -152,14 +160,6 @@ export default function Home({ navigation }) {
 					setMessages((previousMessages) =>
 						GiftedChat.append(previousMessages, chatAIResp)
 					);
-
-					// setMessages((prevMessages) => [
-					// 	...prevMessages,
-					// 	{
-					// 		content: data?.choices[0]?.message?.content.trim(),
-					// 		role: "assistant",
-					// 	},
-					// ]);
 				} else {
 					setMessageLoading(false);
 					const chatAIResp = {
@@ -175,17 +175,84 @@ export default function Home({ navigation }) {
 					setMessages((previousMessages) =>
 						GiftedChat.append(previousMessages, chatAIResp)
 					);
-					// setMessages((prevMessages) => [
-					// 	...prevMessages,
-					// 	{
-					// 		content: "Sorry, I don't understand. Please try again.",
-					// 		role: "assistant",
-					// 	},
-					// ]);
 				}
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log("ERROR: ", err);
+			});
+	};
+
+	const getGeminiResponse = async (userInput) => {
+		setMessageLoading(true);
+		//call gemini api
+		console.log("calling gemini api...");
+		const geminiResponse = await fetch(
+			`https://${GEMINI_ENDPOINT}/v1beta1/projects/${GCLOUD_PROJECT_ID}/locations/${GCLOUD_LOCATION}/publishers/google/models/${GEMINI_MODEL}:streamGenerateContent`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					content: [
+						{
+							text: "Context: You are 9292Hoi, a friendly travel companion voice assistant. You only provide information about the locations, some suggestions and recommendations about activities or places to visit in the Netherlands. Try to adapt with the knowledge and traveller response, and provide some questions to help traveller finding the information they need.",
+						},
+						{ text: "User: I want to go to <location>" },
+						{ text: "User: Suggest me a place to do <activities>" },
+						{
+							text: userInput,
+						},
+					],
+					generation_config: {
+						max_output_tokens: 2048,
+						temperature: 0.9,
+						top_p: 1,
+					},
+				}),
+			}
+		);
+
+		const data = await geminiResponse
+			.json()
+			.then((data) => {
+				console.log("checking for Gemini response... ", data);
+				if (data?.candidates[0]?.content?.parts[0].text) {
+					setMessageLoading(false);
+
+					const chatAIResp = {
+						_id: Math.random() * (9999999 - 1),
+						text: data?.candidates[0]?.content?.parts[0].text,
+						createdAt: new Date(),
+						user: {
+							_id: 2,
+							name: "9292",
+							avatar: CHAT_BOT_FACE,
+						},
+					};
+					setMessages((previousMessages) =>
+						GiftedChat.append(previousMessages, chatAIResp)
+					);
+				} else {
+					setMessageLoading(false);
+					const chatAIResp = {
+						_id: Math.random() * (9999999 - 1),
+						text: "Sorry, I don't understand. Please try again.",
+						createdAt: new Date(),
+						user: {
+							_id: 2,
+							name: "9292",
+							avatar: CHAT_BOT_FACE,
+						},
+					};
+					setMessages((previousMessages) =>
+						GiftedChat.append(previousMessages, chatAIResp)
+					);
+				}
+			})
+			.catch((err) => {
+				console.log("ERROR: ", err);
+				// console.log(err);
 			});
 	};
 
