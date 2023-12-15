@@ -10,11 +10,13 @@ export function formatJourney(journey) {
 	const durationStr = `${Math.floor(journey?.duration / 60)}h ${
 		journey?.duration % 60
 	}m`;
+	const Co2Emission = journey?.Co2Emission;
 	const modalities = legs.map((leg) => leg?.modality);
 
 	const formattedJourney = {
 		journeyType: journeyType,
 		journeyId: journeyId,
+		date: journey?.departureTime.slice(0, 10),
 		dTime: journey?.departureTime.slice(11, 16),
 		aTime: journey?.arrivalTime.slice(11, 16),
 		duration: duration,
@@ -22,6 +24,7 @@ export function formatJourney(journey) {
 		price: price,
 		legs: legs,
 		coins: coins,
+		Co2Emission: Co2Emission, //added Co2Emission
 		modalities: modalities,
 	};
 

@@ -108,89 +108,6 @@ const voicePackages = [
 	},
 	{
 		id: 2,
-		name: "Australian English (Jack)",
-		description: "Australian accent, male voice",
-		voiceDemo: require("../data/audio/Australian_English_Jack/jack_en_au_01.mp3"),
-		coins: 50,
-		voices: [
-			{
-				context: "welcome",
-				script: "Hoi! Let's go travelling",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_01.mp3"),
-			},
-			{
-				context: "findLocation",
-				script: "I'm here to help! Where can I guide you today?",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_02.mp3"),
-			},
-			{
-				context: "travelTips",
-				script:
-					"Travel tips: Enjoy Rotterdam's iconic landmarks, such as Keulen Tower and Markt hal Building on your way to Rotterdam Centraal Station.",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_03.mp3"),
-			},
-			{
-				context: "shoppingTips",
-				script:
-					"Shopping tips: Stop at the shopping area in the center of Rotterdam. Experience fashionable boutiques and local cuisine before continuing your journey.",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_04.mp3"),
-			},
-			{
-				context: "findRoute",
-				script:
-					"Great! These are the possible routes that I've prepared for you.",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_05.mp3"),
-			},
-			{
-				context: "shortestJourney",
-				script:
-					"The shortest journey from, Alexanderplein, to, Rotterdam Centraal, is estimated to take 58 mins.",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_06.mp3"),
-			},
-			{
-				context: "congrats",
-				script:
-					"Congrats, you are arrived! You earned 76 shiny coins for this journey.",
-				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_10.mp3"),
-			},
-			{
-				context: "route",
-				script: "Route description",
-				routeVoices: [
-					{
-						context: "tram",
-						script:
-							"The tram to, Weesperplein, will depart from, Alexanderplein, at 11:08am.",
-						voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_07.mp3"),
-					},
-					{
-						context: "walk",
-						script: "Walk to the metro station",
-						voiceUrl: null,
-					},
-					{
-						context: "metro",
-						script:
-							"The metro to, Centraal Station, will depart from, Weesperplein station, at 11:14am.",
-						voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_08.mp3"),
-					},
-					{
-						context: "walk",
-						script: "Walk to the train station",
-						voiceUrl: null,
-					},
-					{
-						context: "train",
-						script:
-							"The train from, Amsterdam Centraal Station, to, Rotterdam Centraal Station, departs at 11:25 am from platform 11a.",
-						voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_09.mp3"),
-					},
-				],
-			},
-		],
-	},
-	{
-		id: 3,
 		name: "Dutch English (Alex)",
 		description: "Dutch accent, male voice, normal speed",
 		voiceDemo: require("../data/audio/Dutch_English_Alex/alex_nl_nl_01.mp3"),
@@ -272,6 +189,90 @@ const voicePackages = [
 			},
 		],
 	},
+	{
+		id: 3,
+		name: "Australian English (Jack)",
+		description: "Australian accent, male voice",
+		voiceDemo: require("../data/audio/Australian_English_Jack/jack_en_au_01.mp3"),
+		coins: 50,
+		voices: [
+			{
+				context: "welcome",
+				script: "Hoi! Let's go travelling",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_01.mp3"),
+			},
+			{
+				context: "findLocation",
+				script: "I'm here to help! Where can I guide you today?",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_02.mp3"),
+			},
+			{
+				context: "travelTips",
+				script:
+					"Travel tips: Enjoy Rotterdam's iconic landmarks, such as Keulen Tower and Markt hal Building on your way to Rotterdam Centraal Station.",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_03.mp3"),
+			},
+			{
+				context: "shoppingTips",
+				script:
+					"Shopping tips: Stop at the shopping area in the center of Rotterdam. Experience fashionable boutiques and local cuisine before continuing your journey.",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_04.mp3"),
+			},
+			{
+				context: "findRoute",
+				script:
+					"Great! These are the possible routes that I've prepared for you.",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_05.mp3"),
+			},
+			{
+				context: "shortestJourney",
+				script:
+					"The shortest journey from, Alexanderplein, to, Rotterdam Centraal, is estimated to take 58 mins.",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_06.mp3"),
+			},
+			{
+				context: "congrats",
+				script:
+					"Congrats, you are arrived! You earned 76 shiny coins for this journey.",
+				voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_10.mp3"),
+			},
+			{
+				context: "route",
+				script: "Route description",
+				routeVoices: [
+					{
+						context: "tram",
+						script:
+							"The tram to, Weesperplein, will depart from, Alexanderplein, at 11:08am.",
+						voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_07.mp3"),
+					},
+					{
+						context: "walk",
+						script: "Walk to the metro station",
+						voiceUrl: null,
+					},
+					{
+						context: "metro",
+						script:
+							"The metro to, Centraal Station, will depart from, Weesperplein station, at 11:14am.",
+						voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_08.mp3"),
+					},
+					{
+						context: "walk",
+						script: "Walk to the train station",
+						voiceUrl: null,
+					},
+					{
+						context: "train",
+						script:
+							"The train from, Amsterdam Centraal Station, to, Rotterdam Centraal Station, departs at 11:25 am from platform 11a.",
+						voiceUrl: require("../data/audio/Australian_English_Jack/jack_en_au_09.mp3"),
+					},
+				],
+			},
+		],
+	},
+
 	{
 		id: 4,
 		name: "Indian English (Priya)",

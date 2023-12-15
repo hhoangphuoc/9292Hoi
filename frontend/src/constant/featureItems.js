@@ -81,32 +81,22 @@ const rankCategories = [
 	{
 		name: "Bronze",
 		color: "#cd7f32",
-		min: 0,
-		max: 20,
 	},
 	{
 		name: "Silver",
 		color: "#c0c0c0",
-		min: 0,
-		max: 40,
 	},
 	{
 		name: "Gold",
 		color: "#ffd700",
-		min: 0,
-		max: 60,
 	},
 	{
 		name: "Platinum",
 		color: "#e5e4e2",
-		min: 0,
-		max: 80,
 	},
 	{
 		name: "Diamond",
 		color: "#b9f2ff",
-		min: 0,
-		max: 100,
 	},
 ];
 
