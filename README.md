@@ -10,7 +10,7 @@ We called ourself `RUG-UT-RS`, we are a diverse group of students from the Unive
   - [Aki Kunikoshi](https://github.com/yemaozi88?tab=repositories)
   - Yanpei Ouyang
   - Xueying Liu
-  - Brandi
+  - [Brandi Hongell](https://github.com/branaphy?tab=repositories)
   - Chenyi
   - Yilan Wei
 ---
