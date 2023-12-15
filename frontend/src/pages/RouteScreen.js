@@ -19,6 +19,8 @@ import { useSelector } from "react-redux";
 
 import { BASE_URL, ENDPOINTS, TOKEN } from "../constant";
 
+import { fetchJourneys } from "../api/original9292Api";
+
 const journeyData = require("../data/journey_info_1.json"); //TODO: change back to journey_info.json
 
 //functions
@@ -219,22 +221,22 @@ export default function RouteScreen({ route, navigation }) {
 		// journeyData.selected_journey,
 	]);
 
-	async function fetchJourneys(fromId, toId) {
-		const headers = new Headers();
-		headers.append("Authorization", `Token ${TOKEN}`);
+	// async function fetchJourneys(fromId, toId) {
+	// 	const headers = new Headers();
+	// 	headers.append("Authorization", `Token ${TOKEN}`);
 
-		const response = await fetch(
-			`https://reisadvies-api-ast.9292.nl/v4/journeys?fromId=${fromId}&toId=${toId}`,
-			{
-				method: "GET",
-				headers,
-			}
-		);
+	// 	const response = await fetch(
+	// 		`https://reisadvies-api-ast.9292.nl/v4/journeys?fromId=${fromId}&toId=${toId}`,
+	// 		{
+	// 			method: "GET",
+	// 			headers,
+	// 		}
+	// 	);
 
-		const data = await response.json();
-		console.log("Journey list:", data.journeys);
-		setJourneyList(data.journeys);
-	}
+	// 	const data = await response.json();
+	// 	console.log("Journey list:", data.journeys);
+	// 	setJourneyList(data.journeys);
+	// }
 
 	// //fetch the journey list
 	useEffect(() => {
@@ -247,10 +249,11 @@ export default function RouteScreen({ route, navigation }) {
 			setJourneyList(journeyData.selected_journey);
 		} else {
 			console.log("fetching journeys from 9292API...");
-			fetchJourneys(fromId, toId);
+			fetchJourneys(fromId, toId).then((journeyList) => {
+				setJourneyList(journeyList);
+			});
 		}
 		console.log("Number of Journey:", journeyList.length);
-
 		return () => {};
 	}, []);
 
@@ -261,11 +264,6 @@ export default function RouteScreen({ route, navigation }) {
 
 			<ScrollView className="flex flex-col mx-2 px-2 pt-2 mt-4">
 				{journeyList.map((journey, index) => {
-					//get the list of journey which have journey_type as "normal_journey"
-					const normalJourneys = journeyList.filter(
-						(journey) => journey.journey_type === "normal_journey"
-					);
-
 					return (
 						<View key={index} className="flex flex-col">
 							{index === 0 ? (

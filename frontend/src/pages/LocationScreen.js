@@ -10,25 +10,10 @@ import { useSelector } from "react-redux";
 
 import { TOKEN_9292 } from "@env";
 
+import { fetchLocations } from "../api/original9292Api";
+
 export default function LocationScreen({ navigation }) {
 	//fetch the 9292 API Locations
-	async function fetchLocations(query) {
-		const headers = new Headers();
-		headers.append("Authorization", `Token ${TOKEN_9292}`);
-		console.log("fetching locations from 9292...");
-		const response = await fetch(
-			`https://reisadvies-api-ast.9292.nl/v4/Locations?query=${query}&Rows=5`,
-			{
-				method: "GET",
-				headers,
-			}
-		);
-
-		const data = await response.json();
-		setLocationList(data.locations);
-
-		console.log("Found Locations: ", data.locations);
-	}
 
 	const locationVoice = useSelector((state) => state.selectedVoice.voices[1]); //voices 1 contains the voice of location information
 
@@ -62,10 +47,14 @@ export default function LocationScreen({ navigation }) {
 	useEffect(() => {
 		if (selectedFromLocation === null && fromAddress) {
 			// console.log("fetching from locations...");
-			fetchLocations(fromAddress);
+			fetchLocations(fromAddress).then((fromLocationList) => {
+				setLocationList(fromLocationList);
+			});
 		} else if (selectedToLocation === null && toAddress) {
 			// console.log("fetching to locations...");
-			fetchLocations(toAddress);
+			fetchLocations(toAddress).then((toLocationList) => {
+				setLocationList(toLocationList);
+			});
 		}
 	}, [fromAddress, toAddress, selectedFromLocation, selectedToLocation]);
 

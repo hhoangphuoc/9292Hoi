@@ -6,6 +6,7 @@ import {
 	AntDesign,
 	FontAwesome5,
 	MaterialIcons,
+	MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
 import { Audio } from "expo-av";
@@ -17,6 +18,9 @@ import * as Progress from "react-native-progress";
 
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+
+//api
+import { addTravelHistory } from "../api/travelhistory";
 
 //components
 import JourneyInfo from "../components/JourneyInfo";
@@ -96,6 +100,30 @@ export default function JourneyDetails({ route, navigation }) {
 		await sound.playAsync();
 	}
 
+	async function handleStop(sound) {
+		console.log("Unloading Sound");
+		await sound.unloadAsync();
+	}
+
+	//function that will post the journey to the backend
+	async function addJourneyToDB(journey, fromLocation, toLocation) {
+		//from the journey, only add: journeyId, departureTime, arrivalTime, departure, arrival, changes, duration, fareInCents, coinsCollected, Co2Emission
+		const travelHistory = {
+			journeyId: journey?.journeyId,
+			date: journey?.date,
+			departureTime: journey?.dTime,
+			arrivalTime: journey?.aTime,
+			departure: fromLocation,
+			arrival: toLocation,
+			fareInCents: journey?.price,
+			coinsCollected: journey?.coins,
+			Co2Emission: journey?.Co2Emission,
+		};
+
+		const response = await addTravelHistory(travelHistory).then((res) => {
+			console.log("POST: ", res);
+		});
+	}
 	//play sound when the page is loaded
 	useEffect(() => {
 		triggerSound(journeySummaryVoice.voiceUrl);
@@ -124,8 +152,6 @@ export default function JourneyDetails({ route, navigation }) {
 					<View className="flex flex-row items-center justify-end py-3 px-2">
 						<FontAwesome5 name="coins" size={24} color="#eab308" />
 						<Text className=" text-amber-400 ml-2">
-							{/* {" "}
-							100 */}
 							{formattedJourney?.coins}
 						</Text>
 					</View>
@@ -159,10 +185,20 @@ export default function JourneyDetails({ route, navigation }) {
 							</Text>
 						</View>
 					</View>
+					<View className="flex flex-row items-center self-center justify-center py-1 px-2">
+						<MaterialCommunityIcons
+							name="molecule-co2"
+							size={28}
+							color="#f5f5f5"
+						/>
+						<Text className="text-neutral-100 text-xs ml-1">
+							{formattedJourney?.Co2Emission} g/km
+						</Text>
+					</View>
 				</View>
 			</View>
 			{/* Modalities List */}
-			<View className="flex flex-row self-center justify-center py-2">
+			<View className="flex flex-row self-center justify-center pt-4">
 				{journeyIcons}
 			</View>
 
@@ -174,6 +210,7 @@ export default function JourneyDetails({ route, navigation }) {
 				<TouchableOpacity
 					className="flex flex-row items-center justify-center py-1 px-2"
 					onPress={() => {
+						handleStop(sound);
 						// handleStop(sound, setSound);
 						navigation.navigate("Home");
 						setProgress(0);
@@ -242,7 +279,10 @@ export default function JourneyDetails({ route, navigation }) {
 							className="flex flex-row items-center justify-center bg-neutral-700 rounded-md py-1 px-2 mx-2 z-20"
 							onPress={() => {
 								// handleStop(sound, setSound);
-								navigation.navigate("Home");
+								addJourneyToDB(formattedJourney, fromName, toName).then(() => {
+									console.log("added journey to DB, navigate to home");
+									navigation.navigate("Home");
+								});
 							}}
 						>
 							{/* <AntDesign name="rightcircleo" size={20} color="#f5f5f5" /> */}

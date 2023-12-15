@@ -9,6 +9,7 @@
       "duration": 58,
       "fareInCents": 1958,
       "coinsCollected": 76,
+      "Co2Emission": 0.118,
       "legs": [
         {
           "modality": "Tram",
@@ -263,6 +264,7 @@
       "duration": 87,
       "fareInCents": 1720,
       "coinsCollected": 95,
+      "Co2Emission": 0.14,
       "legs": [
         {
           "modality": "Walking",
@@ -520,6 +522,7 @@
       "duration": 87,
       "fareInCents": 1720,
       "coinsCollected": 95,
+      "Co2Emission": 0.14,
       "legs": [
         {
           "modality": "Walking",
@@ -777,6 +780,7 @@
       "duration": 61,
       "fareInCents": 1951,
       "coinsCollected": 77,
+      "Co2Emission": 0.118,
       "legs": [
         {
           "modality": "Tram",
@@ -1044,6 +1048,7 @@
       "duration": 85,
       "fareInCents": 1840,
       "coinsCollected": 120,
+      "Co2Emission": 0.197,
       "legs": [
         {
           "modality": "Walking",
@@ -1390,6 +1395,7 @@
       "duration": 65,
       "fareInCents": 1971,
       "coinsCollected": 78,
+      "Co2Emission": 0.118,
       "legs": [
         {
           "modality": "Tram",
@@ -1620,6 +1626,7 @@
       "duration": 62,
       "fareInCents": 1982,
       "coinsCollected": 77,
+      "Co2Emission": 0.118,
       "legs": [
         {
           "modality": "Tram",
@@ -1887,6 +1894,7 @@
       "duration": 78,
       "fareInCents": 1982,
       "coinsCollected": 83,
+      "Co2Emission": 0.118,
       "legs": [
         {
           "modality": "Tram",
@@ -2154,6 +2162,7 @@
       "duration": 84,
       "fareInCents": 1870,
       "coinsCollected": 95,
+      "Co2Emission": 0.14200000000000002,
       "legs": [
         {
           "modality": "Tram",
@@ -2563,6 +2572,7 @@
       "duration": 87,
       "fareInCents": 1870,
       "coinsCollected": 95,
+      "Co2Emission": 0.14,
       "legs": [
         {
           "modality": "Tram",
@@ -2908,6 +2918,7 @@
       "duration": 87,
       "fareInCents": 1851,
       "coinsCollected": 104,
+      "Co2Emission": 0.16,
       "legs": [
         {
           "modality": "Tram",
@@ -3200,6 +3211,7 @@
       "duration": 61,
       "fareInCents": 1971,
       "coinsCollected": 77,
+      "Co2Emission": 0.118,
       "legs": [
         {
           "modality": "Tram",
@@ -3430,6 +3442,7 @@
       "duration": 86,
       "fareInCents": 1840,
       "coinsCollected": 95,
+      "Co2Emission": 0.14,
       "legs": [
         {
           "modality": "Walking",
