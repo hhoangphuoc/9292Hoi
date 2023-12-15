@@ -16,16 +16,17 @@ def add_travel_record():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO TravelHistory (JourneyID, TravelDate, DepartureTime, ArrivalTime, Changes, Duration) VALUES (?, ?, ?, ?, ?, ?)",
-        (data['JourneyID'], data['TravelDate'],
-         data['DepartureTime'], data['ArrivalTime'], data['Changes'], data['Duration']))
+        # "INSERT INTO TravelHistory (JourneyID, DepartureTime, ArrivalTime, Changes, Duration) VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO TravelHistory (journeyId, date, departureTime, arrivalTime, departure, arrival, fareInCents, coinsCollected, Co2Emission) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (data['journeyId'], data['date'], data['departureTime'],
+         data['arrivalTime'], data['departure'], data['arrival'], data['fareInCents'], data['coinsCollected'], data['Co2Emission']))
     conn.commit()
     conn.close()
     return jsonify({"status": "success"}), 201
 
 
-@app.route('/get_travel_history/<int:user_id>', methods=['GET'])
-def get_travel_history(user_id):
+@app.route('/get_travel_history', methods=['GET'])
+def get_travel_history():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM TravelHistory")
