@@ -11,7 +11,7 @@ We called ourself `RUG-UT-RS`, we are a diverse group of students from the Unive
   - Yanpei Ouyang
   - Xueying Liu
   - [Brandi Hongell](https://github.com/branaphy?tab=repositories)
-  - Chenyi
+  - [Chenyi Lin](https://github.com/Chenyi063?tab=repositories)
   - Yilan Wei
 ---
 
